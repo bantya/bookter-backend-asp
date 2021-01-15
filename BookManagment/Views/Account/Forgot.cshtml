@@ -1,0 +1,102 @@
+﻿
+@{
+    ViewBag.Title = "Forgot";
+}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Forgot Password</title>
+    <link rel="stylesheet" href="~/Content/style.css">
+    <link rel="stylesheet" href="~/Content/font-awesome.css">
+    <link href="https://fonts.googleapis.com/css2?family=Miriam+Libre:wght@400;700&display=swap" rel="stylesheet">
+    <script src="js/script.js" defer></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="wrapper">
+            <header class="navbar">
+                <div class="logo">
+                    <a href="#"><i class="fas fa-book"></i></a>
+                </div>
+                <div class="search-container">
+                    <input class="input" type="text" id="search-input" placeholder="Search me.." autocomplete="off">
+                    <span class="search-icon">
+                        <i class="fas fa-search"></i>
+                    </span>
+                </div><!-- div.search-container-->
+                <nav class="nav-menu">
+                    <ul class="nav-list">
+                        <li class="menu-item"><a href="#">Home</a></li>
+                        <li class="menu-item"><a href="posts.html">Posts</a></li>
+                        <li class="menu-item"><a href="book.html">Books</a></li>
+                        <li class="menu-item"><a href="/register">Register</a></li>
+                        <li class="menu-item active"><a href="/login">Login</a></li>
+                    </ul> <!-- ul.nav-list -->
+                </nav> <!-- div.nav-menu-->
+            </header>
+
+            <div class="content-wrapper">
+                <div class="content">
+                    <div class="input-box">
+                        <div class="input-header">
+                            <h2>Forgot Password</h2>
+                        </div>
+                        <div class="input-form">
+                            <form method="POST">
+                                <label for="uemail">Email:</label>
+                                <br />
+                                <input class="input" type="email" name="uemail" id="uemail" autocomplete="off" autofocus required>
+                                <br />
+                                <small class="gray-6">If you are a registered user, you will receive a password recovery email in no time.</small>
+                                <div class="input-actions">
+                                    <button class="button" type="submit">Reset password</button>
+                                </div>
+                            </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FOOTER -->
+        <footer>
+            <div class="upper-footer">
+                <div class="footer-list-container">
+                    <p class="footer-list-title">ESSENTIALS</p>
+                    <ul class="footer-pages-list">
+                        <li><a href="contactus.html">Contact Us</a></li>
+                        <li><a href="aboutus.html">About Us</a></li>
+                        <li><a href="#">Careers</a></li>
+                    </ul>
+                </div>
+                <div class="footer-list-container">
+                    <p class="footer-list-title">PAGES</p>
+                    <ul class="footer-pages-list">
+                        <li><a href="#">Payment Security</a></li>
+                        <li><a href="privacypolicy.html">Privacy Policy</a></li>
+                        <li><a href="#">Terms and Conditions</a></li>
+                    </ul>
+                </div>
+                <div class="footer-list-container">
+                    <p class="footer-list-title">SOCIAL</p>
+                    <ul class="footer-social-list">
+                        <li><a href="#">YouTube</a></li>
+                        <li><a href="#">Twitter</a></li>
+                        <li><a href="#">Facebook</a></li>
+                        <li><a href="#">Instagram</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="lower-footer">
+                &copy; 2020-20xx bookter.in
+            </div>
+        </footer> <!-- FOOTER -->
+    </div>
+    </div>
+</body>
+
+</html>
+
+

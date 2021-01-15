@@ -1,0 +1,6 @@
+C:\Users\Shedge\source\repos\BookManagment\BOL\bin\Debug\BOL.dll
+C:\Users\Shedge\source\repos\BookManagment\BOL\bin\Debug\BOL.pdb
+C:\Users\Shedge\source\repos\BookManagment\BOL\obj\Debug\BOL.csprojAssemblyReference.cache
+C:\Users\Shedge\source\repos\BookManagment\BOL\obj\Debug\BOL.csproj.CoreCompileInputs.cache
+C:\Users\Shedge\source\repos\BookManagment\BOL\obj\Debug\BOL.dll
+C:\Users\Shedge\source\repos\BookManagment\BOL\obj\Debug\BOL.pdb

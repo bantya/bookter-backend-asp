@@ -1,0 +1,360 @@
+﻿@using BOL
+
+@{
+    ViewBag.Title = "Details";
+}
+
+@{
+    Books book = Model as Books;
+
+
+    <!DOCTYPE html>
+    <html>
+
+    <head>
+        <title>Book • Dream With Your Eyes Open</title>
+        <link rel="stylesheet" href="~/Content/style.css">
+        <link rel="stylesheet" href="~/Content/font-awesome.css">
+        <link href="https://fonts.googleapis.com/css2?family=Miriam+Libre:wght@400;700&display=swap" rel="stylesheet">
+        <script src="js/script.js" defer></script>
+    </head>
+
+    <body>
+
+        <div class="container">
+            <div class="wrapper">
+                <header class="navbar">
+                    <div class="logo">
+                        <a href="#"><i class="fas fa-book"></i></a>
+                    </div>
+                    <div class="search-container">
+                        <input class="input" type="text" id="search-input" placeholder="Search me.." autocomplete="off">
+                        <span class="search-icon">
+                            <i class="fas fa-search"></i>
+                        </span>
+                    </div><!-- div.search-container-->
+                    <nav class="nav-menu flex flex-row">
+                        <ul class="nav-list">
+                            <li class="menu-item"><a href="index.html">Home</a></li>
+                            <li class="menu-item active"><a href="posts.html">Posts</a></li>
+                            <li class="menu-item"><a href="books.html">Books</a></li>
+                            <li class="menu-item"><a href="orders.html">Orders</a></li>
+                            <li class="menu-item"><a href="cart.html">Cart</a></li>
+                            <!-- <li class="menu-item pointer"> -->
+                            <!-- <img class="image rounded" src="http://placeholder.code/40x40/RT/40/845206/201256" alt="Profile Pic"> -->
+                            <!-- </li> -->
+                        </ul> <!-- ul.nav-list -->
+                        <div class="user-profile-pic rounded flex items-center pointer m-l-medium">
+                            <div class="pofile-pic-wrapper profile-pic-flair rounded">
+                                <img class="image rounded flex items-center"
+                                     src="https://source.unsplash.com/random/100x100?face-male&sig=99"
+                                     width="40" height="40" alt="Profile Pic">
+                            </div>
+                        </div>
+                    </nav> <!-- div.nav-menu-->
+                </header>
+
+                <div class="content-wrapper">
+                    <div class="content">
+                        <div class="content-main">
+                            <div class="book-title-container">
+                                <div class="book-title">
+                                    <h1 class="book-name">@book.bookname</h1>
+                                    <a class="anchor" href="#"><h3 class="book-author">@book.bookauthor</h3></a>
+                                </div>
+                                <div class="book-ratings">
+                                    <div class="book-stars-container">
+                                        <div class="book-stars-count">
+                                            <h4 class="book-stars-count">@book.rating</h4>
+                                            <b class="book-stars-slash">/</b>
+                                            <h4 class="book-stars-total"><sub>5</sub></h4>
+                                        </div>
+                                        <div class="book-stars">
+                                            <i class="fas fa-star starred"></i>
+                                            <i class="fas fa-star starred"></i>
+                                            <i class="fas fa-star starred"></i>
+                                            <i class="fas fa-star starred"></i>
+                                            <i class="fas fa-star"></i>
+                                        </div>
+                                    </div>
+                                    <div class="book-reviews-container">
+                                        <a class="anchor" href="#">
+                                            <h4 class="book-reviews-count">39</h4>
+                                            <h4 class="book-reviews-text">Reviews</h4>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="book-details-body">
+                                <div class="book-images-container">
+                                    <div class="book-image-main radius overflow-hidden m-b-normal">
+                                        <img class="flex" src="@book.image" width="200" alt="">
+                                    </div>
+                                    <div class="book-images-small flex flex-row">
+                                        <img class="radius m-r-normal" src="@book.image" width="50" alt="">
+                                        <img class="radius m-r-normal" src="@book.image2" width="50" alt="">
+                                        <img class="radius" src="@book.image3" width="50" alt="">
+                                    </div>
+                                </div>
+                                <div class="book-details-main">
+                                    <div class="book-stats-container">
+                                        <h3 class="book-stats-title">Book Details</h3>
+                                        <div class="book-stats">
+                                            <div class="book-stats-print-length">
+                                                <p class="book-stats-value"><b>@book.bookspage pages</b></p>
+                                                <p class="book-stats-attr">Total Pages</p>
+                                            </div>
+                                            <div class="vertical-separator"></div>
+                                            <div class="book-stats-language">
+                                                <p class="book-stats-value"><b>@book.booklang</b></p>
+                                                <p class="book-stats-attr">Language</p>
+                                            </div>
+                                            <div class="vertical-separator"></div>
+                                            <div class="book-stats-publisher">
+                                                <p class="book-stats-value"><b>@book.bookpublisher</b></p>
+                                                <p class="book-stats-attr">Publisher</p>
+                                            </div>
+                                            <div class="vertical-separator"></div>
+                                            <div class="book-stats-published-date">
+                                                <p class="book-stats-value"><b>@book.bookdate</b></p>
+                                                <p class="book-stats-attr">Published Date</p>
+                                            </div>
+                                            <div class="vertical-separator"></div>
+                                            <div class="book-stats-dimensions">
+                                                <p class="book-stats-value"><b>@book.bookdimension</b></p>
+                                                <p class="book-stats-attr">Dimensions</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="book-options-container">
+                                        <h3 class="book-options-title">Book Options</h3>
+                                        <div class="book-options">
+                                            <div class="book-options-hardcover border-button">
+                                                <h4 class="book-options-value"><span>₹</span>@book.paperprice</h4>
+                                                <h5 class="book-options-attr">Paperback</h5>
+                                            </div>
+                                            <div class="book-options-paperback border-button">
+                                                <h4 class="book-options-value"><span>₹</span>@book.hardprice</h4>
+                                                <h5 class="book-options-attr">Hardcover</h5>
+                                            </div>
+                                            <div class="book-options-ebook border-button">
+                                                <h4 class="book-options-value"><span>₹</span>@book.ebookprice</h4>
+                                                <h5 class="book-options-attr">E-Book</h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="book-summary">
+                                        <p class="book-summary-para">
+                                            @book.bookdisc
+                                        </p>
+
+
+                                        <p class="book-summary-title"><b>About the Author:</b></p>
+                                        <p class="book-summary-para">
+                                            @book.aboutauthor
+                                        </p>
+
+
+                                    </div>
+                                    <div class="reviews-container">
+                                        <div class="review-stats">
+                                            <h3 class="m-b-medium">Customer Ratings</h3>
+                                            <div class="review-stats-container">
+                                                <div class="review-stats-stars-calc">
+                                                    <div class="book-stars-count">
+                                                        <h4 class="book-stars-count">@book.rating</h4>
+                                                        <b class="book-stars-slash">/</b>
+                                                        <h4 class="book-stars-total"><sub>5</sub></h4>
+                                                    </div>
+                                                    <div class="book-stars">
+                                                        <i class="fas fa-star starred"></i>
+                                                        <i class="fas fa-star starred"></i>
+                                                        <i class="fas fa-star starred"></i>
+                                                        <i class="fas fa-star starred"></i>
+                                                        <i class="fas fa-star"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="review-stats-stars">
+                                                    <div class="review-stats-star">
+                                                        <div class="review-stats-star">5 star</div>
+                                                        <div class="review-stats-star-bar">
+                                                            <div class="review-stats-star-bar-container">
+                                                                <div class="review-stats-star-bar-actual" style="width: 60%"></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="review-stats-star-pct">60%</div>
+                                                    </div>
+                                                    <div class="review-stats-star">
+                                                        <div class="review-stats-star">4 star</div>
+                                                        <div class="review-stats-star-bar">
+                                                            <div class="review-stats-star-bar-container">
+                                                                <div class="review-stats-star-bar-actual" style="width: 23%"></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="review-stats-star-pct">23%</div>
+                                                    </div>
+                                                    <div class="review-stats-star">
+                                                        <div class="review-stats-star">3 star</div>
+                                                        <div class="review-stats-star-bar">
+                                                            <div class="review-stats-star-bar-container">
+                                                                <div class="review-stats-star-bar-actual" style="width: 9%"></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="review-stats-star-pct">9%</div>
+                                                    </div>
+                                                    <div class="review-stats-star">
+                                                        <div class="review-stats-star">2 star</div>
+                                                        <div class="review-stats-star-bar">
+                                                            <div class="review-stats-star-bar-container">
+                                                                <div class="review-stats-star-bar-actual" style="width: 4%"></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="review-stats-star-pct">4%</div>
+                                                    </div>
+                                                    <div class="review-stats-star">
+                                                        <div class="review-stats-star">1 star</div>
+                                                        <div class="review-stats-star-bar">
+                                                            <div class="review-stats-star-bar-container">
+                                                                <div class="review-stats-star-bar-actual" style="width: 4%"></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="review-stats-star-pct">4%</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="reviews">
+                                            <h3 class="m-y-wide">Customer Reviews</h3>
+                                            <div class="reviews-container">
+                                                <div class="review p-wide border radius">
+                                                    <div class="review-user-info">
+                                                        <div class="user-profile-pic rounded">
+                                                            <div class="pofile-pic-wrapper profile-pic-flair rounded">
+                                                                <img class="image rounded"
+                                                                     src="https://source.unsplash.com/random/100x100?face-male&sig=99"
+                                                                     width="40" height="40" alt="Profile Pic">
+                                                            </div>
+                                                        </div>
+                                                        <h3 class="review-user-name m-l-normal">
+                                                            <a class="anchor" href="#">vishvajeet</a>
+                                                        </h3>
+                                                    </div>
+                                                    <div class="review-user-rating flex flex-row items-center m-y-medium">
+                                                        <div class="review-user-rating">
+                                                            <div class="book-stars">
+                                                                <i class="fas fa-star starred"></i>
+                                                                <i class="fas fa-star starred"></i>
+                                                                <i class="fas fa-star starred"></i>
+                                                                <i class="fas fa-star starred"></i>
+                                                                <i class="fas fa-star starred"></i>
+                                                            </div>
+                                                        </div>
+                                                        <h4 class="m-l-medium">Must read journey to read!!</h4>
+                                                    </div>
+                                                    <div class="review-user-comment">
+                                                        <p>Like the book advices, it's not something you could read overnight and know it all the next morning. It's more like a Guide to get you going in your start up life. I work for a start up and for me this comes handy when am in doubt or when I want to come out with new idea.</p>
+
+                                                        <p>Ronnie writes in such simple English and with such good examples that it makes you only believe how you could also be an Entrepreneur one day.</p>
+
+                                                        <p>I think its bible for aspiring entrepreneurs!!</p>
+                                                    </div>
+
+                                                    <div class="review-user-comment-actions flex flex-row m-t-normal border-dashed-t p-t-normal justify-between">
+                                                        <div class="review-user-comment-action-buttons flex flex-row items-center">
+                                                            <div class="a-button">Like</div>
+                                                            <div class="a-button m-l-normal">Reply</div>
+                                                        </div>
+                                                        <p class="m-y-normal"><b>Reviewed on 8 November 2016</b></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="book-actions">
+                                    <div class="book-actions-standard">
+                                        <div class="book-price-details">
+                                            <h3 class="book-price"><span>₹</span>@book.hardprice</h3>
+                                            <p class="book-price-original"><span>M.R.P.:</span> <strike>₹ 1,799.00</strike></p>
+                                            <p class="book-price-savings"><span>You Save:</span> <span>₹ 1,477.00 (82%)</span></p>
+                                            <p><i>Inclusive of all taxes</i></p>
+                                            <p class="book-delivery-charges"><span>+₹100.00</span> Delivery charges</p>
+                                        </div>
+                                        <div class="book-dispatch-details">
+                                            <p class="book-dispatch-usual">Usually dispatched in <span>2 to 3 days</span>.</p>
+                                            <p class="book-seller">Sold by <a class="anchor" href="#"><span>Payal Books</span></a>.</p>
+                                        </div>
+                                        <div class="book-buy-buttons">
+                                            <div class="book-add-to-cart border-button">
+                                                <span class="book-add-to-cart-icon"><i class="fas fa-shopping-cart"></i></span>
+                                                <div class="book-action-text-container">
+                                                    <h4 class="book-add-to-cart-text">Add to cart</h4>
+                                                </div>
+                                            </div>
+                                            <div class="book-buy-now border-button">
+                                                <span class="book-buy-now-icon"><i class="far fa-credit-card"></i></span>
+                                                <div class="book-action-text-container">
+                                                    <h4 class="book-buy-now-text">Buy now!</h4>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="book-delivery-details">
+                                            <span><i class="fas fa-map-marker-alt"></i></span>
+                                            <p>To: <a class="anchor" href="#"><span>Jalgaon - 420 001</span></a></p>
+                                        </div>
+                                    </div>
+                                    <div class="book-add-to-wish-button border-button">
+                                        <span class="book-add-to-wish-icon"><i class="fas fa-thumbtack"></i></span>
+                                        <div class="book-action-text-container m-0">
+                                            <h4>Add to wishlist!</h4>
+                                        </div>
+                                        <!-- <i class="fas fa-caret-down"></i> -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FOOTER -->
+                <footer>
+                    <div class="upper-footer">
+                        <div class="footer-list-container">
+                            <p class="footer-list-title">ESSENTIALS</p>
+                            <ul class="footer-pages-list">
+                                <li><a href="#">Contact Us</a></li>
+                                <li><a href="#">About Us</a></li>
+                                <li><a href="#">Careers</a></li>
+                            </ul>
+                        </div>
+                        <div class="footer-list-container">
+                            <p class="footer-list-title">PAGES</p>
+                            <ul class="footer-pages-list">
+                                <li><a href="#">Payment Security</a></li>
+                                <li><a href="#">Privacy Policy</a></li>
+                                <li><a href="#">Terms and Conditions</a></li>
+                            </ul>
+                        </div>
+                        <div class="footer-list-container">
+                            <p class="footer-list-title">SOCIAL</p>
+                            <ul class="footer-social-list">
+                                <li><a href="#"><i class="fab fa-twitter"></i> YouTube</a></li>
+                                <li><a href="#"><i class="fab fa-facebook-square"></i> Twitter</a></li>
+                                <li><a href="#"><i class="fab fa-youtube"></i> Facebook</a></li>
+                                <li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="lower-footer">
+                        &copy; 2020-20xx bookter.in
+                    </div>
+                </footer> <!-- FOOTER -->
+            </div>
+        </div>
+    </body>
+
+</html>
+
+}
+
+
