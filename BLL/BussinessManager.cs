@@ -10,7 +10,7 @@ namespace BLL
 {
     public class BussinessManager
     {
-        public static bool validatecustomer(string uname, string upass)
+        public static Customer validatecustomer(string uname, string upass)
         {
             return LoginDBManager.validatelogin(uname, upass);
         }
@@ -23,6 +23,11 @@ namespace BLL
             return allbooks;
         }
 
+        public static List<Books> GetWishList(int cid)
+        {
+            return WishlistDBManager.GetWishList(cid);
+        }
+
         public static Books GetBookdetails(int id)
         {
             return BookDBManager.GetByID(id);
@@ -33,9 +38,19 @@ namespace BLL
             return LoginDBManager.register(cust);
         }
 
+        public static bool AddWishlist(int cid, int bid)
+        {
+            return WishlistDBManager.AddWishlist(cid, bid);
+        }
+
         public static bool AdminLogin(string uname, string upass)
         {
             return AdminDBManager.AdminLogin(uname, upass);
+        }
+
+        public static bool deletewishlist(int cid, int bid)
+        {
+            return WishlistDBManager.deletewishlist(cid, bid);
         }
 
         public static bool adminregister(Admin newadmin)
@@ -56,6 +71,16 @@ namespace BLL
         public static bool checkToken(string token)
         {
             return LoginDBManager.checkToken(token);
+        }
+
+        public static bool Insertbook(Books newbook)
+        {
+            return BookDBManager.Insertbook(newbook);
+        }
+
+        public static bool UpdateBook(Books newbook)
+        {
+            return AdminDBManager.UpdateBook(newbook);
         }
     }
 }

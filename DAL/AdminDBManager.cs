@@ -90,5 +90,55 @@ namespace DAL
             return status;
 
         }
+
+        public static bool UpdateBook(Books newbook)
+        {
+            bool status = false;
+
+            try
+            {
+                using (MySqlConnection con = new MySqlConnection(connString))
+                {
+
+
+                    if (con.State == ConnectionState.Closed)
+                        con.Open();
+                    //(booksID, bookname, bookauthor, bookpage, booklang, bookpublisher, publishdate, bookdimension, paperprice, hardprice, ebookprice, bookdisc, aboutauthor, rating, image, image2, image3) VALUES" +
+                    //                                    "(default,@bname,@aname,@bpages,@blang,@bpub,@bdate,@bdimen,@bpp,@bhp,@ebp,@bdisc,@aathor,@brat,@bimag,@bimag2,@bimag3)";
+
+                    string query = "update books set booksID = @bid, bookname = @bname , bookauthor = @aname , bookpage = @bpages , booklang = @blang ,bookpublisher = @bpub ,publishdate = @bdate, bookdimension = @bdimen , paperprice = @bpp , hardprice = @bhp , ebookprice = @ebp ,bookdisc = @bdisc ,aboutauthor = @aathor , rating = @brat , image = @bimag ,image2 = @bimag2 ,image3 = @bimag3 where booksID=@bid";
+
+                    MySqlCommand cmd = new MySqlCommand(query, con);
+                    cmd.Parameters.Add(new MySqlParameter("@bid", newbook.booksID));
+                    cmd.Parameters.Add(new MySqlParameter("@bname", newbook.bookname));
+                    cmd.Parameters.Add(new MySqlParameter("@aname", newbook.bookauthor));
+                    cmd.Parameters.Add(new MySqlParameter("@bpages", newbook.bookspage));
+                    cmd.Parameters.Add(new MySqlParameter("@blang", newbook.booklang));
+                    cmd.Parameters.Add(new MySqlParameter("@bpub", newbook.bookpublisher));
+                    cmd.Parameters.Add(new MySqlParameter("@bdate", newbook.bookdate));
+                    cmd.Parameters.Add(new MySqlParameter("@bdimen", newbook.bookdimension));
+                    cmd.Parameters.Add(new MySqlParameter("@bpp", newbook.paperprice));
+                    cmd.Parameters.Add(new MySqlParameter("@bhp", newbook.hardprice));
+                    cmd.Parameters.Add(new MySqlParameter("@ebp", newbook.ebookprice));
+                    cmd.Parameters.Add(new MySqlParameter("@bdisc", newbook.bookdisc));
+                    cmd.Parameters.Add(new MySqlParameter("@aathor", newbook.aboutauthor));
+                    cmd.Parameters.Add(new MySqlParameter("@brat", newbook.rating));
+                    cmd.Parameters.Add(new MySqlParameter("@bimag", newbook.image));
+                    cmd.Parameters.Add(new MySqlParameter("@bimag2", newbook.image2));
+                    cmd.Parameters.Add(new MySqlParameter("@bimag3", newbook.image3));
+
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+                    status = true;
+                }
+            }
+            catch (MySqlException e)
+            {
+                string message = e.Message;
+            }
+
+            return status;
+
+        }
     }
 }

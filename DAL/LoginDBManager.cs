@@ -165,10 +165,10 @@ namespace DAL
 
         }
 
-        public static bool validatelogin(string uname, string upass)
+        public static Customer validatelogin(string uname, string upass)
         {
-
-            bool status = false;
+            Customer customer = null;
+            
             try
             {
                 using (MySqlConnection con = new MySqlConnection(connString))
@@ -176,17 +176,25 @@ namespace DAL
                     if (con.State == ConnectionState.Closed)
                         con.Open();
 
-                    string query = "SELECT email , password FROM customers where email = @uname and password = @upass";
+                    string query = "SELECT * FROM customers where email = @uname and password = @upass";
 
                     MySqlCommand cmd = new MySqlCommand(query, con);
                     cmd.Parameters.Add(new MySqlParameter("@uname", uname));
                     cmd.Parameters.Add(new MySqlParameter("@upass", upass));
 
-                    object result = cmd.ExecuteScalar();
-
-                    if (result != null)
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
                     {
-                        status = true;
+
+                        while(reader.Read())
+                        {
+                            int id = int.Parse(reader["customerID"].ToString());
+                            string Name = reader["customer_name"].ToString();
+                            string Email = reader["email"].ToString();
+                            string Image = reader["image"].ToString();
+
+
+                            customer = new Customer { email = Email, customerid = id, customer_name = Name , image = Image };
+                        }
                     }
                     con.Close();
 
@@ -198,7 +206,7 @@ namespace DAL
                 string message = e.Message;
             }
 
-            return status;
+            return customer;
 
         }
 

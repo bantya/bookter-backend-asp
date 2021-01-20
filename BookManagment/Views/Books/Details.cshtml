@@ -2,59 +2,13 @@
 
 @{
     ViewBag.Title = "Details";
+    Customer customer = (Customer)this.Session["user"];
 }
 
 @{
     Books book = Model as Books;
 
 
-    <!DOCTYPE html>
-    <html>
-
-    <head>
-        <title>Book • Dream With Your Eyes Open</title>
-        <link rel="stylesheet" href="~/Content/style.css">
-        <link rel="stylesheet" href="~/Content/font-awesome.css">
-        <link href="https://fonts.googleapis.com/css2?family=Miriam+Libre:wght@400;700&display=swap" rel="stylesheet">
-        <script src="js/script.js" defer></script>
-    </head>
-
-    <body>
-
-        <div class="container">
-            <div class="wrapper">
-                <header class="navbar">
-                    <div class="logo">
-                        <a href="#"><i class="fas fa-book"></i></a>
-                    </div>
-                    <div class="search-container">
-                        <input class="input" type="text" id="search-input" placeholder="Search me.." autocomplete="off">
-                        <span class="search-icon">
-                            <i class="fas fa-search"></i>
-                        </span>
-                    </div><!-- div.search-container-->
-                    <nav class="nav-menu flex flex-row">
-                        <ul class="nav-list">
-                            <li class="menu-item"><a href="index.html">Home</a></li>
-                            <li class="menu-item active"><a href="posts.html">Posts</a></li>
-                            <li class="menu-item"><a href="books.html">Books</a></li>
-                            <li class="menu-item"><a href="orders.html">Orders</a></li>
-                            <li class="menu-item"><a href="cart.html">Cart</a></li>
-                            <!-- <li class="menu-item pointer"> -->
-                            <!-- <img class="image rounded" src="http://placeholder.code/40x40/RT/40/845206/201256" alt="Profile Pic"> -->
-                            <!-- </li> -->
-                        </ul> <!-- ul.nav-list -->
-                        <div class="user-profile-pic rounded flex items-center pointer m-l-medium">
-                            <div class="pofile-pic-wrapper profile-pic-flair rounded">
-                                <img class="image rounded flex items-center"
-                                     src="https://source.unsplash.com/random/100x100?face-male&sig=99"
-                                     width="40" height="40" alt="Profile Pic">
-                            </div>
-                        </div>
-                    </nav> <!-- div.nav-menu-->
-                </header>
-
-                <div class="content-wrapper">
                     <div class="content">
                         <div class="content-main">
                             <div class="book-title-container">
@@ -274,7 +228,7 @@
                                 <div class="book-actions">
                                     <div class="book-actions-standard">
                                         <div class="book-price-details">
-                                            <h3 class="book-price"><span>₹</span>@book.hardprice</h3>
+                                            <h3 class="book-price"><span>₹</span>@book.paperprice</h3>
                                             <p class="book-price-original"><span>M.R.P.:</span> <strike>₹ 1,799.00</strike></p>
                                             <p class="book-price-savings"><span>You Save:</span> <span>₹ 1,477.00 (82%)</span></p>
                                             <p><i>Inclusive of all taxes</i></p>
@@ -288,7 +242,9 @@
                                             <div class="book-add-to-cart border-button">
                                                 <span class="book-add-to-cart-icon"><i class="fas fa-shopping-cart"></i></span>
                                                 <div class="book-action-text-container">
-                                                    <h4 class="book-add-to-cart-text">Add to cart</h4>
+                                                    <h4 class="book-add-to-cart-text">
+                                                        <a href="/Cart/AddtoCart/@book.booksID">Add to cart</a>
+                                                    </h4>
                                                 </div>
                                             </div>
                                             <div class="book-buy-now border-button">
@@ -306,7 +262,16 @@
                                     <div class="book-add-to-wish-button border-button">
                                         <span class="book-add-to-wish-icon"><i class="fas fa-thumbtack"></i></span>
                                         <div class="book-action-text-container m-0">
-                                            <h4>Add to wishlist!</h4>
+                                           
+                                            <form action="/Wishlist/Add" method="post">
+                                                <input type="hidden" name="cid" value="@customer.customerid" />
+                                                <input type="hidden" name="bid" value="@book.booksID" />
+                                                <button type="submit" class="border-button">
+                                                    <h4>Add to wishlist!</h4>
+
+                                                    
+                                                </button>
+                                            </form>
                                         </div>
                                         <!-- <i class="fas fa-caret-down"></i> -->
                                     </div>
@@ -314,47 +279,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
-
-                <!-- FOOTER -->
-                <footer>
-                    <div class="upper-footer">
-                        <div class="footer-list-container">
-                            <p class="footer-list-title">ESSENTIALS</p>
-                            <ul class="footer-pages-list">
-                                <li><a href="#">Contact Us</a></li>
-                                <li><a href="#">About Us</a></li>
-                                <li><a href="#">Careers</a></li>
-                            </ul>
-                        </div>
-                        <div class="footer-list-container">
-                            <p class="footer-list-title">PAGES</p>
-                            <ul class="footer-pages-list">
-                                <li><a href="#">Payment Security</a></li>
-                                <li><a href="#">Privacy Policy</a></li>
-                                <li><a href="#">Terms and Conditions</a></li>
-                            </ul>
-                        </div>
-                        <div class="footer-list-container">
-                            <p class="footer-list-title">SOCIAL</p>
-                            <ul class="footer-social-list">
-                                <li><a href="#"><i class="fab fa-twitter"></i> YouTube</a></li>
-                                <li><a href="#"><i class="fab fa-facebook-square"></i> Twitter</a></li>
-                                <li><a href="#"><i class="fab fa-youtube"></i> Facebook</a></li>
-                                <li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="lower-footer">
-                        &copy; 2020-20xx bookter.in
-                    </div>
-                </footer> <!-- FOOTER -->
-            </div>
-        </div>
-    </body>
-
-</html>
-
+                
 }
 
 

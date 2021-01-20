@@ -12,7 +12,7 @@ namespace BookManagment.Controllers
     {
         // GET: Account
         [HttpGet]
-        [Route("login")]
+       
         public ActionResult Login()
         {
             return View();
@@ -20,9 +20,12 @@ namespace BookManagment.Controllers
         }
 
         [HttpPost]
-        [Route("login")]
+      
         public ActionResult Login(string uname, string upass)
         {
+
+            uname = uname.Trim();
+            upass = upass.Trim();
 
             //Credentials newcredential = new Credentials
             //{
@@ -30,23 +33,33 @@ namespace BookManagment.Controllers
             //    Password = password
             //};
 
-            Customer newcus = new Customer
-            {
-                email=uname,
-                password=upass
-            };
-            bool status = BussinessManager.validatecustomer(uname, upass);
+            //Customer newcus = new Customer
+            //{
+            //    email=uname,
+            //    password=upass
+            //};
 
-            if (status)
+            Customer customer = BussinessManager.validatecustomer(uname, upass);
+
+            if (customer != null)
             {
-                return this.RedirectToRoute("");
+                this.Session.Add("user", customer);
+                string query = Request.QueryString["to"];
+
+                if (query != null)
+                {
+                    //TODO: Primary Basis
+                    return this.RedirectToRoute(Request.Url.Authority +  query);
+                } else {
+                    return this.RedirectToAction("BooksList", "Books");
+                }
             }
 
             return View();
         }
 
         [HttpGet]
-        [Route("register")]
+     
         public ActionResult Register()
         {
 
@@ -54,7 +67,7 @@ namespace BookManagment.Controllers
         }
 
         [HttpPost]
-        [Route("register")]
+      
         public ActionResult Register(/*int uid ,*/ string uname ,string uemail ,string upass)
         {
             Customer cust = new Customer
@@ -69,20 +82,20 @@ namespace BookManagment.Controllers
 
             if (status)
             {
-                return this.RedirectToRoute("login");
+                return this.RedirectToAction("Login","Account");
             }
             return View();
         }
 
         [HttpGet]
-        [Route("forgot")]
+        
         public ActionResult Forgot()
         {
             return View();
         }
 
         [HttpPost]
-        [Route("forgot")]
+       
         public ActionResult Forgot(string uemail)
         {
             Customer newcust = new Customer
@@ -127,7 +140,7 @@ namespace BookManagment.Controllers
         }
 
         [HttpGet]
-        [Route("restore")]
+      
         public ActionResult Restore(string token)
         {
             if (Request.QueryString["token"] != null)

@@ -1,0 +1,77 @@
+﻿@using BOL
+@{
+    ViewBag.Title = "BooksList";
+    this.Session.Add("lastPage", HttpContext.Current.Request.Url.AbsolutePath);
+    Customer customer = (Customer)this.Session["user"];
+}
+
+@{
+    List<Books> bookm = (List<Books>)this.ViewData["books"];
+
+    
+
+                    <div class="content bg-white">
+                        <div class="content-main flex flex-row">
+
+                            <div class="books-sidebar">
+                                SIDEBAR
+
+                            </div>
+                            <h1 class="p-wide bg-white m-y-wide shadow-light radius">@customer.customer_name's Wishlist</h1>
+                            <div class="book-lists-container w-80p flex flex-column bg-white">
+                                <div class="book-lists flex flex-column w-100p">
+
+                                    @foreach (Books book in bookm)
+                                    {
+
+                                        <div class="book-list flex flex-row p-wide w-100p">
+                                            <a class="w-10r" href="book.html">
+                                                <div class="book-image w-100p">
+                                                    <!--<img src="https://m.media-amazon.com/images/I/71kzbqDiPIL._AC_UY218_.jpg" alt="Dream with your Eyes Open: An Entrepreneurial Journey">-->
+                                                    <img src="@book.image" class="w-100p" alt="Dream with your Eyes Open: An Entrepreneurial Journey">
+                                                </div>
+                                            </a>
+                                            <div class="book-details p-x-wide relative w-100p">
+                                                @if (customer != null)
+                                                {
+                                                    <div class="add-to-wishlist-container flex absolute tr-0">
+                                                        <form action="/Wishlist/delete" method="post">
+                                                            <input type="hidden" name="cid" value="@customer.customerid" />
+                                                            <input type="hidden" name="bid" value="@book.booksID" />
+                                                            <button type="submit" class="border-button">
+                                                                <span class="book-add-to-wish-icon"><i class="fas fa-trash"></i></span>
+                                                                <!-- <i class="fas fa-caret-down"></i> -->
+                                                            </button>
+                                                        </form>
+
+                                                    </div>
+                                                }
+
+                                                <h3 class="p-y-normal p-t-0"><a class='anchor' href="Details/@book.booksID">@book.bookname</a></h3>
+                                                <h4 class="p-y-small"><a class='anchor clr-gray-darkest-2x' href="author.html">by @book.bookauthor | @book.bookdate</a></h4>
+                                                <div class="p-y-small flex flex-row items-center">
+                                                    <div class="book-stars">
+                                                        <i class="fas fa-star starred"></i>
+                                                        <i class="fas fa-star starred"></i>
+                                                        <i class="fas fa-star starred"></i>
+                                                        <i class="fas fa-star starred"></i>
+                                                        <i class="fas fa-star"></i>
+                                                    </div>
+                                                    <p class='m-l-normal'>(165)</p>
+                                                </div>
+                                                <p class='p-y-small bg-gray-dark p-small inline-block'>Paperback</p>
+                                                <p class='p-y-small'> <strike>₹@book.paperprice</strike></p>
+                                            </div>
+                                        </div>
+
+                                    }
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                
+}

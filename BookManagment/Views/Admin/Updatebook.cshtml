@@ -1,0 +1,138 @@
+﻿@using BOL
+@{
+    ViewBag.Title = "Updatebook";
+}
+
+@{
+
+    Books thebook = Model as Books;
+
+                <div class="content">
+                        <form method="post" class="w-100p">
+                            <div class="bg-white w-100p p-wide">
+                                <div class="input-header p-b-wide text-center">
+                                    <h2>Update Book</h2>
+                                </div>
+                                <div class="flex flex-row">
+                                    <!--<label for="bid">BookID:</label>
+                                    <br />
+                                    <input class="input w-50p"  type="text" name="bid" id="bid" autocomplete="off" autofocus required>
+                                    <br /> -->
+
+                                    <div class="book-details-left w-50p p-medium">
+                                        <div class='book-basics p-medium'>
+                                            <h3 class="m-b-medium p-medium border-b bg-gray-100">Basic Details</h3>
+                                            <div class="book-details-row flex flex-row m-b-medium justify-between">
+                                                <label for="bid">Book ID:</label>
+                                                <input class="input w-50p" type="text" name="bid" id="bid" value="@thebook.booksID" readonly autocomplete="off" required>
+                                            </div>
+                                            <div class="book-details-row flex flex-row m-b-medium justify-between">
+                                                <label for="bname">Book Name:</label>
+                                                <input class="input w-50p" type="text" name="bname" id="bname" value="@thebook.bookname" autocomplete="off" required>
+                                            </div>
+                                            <div class="book-details-row flex flex-row m-b-medium justify-between">
+                                                <label for="bdisc">Book Discription:</label>
+                                                <input class="input w-50p" type="text" name="bdisc" id="bdisc" value="@thebook.bookdisc" autocomplete="off" required>
+                                            </div>
+                                            <div class="book-details-row flex flex-row m-b-medium justify-between">
+                                                <label for="aname">Author Name:</label>
+                                                <input class="input w-50p" type="text" name="aname" id="aname" value="@thebook.bookauthor"  autocomplete="off" >
+                                            </div>
+                                            <div class="book-details-row flex flex-row m-b-medium justify-between">
+                                                <label for="aathor">About Author:</label>
+                                                <input class="input w-50p" type="text" name="aathor" id="aathor" value="@thebook.aboutauthor" autocomplete="off">
+                                            </div>
+                                            <div class="book-details-row flex flex-row m-b-medium justify-between">
+                                                <label for="bpub">Book Publisher:</label>
+                                                <input class="input w-50p" type="text" name="bpub" id="bpub" value="@thebook.bookpublisher" autocomplete="off" required>
+                                            </div>
+                                        </div>
+
+                                        <div class="book-prices p-medium">
+                                            <h3 class="m-b-medium p-medium border-b bg-gray-100">Book Prices</h3>
+                                            <div class="options-selector flex flex-row m-b-medium justify-end">
+                                                <div class="book-option">
+                                                    <input type="checkbox" name="book-option" value="paperback" id="paperback" >
+                                                    <label for="paperback" class="select-none">Paperback</label>
+                                                </div>
+                                                <div class="book-option m-l-medium">
+                                                    <input type="checkbox" name="book-option" value="hardcover" id="hardcover">
+                                                    <label for="hardcover" class="select-none">Hardcover</label>
+                                                </div>
+                                                <div class="book-option m-l-medium">
+                                                    <input type="checkbox" name="book-option" value="ebook" id="ebook">
+                                                    <label for="ebook" class="select-none">Ebook</label>
+                                                </div>
+                                            </div>
+
+                                            <div class="book-details-row flex flex-row m-b-medium justify-between">
+                                                <label for="bpp">Paper Book Price:</label>
+                                                <input class="input w-50p" type="text" name="bpp" id="bpp" value="@thebook.paperprice" autocomplete="off" required>
+                                            </div>
+                                            <div class="book-details-row flex flex-row m-b-medium justify-between">
+                                                <label for="bhp">Hard Book Price:</label>
+                                                <input class="input w-50p" type="text" name="bhp" id="bhp" value="@thebook.hardprice" autocomplete="off" required>
+                                            </div>
+                                            <div class="book-details-row flex flex-row m-b-medium justify-between">
+                                                <label for="ebp">E-Book Price:</label>
+                                                <input class="input w-50p" type="text" name="ebp" id="ebp" value="@thebook.ebookprice" autocomplete="off" required>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="book-details-right w-50p p-medium">
+                                        <div class="book-info p-medium">
+                                            <h3 class="m-b-medium p-medium border-b bg-gray-100">Book Statistics</h3>
+                                            <div class="book-details-row flex flex-row m-b-medium justify-between">
+                                                <label for="bpages">Books Pages:</label>
+                                                <input class="input w-50p" type="text" name="bpages" id="bpages" value="@thebook.bookspage" autocomplete="off" required>
+                                            </div>
+                                            <div class="book-details-row flex flex-row m-b-medium justify-between">
+                                                <label for="blang">Book Language:</label>
+                                                <input class="input w-50p" type="text" name="blang" id="blang" value="@thebook.booklang" autocomplete="off" required>
+                                            </div>
+                                            <div class="book-details-row flex flex-row m-b-medium justify-between">
+                                                <label for="bdate">Publish Date:</label>
+                                                <input class="input w-50p" type="text" name="bdate" id="bdate" value="@thebook.bookdate" autocomplete="off" required>
+                                            </div>
+                                            <div class="book-details-row flex flex-row m-b-medium justify-between">
+                                                <label for="bdimen">Book Dimension:</label>
+                                                <input class="input w-50p" type="text" name="bdimen" id="bdimen" value="@thebook.bookdimension" autocomplete="off" required>
+                                                <!-- <div class="w-50p flex flex-row">
+                                                    <input class="input w-33p"  type="text" name="bdimenw" id="bdimenw" autocomplete="off" required>
+                                                    <input class="input w-33p m-l-medium"  type="text" name="bdimenh" id="bdimenh" autocomplete="off" required>
+                                                    <input class="input w-33p m-l-medium"  type="text" name="bdimenb" id="bdimenb" autocomplete="off" required>
+                                                </div> -->
+                                            </div>
+                                            <div class="book-details-row flex flex-row m-b-medium justify-between">
+                                                <label for="brat">Books Rating:</label>
+                                                <input class="input w-50p" type="text" name="brat" id="brat" value="@thebook.rating" autocomplete="off" required>
+                                            </div>
+                                        </div>
+
+                                        <div class="book-images p-medium">
+                                            <h3 class="m-b-medium p-medium border-b bg-gray-100">Book Images</h3>
+                                            <div class="book-details-row flex flex-row m-b-medium justify-between">
+                                                <label for="bimag">Books Image:</label>
+                                                <input class="input w-50p" type="text" name="bimag" id="bimag" value="@thebook.image" autocomplete="off" required>
+                                            </div>
+                                            <div class="book-details-row flex flex-row m-b-medium justify-between">
+                                                <label for="bimag2">Books Image 2:</label>
+                                                <input class="input w-50p" type="text" name="bimag2" id="bimag2" value="@thebook.image2" autocomplete="off" required>
+                                            </div>
+                                            <div class="book-details-row flex flex-row m-b-medium justify-between">
+                                                <label for="bimag3">Books Image 3:</label>
+                                                <input class="input w-50p" type="text" name="bimag3" id="bimag3" value="@thebook.image3" autocomplete="off" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="input-actions text-center">
+                                    <button class="button" type="submit">Add Book</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                
+
+}

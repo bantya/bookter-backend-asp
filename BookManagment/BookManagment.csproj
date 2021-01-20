@@ -97,10 +97,44 @@
   <ItemGroup>
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\style.css" />
+    <Content Include="Content\webfonts\fa-brands-400.svg" />
+    <Content Include="Content\webfonts\fa-regular-400.svg" />
+    <Content Include="Content\webfonts\fa-solid-900.svg" />
     <Content Include="Content\webfonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Images\Users\24.jpeg" />
+    <Content Include="Images\Users\default.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Content\webfonts\fa-brands-400.eot" />
+    <Content Include="Content\webfonts\fa-brands-400.ttf" />
+    <Content Include="Content\webfonts\fa-brands-400.woff" />
+    <Content Include="Content\webfonts\fa-brands-400.woff2" />
+    <Content Include="Content\webfonts\fa-regular-400.eot" />
+    <Content Include="Content\webfonts\fa-regular-400.ttf" />
+    <Content Include="Content\webfonts\fa-regular-400.woff" />
+    <Content Include="Content\webfonts\fa-regular-400.woff2" />
+    <Content Include="Content\webfonts\fa-solid-900.eot" />
+    <Content Include="Content\webfonts\fa-solid-900.ttf" />
+    <Content Include="Content\webfonts\fa-solid-900.woff" />
+    <Content Include="Content\webfonts\fa-solid-900.woff2" />
+    <Content Include="Content\webfonts\Gotham-Black.otf" />
+    <Content Include="Content\webfonts\Gotham-Bold.otf" />
+    <Content Include="Content\webfonts\Gotham-BookItalic.otf" />
+    <Content Include="Content\webfonts\Gotham-Light.otf" />
+    <Content Include="Content\webfonts\Gotham-Thin.otf" />
+    <Content Include="Content\webfonts\Gotham-ThinItalic.otf" />
+    <Content Include="Content\webfonts\Gotham-UltraItalic.otf" />
+    <Content Include="Content\webfonts\Gotham-XLight.otf" />
+    <Content Include="Content\webfonts\Gotham-XLightItalic.otf" />
+    <Content Include="Content\webfonts\GothamBold.ttf" />
+    <Content Include="Content\webfonts\GothamBoldItalic.ttf" />
+    <Content Include="Content\webfonts\GothamBook.ttf" />
+    <Content Include="Content\webfonts\GothamBookItalic.ttf" />
+    <Content Include="Content\webfonts\GothamLight.ttf" />
+    <Content Include="Content\webfonts\GothamLightItalic.ttf" />
+    <Content Include="Content\webfonts\GothamMedium.ttf" />
+    <Content Include="Content\webfonts\GothamMediumItalic.ttf" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -114,8 +148,10 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\BooksController.cs" />
+    <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\FooterController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\WishlistController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -142,6 +178,11 @@
     <Content Include="Views\Account\Forgot.cshtml" />
     <Content Include="Views\Books\Index.cshtml" />
     <Content Include="Views\Books\Details.cshtml" />
+    <Content Include="Views\Books\BooksList.cshtml" />
+    <Content Include="Views\Books\Insertbook.cshtml" />
+    <Content Include="Views\Cart\Index.cshtml" />
+    <Content Include="Views\Wishlist\Index.cshtml" />
+    <Content Include="Views\Admin\Updatebook.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
