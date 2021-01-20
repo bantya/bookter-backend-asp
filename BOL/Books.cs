@@ -37,5 +37,21 @@ namespace BOL
         public string image2 { get; set; }
 
         public string image3 { get; set; }
+
+        public Books()
+        {
+
+        }
+
+        public Books(int book_id,string book_name,string book_author,string publish_date,string publisher,double pbp,string imag)
+        {
+            booksID = book_id;
+            bookname = book_name;
+            bookauthor = book_author;
+            bookdate = publish_date;
+            bookpublisher = publisher;
+            paperprice = pbp;
+            image = imag;
+        }
     }
 }

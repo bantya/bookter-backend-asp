@@ -28,7 +28,7 @@ namespace BookManagment.Controllers
 
             if (status)
             {
-                return this.RedirectToAction("index", "home");
+                return this.RedirectToAction("Insertbook", "Books");
             }
             return View();
         }
@@ -58,6 +58,44 @@ namespace BookManagment.Controllers
             }
             return View();
 
+        }
+
+        public ActionResult Updatebook(int id)
+        {
+            Books getbook = BussinessManager.GetBookdetails(id);
+            return View(getbook);
+        }
+
+        [HttpPost]
+        public ActionResult Updatebook(int bid,string bname, string bdisc, string aname, string aathor, string bpub, double bpp, double bhp, double ebp, int bpages, string blang, string bdate, string bdimen, double brat, string bimag, string bimag2, string bimag3)
+        {
+            Books newbook = new Books
+            {
+                booksID = bid,
+                bookname = bname,
+                bookdisc = bdisc,
+                bookauthor = aname,
+                aboutauthor = aathor,
+                bookpublisher = bpub,
+                paperprice = bpp,
+                hardprice = bhp,
+                ebookprice = ebp,
+                bookspage = bpages,
+                booklang = blang,
+                bookdate = bdate,
+                rating = brat,
+                bookdimension = bdimen,
+                image = bimag,
+                image2 = bimag2,
+                image3 = bimag3
+            };
+            bool status = BussinessManager.UpdateBook(newbook);
+
+            if (status)
+            {
+                return this.RedirectToAction("index","home");
+            }
+            return View();
         }
 
     }

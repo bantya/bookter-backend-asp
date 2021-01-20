@@ -1,41 +1,109 @@
-﻿<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
-    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
-    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <script src="~/Scripts/modernizr-2.8.3.js"></script>
-</head>
-<body>
-   
-        @*<div class="navbar navbar-inverse navbar-fixed-top">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                   
-                </div>
-                <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
-                    </ul>
-                </div>
-            </div>
-        </div>*@
+﻿@using BOL
+@{
+    Customer customer = (Customer)this.Session["user"];
+}
 
-        <div class="container body-content">
-            @RenderBody()
-            @*<hr />
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Bookter.in</title>
+    <link rel="stylesheet" href="~/Content/font-awesome.css">
+    <link rel="stylesheet" href="~/Content/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Miriam+Libre:wght@400;700&display=swap" rel="stylesheet">
+    <script src="js/script.js" defer></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="wrapper">
+            <header class="navbar">
+                <div class="logo">
+                    <a href="#"><i class="fas fa-book"></i></a>
+                </div>
+                <div class="search-container">
+                    <input class="input" type="text" id="search-input" placeholder="Search me.." autocomplete="off">
+                    <span class="search-icon">
+                        <i class="fas fa-search"></i>
+                    </span>
+                </div><!-- div.search-container-->
+                <nav class="nav-menu flex flex-row">
+                    <ul class="nav-list">
+                        <li class="menu-item"><a href="index.html">Home</a></li>
+                        <li class="menu-item active"><a href="/posts/index">Posts</a></li>
+                        <li class="menu-item"><a href="/books/bookslist">Books</a></li>
+                        <li class="menu-item"><a href="orders.html">Orders</a></li>
+                        <li class="menu-item"><a href="/cart/index">Cart</a></li>
+                        @if (customer == null)
+                        {
+                            <li class="menu-item"><a href="/account/register">Register</a></li>
+                            <li class="menu-item active"><a href="/account/login">Login</a></li>
+                            //n? to = @this.Session["lastPage"]
+                        }
+                        else
+                        {
+                            <li class="menu-item"><a href="/wishlist/index">Wishlist</a></li>
+                        }
+
+                        <!-- <li class="menu-item pointer"> -->
+                        <!-- <img class="image rounded" src="http://placeholder.code/40x40/RT/40/845206/201256" alt="Profile Pic"> -->
+                        <!-- </li> -->
+                    </ul> <!-- ul.nav-list -->
+
+                    @if (customer != null)
+                    {
+                        <div class="user-profile-pic rounded flex items-center pointer m-l-medium">
+                            <div class="pofile-pic-wrapper profile-pic-flair rounded">
+                                <img class="image rounded flex items-center"
+                                     src="@customer.image"
+                                     width="40" height="40" alt="Profile Pic">
+                            </div>
+                        </div>
+                    }
+
+                </nav> <!-- div.nav-menu-->
+            </header>
+
+            <div class="content-wrapper">
+                @RenderBody()
+            </div>
+            <!-- FOOTER -->
             <footer>
-                <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-            </footer>*@
+                <div class="upper-footer">
+                    <div class="footer-list-container">
+                        <p class="footer-list-title">ESSENTIALS</p>
+                        <ul class="footer-pages-list">
+                            <li><a href="contactus.html">Contact Us</a></li>
+                            <li><a href="aboutus.html">About Us</a></li>
+                            <li><a href="#">Careers</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-list-container">
+                        <p class="footer-list-title">PAGES</p>
+                        <ul class="footer-pages-list">
+                            <li><a href="#">Payment Security</a></li>
+                            <li><a href="privacypolicy.html">Privacy Policy</a></li>
+                            <li><a href="#">Terms and Conditions</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-list-container">
+                        <p class="footer-list-title">SOCIAL</p>
+                        <ul class="footer-social-list">
+                            <li><a href="#">YouTube</a></li>
+                            <li><a href="#">Twitter</a></li>
+                            <li><a href="#">Facebook</a></li>
+                            <li><a href="#">Instagram</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="lower-footer">
+                    &copy; 2020-20xx bookter.in
+                </div>
+            </footer> <!-- FOOTER -->
         </div>
-   
-    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
-    <script src="~/Scripts/bootstrap.min.js"></script>
+    </div>
 </body>
+
 </html>
+
+

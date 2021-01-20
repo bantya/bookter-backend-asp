@@ -1,0 +1,105 @@
+﻿@using BOL
+@using BLL
+@{
+    ViewBag.Title = "AddtoCart";
+    double TotalAmount = 0;
+    Customer customer = (Customer) this.Session["user"];
+    string userName = "Your";
+    if (customer != null)
+    {
+        userName = customer.customer_name;
+    }
+}
+
+@{ Cart myCart = (Cart)Model;
+                <div class="content">
+                        <div class="content-main">
+                            <!-- <div class="books-sidebar">
+                                BOOKS SIDEBAR
+                            </div> -->
+                            <h1 class="p-wide bg-white m-y-wide shadow-light radius">@userName's Cart</h1>
+                            <div class="book-cart-container flex flex-row">
+                                <div class="book-lists-container flex flex-column bg-white flex flex-row w-75p m-b-wide shadow-light radius">
+
+                                    @foreach (Books theItem in myCart.items)
+                                    {
+                                    <div class="book-lists flex flex-column">
+                                        <div class="book-list flex flex-row p-wide">
+                                            <div class="book-image w-10r radius">
+                                                <a href="book.html" class="w-100p">
+                                                    <img class="w-100p" src="@theItem.image" alt="Dream with your Eyes Open: An Entrepreneurial Journey">
+                                                </a>
+                                            </div>
+                                            <div class="book-details p-x-wide flex flex-column justify-between">
+                                                <div class="book-cart-details">
+                                                    <h3 class="p-y-normal p-t-0"><a class='anchor' href="book.html">@theItem.bookname</a></h3>
+                                                    <h4 class="p-y-small"><a class='anchor clr-gray-darkest-2x' href="author.html">by @theItem.bookauthor | @theItem.bookdate</a></h4>
+                                                    <div class="p-y-small flex flex-row items-center">
+                                                        <div class="book-stars">
+                                                            <i class="fas fa-star starred"></i>
+                                                            <i class="fas fa-star starred"></i>
+                                                            <i class="fas fa-star starred"></i>
+                                                            <i class="fas fa-star starred"></i>
+                                                            <i class="fas fa-star"></i>
+                                                        </div>
+                                                        <p class='m-l-normal'>(165)</p>
+                                                    </div>
+                                                    <p class='p-y-small bg-gray-dark p-small inline-block'>Paperback</p>
+                                                    <p class="p-y-small clr-gray-darkest-2x">Get it by <span class='bold clr-inherit'>Tuesday, January 19</span></p>
+                                                    <div class="book-cart-quantity flex flex-row items-center">
+                                                        <h4>Quantity:</h4>
+                                                        <select class="input input-short m-l-medium" name="book-qtt" id="book-qtt">
+                                                            <option value="1">1</option>
+                                                            <option value="2">2</option>
+                                                            <option value="3">3</option>
+                                                            <option value="4">4</option>
+                                                            <option value="5">5</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="book-cart-price">
+                                                    <h2 class="clr-gray-darkest-2x">₹@theItem.hardprice</h2>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    { 
+                                        TotalAmount = TotalAmount + theItem.hardprice;
+                                       }
+                                    }
+
+                                <div class="book-cart-footer p-wide flex flex-row items-center justify-end border-t bg-gray-100">
+                                    <div class="input-actions text-align:left">
+                                        <a class="a-button" href="/Books/BooksList">Buy More Book</a>
+                                    </div>
+                                    <h4 class="cart-subtotal">
+                                        Subtotal (@myCart.items.Count items):
+                                    </h4>
+                                    <div class="book-cart-price p-l-wide">
+                                        <h3>₹@TotalAmount</h3>
+                                    </div>
+                                </div>
+                                </div>
+                                <div class="book-cart-amounts-container m-l-wide bg-white w-25p flex p-wide h-25p shadow-light radius">
+                                    <div class="book-cart-amounts flex flex-column w-100p">
+                                        <h3>@myCart.items.Count Books</h3>
+                                        <div class="book-cart-amount-row flex flex-row">
+                                            <h3>Subtotal: </h3>
+                                            <h3 class="m-l-normal">₹@TotalAmount</h3>
+                                        </div>
+                                        <div class="book-buy-now border-button flex flex-row w-100p m-t-wide">
+                                            <span class="book-buy-now-icon"><i class="far fa-credit-card"></i></span>
+                                            <div class="book-action-text-container">
+                                                <h4 class="book-buy-now-text">Buy now!</h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+               
+}
+
+
