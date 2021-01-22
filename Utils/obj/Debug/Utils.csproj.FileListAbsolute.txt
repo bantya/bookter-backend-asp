@@ -1,0 +1,6 @@
+C:\Users\Shedge\source\repos\BookManagment\Utils\bin\Debug\Utils.dll
+C:\Users\Shedge\source\repos\BookManagment\Utils\bin\Debug\Utils.pdb
+C:\Users\Shedge\source\repos\BookManagment\Utils\obj\Debug\Utils.csprojAssemblyReference.cache
+C:\Users\Shedge\source\repos\BookManagment\Utils\obj\Debug\Utils.csproj.CoreCompileInputs.cache
+C:\Users\Shedge\source\repos\BookManagment\Utils\obj\Debug\Utils.dll
+C:\Users\Shedge\source\repos\BookManagment\Utils\obj\Debug\Utils.pdb

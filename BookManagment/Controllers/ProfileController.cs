@@ -25,5 +25,29 @@ namespace BookManagment.Controllers
 
             return RedirectToAction("index", "home");
         }
+
+        [HttpPost]
+        public ActionResult like(int id)
+        {
+            Customer customer = (Customer)this.Session["user"];
+            bool status = BussinessManager.AddLike(customer.customerid, id);
+            if (status)
+            {
+                return Redirect("profile/index/@"+customer.customer_name);
+            }
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult dislike(int id)
+        {
+            Customer customer = (Customer)this.Session["user"];
+            bool status = BussinessManager.AddDislike(customer.customerid, id);
+            if (status)
+            {
+                return RedirectToAction("index", "profile");
+            }
+            return View();
+        }
     }
 }

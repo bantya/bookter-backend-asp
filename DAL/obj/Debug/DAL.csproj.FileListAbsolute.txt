@@ -32,3 +32,5 @@ C:\Users\Shedge\source\repos\BookManagment\DAL\obj\Debug\DAL.dll
 C:\Users\Shedge\source\repos\BookManagment\DAL\obj\Debug\DAL.pdb
 C:\Users\Shedge\source\repos\BookManagment\DAL\bin\Debug\BOL.dll
 C:\Users\Shedge\source\repos\BookManagment\DAL\bin\Debug\BOL.pdb
+C:\Users\Shedge\source\repos\BookManagment\DAL\bin\Debug\Utils.dll
+C:\Users\Shedge\source\repos\BookManagment\DAL\bin\Debug\Utils.pdb
