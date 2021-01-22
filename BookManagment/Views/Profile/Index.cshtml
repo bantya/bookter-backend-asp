@@ -42,6 +42,13 @@
                     <div class="user-network">
                         <p class="user-follwers"><b>256</b> followers</p>
                         <p class="user-follwings"><b>12</b> following</p>
+                        <form action="/profile/follow/@user.customerid" method="post">
+                            <div class="user-follow-btn m-t-normal">
+                                <input type="hidden" id="follow" name="follow" />
+                                <input type="hidden" id="fname" name="fname" value="@user.customer_name" />
+                                <button name="follow" class="input">FOLLOW</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>

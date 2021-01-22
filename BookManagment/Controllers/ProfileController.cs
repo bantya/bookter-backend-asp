@@ -49,5 +49,17 @@ namespace BookManagment.Controllers
             }
             return View();
         }
+
+        [HttpPost]
+        public ActionResult follow(int id,string fname)
+        {
+            Customer customer = (Customer)this.Session["user"];
+            bool status = BussinessManager.AddFollow(customer.customerid, id);
+            if (status)
+            {
+                return Redirect("/profile/index/@" + fname);
+            }
+            return View();
+        }
     }
 }

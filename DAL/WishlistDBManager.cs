@@ -120,58 +120,8 @@ namespace DAL
                             theproducts.image = reader["image"].ToString();
                             wishlists.Add(theproducts);
                         }
-                        //DataTable dt = new DataTable();
-                        //dt.Load(reader);
-                        //int totalRecords = dt.Rows.Count;
-                        //foreach (DataRow dr in dt.Rows)
-                        //{
-                        //    bookIds.Add(int.Parse(dr["book_id"].ToString()));
-                        //  //  wlist.timestamp = dr["added_on"].ToString();
-                        //}
                     }
 
-                    //MySqlCommand cmd2 = new MySqlCommand();
-                    //cmd2.Connection = con;
-                    //cmd2.CommandType = CommandType.Text;
-
-                    //List<string> paramsList = new List<string>();
-
-                    //// string ids = string.Join(",", bookIds);
-                    //string query2 = "SELECT booksID, bookname, bookauthor, publishdate, bookpublisher, paperprice, rating, image  FROM books where booksID IN({0})";
-                    //int index = 0;
-                    //foreach (int value in bookIds)
-                    //{
-                    //    string param = "@in" + index;
-                    //    cmd2.Parameters.AddWithValue(param, value);
-                    //    paramsList.Add(param);
-                    //    index++;
-                    //}
-
-                    //cmd2.CommandText = string.Format(query2, string.Join(",", paramsList));
-
-                    //using (MySqlDataReader reader = cmd2.ExecuteReader())
-                    //{
-                    //    DataTable dt = new DataTable();
-                    //    dt.Load(reader);
-                    //    int totalRecords = dt.Rows.Count;
-                    //    foreach (DataRow dr in dt.Rows)
-                    //    {
-
-                    //        Books theproducts = new Books();
-                    //        theproducts.booksID = int.Parse(dr["booksID"].ToString());
-                    //        theproducts.bookname = dr["bookname"].ToString();
-                    //        theproducts.bookauthor = dr["bookauthor"].ToString();
-
-                    //        theproducts.bookdate = dr["publishdate"].ToString();
-                    //        theproducts.bookpublisher = dr["bookpublisher"].ToString();
-                    //        theproducts.paperprice = double.Parse(dr["paperprice"].ToString());
-
-                    //        theproducts.rating = double.Parse(dr["rating"].ToString());
-                    //        theproducts.image = dr["image"].ToString();
-                    //        wishlists.Add(theproducts);
-                    //    }
-
-                    //}
                     con.Close();
                 }
             }

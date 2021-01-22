@@ -63,6 +63,11 @@ namespace BLL
             return LikeDBManager.AddDislike(customerid, id);
         }
 
+        public static bool AddFollow(int customerid, int id)
+        {
+            return LikeDBManager.AddFollow(customerid, id);
+        }
+
         public static Books GetBookdetails(int id)
         {
             return BookDBManager.GetByID(id);
