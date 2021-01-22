@@ -13,15 +13,19 @@ namespace BOL
         public string email { get; set; }
         public string password { get; set; }
 
+        public string banner { get; set; }
+
+
         public string image { get; set; }
         public Customer() { }
 
-        public Customer(int custId, string custName, string custtEmail,string imag)
+        public Customer(int custId, string custName, string custtEmail,string imag,string ban)
         {
             this.customerid = custId;
             this.customer_name = custName;
             this.email = custtEmail;
             this.image = imag;
+            this.banner = ban;
         }
 
 

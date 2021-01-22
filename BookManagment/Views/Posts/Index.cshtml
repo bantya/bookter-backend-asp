@@ -1,0 +1,332 @@
+﻿@using BOL
+@{
+    ViewBag.Title = "Index";
+    Customer customer = (Customer)this.Session["user"];
+
+}
+
+@{
+    List<Books> bookm = (List<Books>)this.ViewData["books"];
+    List<Posts> posts = Model as List<Posts>;
+    List<Likes> likes = (List<Likes>)this.ViewData["likes"];
+
+
+
+
+    <div class="content">
+        <div class="content-main">
+            <div class="post-header">
+                <div class="hero-banner">
+                    <img class="hero-image" src="https://source.unsplash.com/random?sig=3" height="250" alt="Hero Banner">
+                    <!-- <img class="image hero-image" src="http://placeholder.code/1920x250/Hero Image" height="200" alt="Hero Banner"> -->
+                </div>
+                <div class="user-info-wrapper">
+                    <div class="user-profile-pic rounded">
+                        <div class="pofile-pic-wrapper profile-pic-flair rounded">
+                            <img class="image rounded" src="@customer.image" width="100" height="100" alt="Profile Pic">
+                            <!-- <img class="image rounded" src="http://placeholder.code/100x100/RT/50/845206/201256" alt="Profile Pic"> -->
+                        </div>
+                    </div>
+                    <div class="user-basic-info">
+                        <h2 class="user-full-name">@customer.customer_name</h2>
+                        <h4 class="user-handle">
+                            <a class="gray-6 anchor" href="profile.html">@@@customer.email</a>
+                        </h4>
+                    </div>
+                    <div class="user-info">
+                        <p class="bio">
+                            <i class="fas fa-user"></i> Lorem ipsum dolor sit amet consectetur
+                            adipisicing elit.
+                        </p>
+                        <p class="joined">
+                            <i class="fas fa-calendar-alt"></i> 12<sup>th</sup> February, 2020
+                        </p>
+                    </div>
+                    <div class="user-network">
+                        <p class="user-follwers"><b>256</b> followers</p>
+                        <p class="user-follwings"><b>12</b> following</p>
+                    </div>
+                </div>
+            </div>
+            <div class="posts-container">
+                <div class="sidebar sidebar-left">
+                    <div class="sidebar-content">
+                        <div class="sidebar-medias-container">
+                            <div class="sidebar-media-header">
+                                <h3 class="sidebar-media-title">ACTIONS</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="posts-wrapper">
+                    <div class="new-post p-b-medium border-b m-b-wide">
+                        <h3 class="p-b-medium">Create a new post..</h3>
+                        <div class="new-post-actions flex">
+                            <button class="button m-r-medium pointer" id="post-something">Post something</button>
+                        </div>
+                        <div id="post-content-wrapper" class="absolute-full fixed hidden flex flex-column flex-center" style="z-index: 10; background-color: #090115ba">
+                            <div class="post-content-all p-wide bg-white w-50p radius flex-center transition-transform" id="post-content-box">
+                                <div class="create-post-header flex flex-row justify-between m-b-medium">
+                                    <h2>Add a new post</h2>
+                                    <span class="flex flex-center pointer p-medium border radius hover-bg-close hover-border-close" id="close-post-modal" style="height: 2rem; width: 2rem;">⨉</span>
+                                </div>
+                                <div class="new-post-textarea radius">
+                                    <form method="post">
+                                        <textarea class="wh-100p flex no-resize p-medium font-large outline-no radius input" id="post-content" name="postcontent" cols="30" rows="5" maxlength="200"></textarea>
+
+                                        <div class="post-length-container w-100p m-y-medium border radius">
+                                            <div class="post-length-indicator-rail" style="height: 4px">
+                                                <div class="post-length-indicator radius h-100p transition transition-ease-in" id="post-length-indicator" style="width: 0%; background-color: #451263"></div>
+                                            </div>
+                                        </div>
+
+                                        <div class="new-post-actions flex flex-row justify-between m-t-medium">
+                                            <div class="add-book-to-post h-100p w-50p">
+                                                <select name="postbooks" id="post-books" class="input w-100p">
+                                                    <option value="select">Select your book</option>
+                                                    @foreach (Books book in bookm)
+                                                    {
+                                                        <option value="@book.booksID">@book.bookname</option>
+                                                    }
+                                                </select>
+                                            </div>
+                                            <div class="flex flex-row">
+                                                <div class="new-post-image a-button input">Add an image</div>
+                                                <button type="submit" class="button m-l-medium bg-accent-color clr-white input" id="post-something">Post</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="posts p-wide border radius bg-white">
+                        @foreach (Posts pos in posts)
+                        {
+                           // foreach (Likes lik in likes)
+                            //{
+
+
+                            <div class="post-content">
+                                <div class="post-header">
+                                    <div class="user-profile-pic">
+                                        <div class="user-profile-pic rounded flex items-center pointer">
+                                            <div class="pofile-pic-wrapper profile-pic-flair rounded">
+                                                <img class="image rounded flex items-center" src="@customer.image" width="50" height="50" alt="Profile Pic">
+                                                <!-- <img class="image rounded" src="http://placeholder.code/50x50/RT/50/845206/201256" alt="Profile Pic"> -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="user-basic-info">
+                                        <h4 class="user-full-name">@customer.customer_name</h4>
+                                        <h5 class="user-handle"><a class="gray-6 anchor" href="profile.html">@@@customer.email</a></h5>
+                                    </div>
+                                    <div class="user-book-info">
+                                        <h4 class="user-book-name">
+                                            <a class="anchor" href="/book/details/@pos.book_id">
+                                                @pos.bookname
+                                            </a>
+                                        </h4>
+                                        <h5 class="user-book-author">
+                                            <a class="gray-6 anchor" href="#">
+                                                @pos.bookauthor
+                                            </a>
+                                        </h5>
+                                    </div>
+                                </div>
+                                <div class="post-body">
+                                    <div class="post-text m-b-medium">
+                                        <p class="post-text-content" style="font-size: 1rem;">
+                                            @pos.content
+                                        </p>
+                                    </div>
+
+                                    @if (@pos.post_image_1 != "")
+                                    {
+                                <div class="post-image flex relative radius" style="height: 500px">
+                                    <img class="image clr-white" src="@pos.post_image_1" alt="Post Image 1" data-image="1">
+                                    @if (@pos.post_image_2 != "")
+                                    {<img class="image hidden clr-white" src="@pos.post_image_2" alt="Post Image 2" data-image="2">}
+                                    @if (@pos.post_image_3 != "")
+                                    {<img class="image hidden clr-white" src="@pos.post_image_3" alt="Post Image 3" data-image="3">}
+                                    @if (@pos.post_image_4 != "")
+                                    {<img class="image hidden clr-white" src="@pos.post_image_4" alt="Post Image 4" data-image="4">}
+                                    @if (pos.post_image_2 != "")
+                                    {
+                                <div class="post-image-handles absolute flex flex-row">
+                                    <span class="post-image-handle active" data-span="1"></span>
+                                    <span class="post-image-handle m-l-normal" data-span="2"></span>
+                                    @if (@pos.post_image_3 != "")
+                                    {<span class="post-image-handle m-l-normal" data-span="3"></span>}
+                                    @if (@pos.post_image_4 != "")
+                                    {<span class="post-image-handle m-l-normal" data-span="4"></span>}
+                                </div>
+                                    }
+                                </div>
+                                    }
+
+
+                                    </div>
+                                <div class="post-footer relative">
+                                    <div class="post-footer-bar flex flex-row justify-between">
+                                        <div class="post-footer-primary flex flex-row">
+                                            <form action="/posts/like/@pos.post_id" method="post">
+
+                                              @*@if (pos.post_id == lik.post_id && lik.status == 1)
+                                                {*@
+                                                    <div class="like">
+                                                        <input type="hidden" id="isliked" name="isliked" value="1" />
+                                                        <button type="submit" style="border: 1px solid green"><i class="fas fa-thumbs-up"></i></button>
+                                                        @pos.likes likes
+
+                                                    </div>
+                                                @*}
+                                                else
+                                                {*@
+                                                    <div class="like">
+                                                        <input type="hidden" id="isliked" name="isliked" value="0" />
+                                                        <button type="submit"><i class="fas fa-thumbs-up"></i></button>
+                                                        @pos.likes likes
+
+                                                    </div>
+                                                @*}*@
+                                            </form>
+                                            <form action="/posts/dislike/@pos.post_id" method="post">
+                                                @*@if (pos.post_id == lik.post_id && lik.status == 0)
+                                                {*@
+                                                    <div class="dislike">
+                                                        <input type="hidden" id="isdisliked" name="isdisliked" value="1" />
+                                                        <button type="submit" style="border: 1px solid red"><i class="fas fa-thumbs-down"></i></button>
+                                                        @pos.dislikes disklikes
+                                                    </div>
+                                                @*}
+                                                else
+                                                {*@
+                                                    <div class="dislike">
+                                                        <input type="hidden" id="isdisliked" name="isdisliked" value="0" />
+                                                        <button type="submit"><i class="fas fa-thumbs-down"></i></button>
+                                                        @pos.dislikes disklikes
+                                                    </div>
+                                                @*}*@
+                                            </form>
+                                            <div class="comment"><i class="fas fa-comment"></i>13 comments</div>
+                                            <div class="share"><i class="fas fa-share"></i>Share</div>
+                                        </div>
+                                        <div class="post-footer-secondary relative">
+                                            <div class="post-action-menu hidden absolute bg-white flex flex-column no-wrap radius" style="bottom: 1.5rem; right: 0; background-color: #451356">
+                                                <div class="div-action-item flex flex-row p-medium bg-gray-darkest hover-bg-gray-darker">
+                                                    <p><a href="/posts/edit/@pos.post_id">Edit Post</a></p>
+                                                </div>
+                                                <div class="div-action-item flex flex-row p-medium bg-gray-darkest hover-bg-gray-darker">
+                                                    <p><a href="/posts/delete/@pos.post_id">Delete Post</a></p>
+                                                </div>
+                                            </div>
+                                            <span class="div-action-btn select-none flex flex-center pointer p-medium radius border-transp hover-border-gray-dark" style="height: 1rem; width: 1rem; line-height: 1rem;">&nbsp;⫶&nbsp;</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                                }
+                            }
+                    </div>
+                </div>
+                <div class="sidebar sidebar-right">
+                    <div class="sidebar-content">
+                        <div class="sidebar-medias-container">
+                            <div class="sidebar-media-header">
+                                <h3 class="sidebar-media-title">MEDIA</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let postBtn = document.getElementById('post-something');
+        let postContent = document.getElementById('post-content-wrapper');
+        let postBox = document.getElementById('post-content-box');
+        let closeBtn = document.getElementById('close-post-modal');
+        let content = document.getElementById('post-content');
+        let indicator = document.getElementById('post-length-indicator');
+        let len = 0;
+        let pct = 0;
+        let maxLen = 200;
+        let contentValue = '';
+
+        postBtn.addEventListener("click", function () {
+            postContent.classList.remove('hidden');
+        }, false);
+        closeBtn.addEventListener("click", function () {
+            postContent.classList.add('hidden');
+            content.value = '';
+            indicator.style.width = 0;
+        }, false);
+
+        content.addEventListener("keyup", function (e) {
+            contentValue = content.value;
+            len = contentValue.length;
+            pct = (len / maxLen) * 100;
+            indicator.style.width = pct + '%';
+
+            if (e.keyCode == 27) {
+                postContent.classList.add('hidden');
+                content.value = '';
+                indicator.style.width = 0;
+            }
+
+            if (len > maxLen) {
+                indicator.style.backgroundColor = 'red';
+                e.preventDefault();
+                this.value = contentValue;
+            } else {
+                indicator.style.backgroundColor = 'green';
+            }
+        }, false);
+    </script>
+    <script>
+        let imagePosts = document.querySelectorAll('.post-image');
+        imagePosts.forEach(function (imagePost) {
+            let images = imagePost.querySelectorAll('.image');
+            let handles = imagePost.querySelectorAll('.post-image-handle');
+            let index = 1;
+
+            if (images.length == 1) {
+                return;
+            }
+
+            handles.forEach(function (handle) {
+                handle.addEventListener("click", function (e) {
+                    images.forEach(function (image) {
+                        index = handle.dataset['span'];
+
+                        if (index == image.dataset['image']) {
+                            image.classList.remove('hidden');
+                            handle.classList.add('active');
+                        } else {
+                            image.classList.add('hidden');
+                            handles.forEach(function (handle) {
+                                if (index != handle.dataset['span']) {
+                                    handle.classList.remove('active');
+                                }
+                            });
+                        }
+                    });
+                }, false);
+            });
+        })
+    </script>
+    <script>
+        let actionBtns = document.querySelectorAll('.div-action-btn');
+        let menu;
+        actionBtns.forEach((btn) => {
+            btn.addEventListener("click", (e) => {
+                menu = btn.parentNode.querySelector('.post-action-menu');
+                menu.classList.toggle('hidden');
+            });
+        })
+    </script>
+}
+
+

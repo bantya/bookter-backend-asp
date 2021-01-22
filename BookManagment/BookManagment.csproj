@@ -102,7 +102,14 @@
     <Content Include="Content\webfonts\fa-solid-900.svg" />
     <Content Include="Content\webfonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Images\Posts\abc.jpg" />
+    <Content Include="Images\Posts\cde.jpg" />
+    <Content Include="Images\Posts\hjk.jpg" />
+    <Content Include="Images\Posts\wer.jpg" />
+    <Content Include="Images\Users\1-ban.png" />
     <Content Include="Images\Users\24.jpeg" />
+    <Content Include="Images\Users\banner-1.png" />
+    <Content Include="Images\Users\banner-2.png" />
     <Content Include="Images\Users\default.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -151,6 +158,8 @@
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\FooterController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PostsController.cs" />
+    <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Controllers\WishlistController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -183,6 +192,8 @@
     <Content Include="Views\Cart\Index.cshtml" />
     <Content Include="Views\Wishlist\Index.cshtml" />
     <Content Include="Views\Admin\Updatebook.cshtml" />
+    <Content Include="Views\Posts\Index.cshtml" />
+    <Content Include="Views\Profile\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

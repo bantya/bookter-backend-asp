@@ -34,3 +34,5 @@ C:\Users\Shedge\source\repos\BookManagment\BLL\obj\Debug\BLL.dll
 C:\Users\Shedge\source\repos\BookManagment\BLL\obj\Debug\BLL.pdb
 C:\Users\Shedge\source\repos\BookManagment\BLL\bin\Debug\BOL.dll
 C:\Users\Shedge\source\repos\BookManagment\BLL\bin\Debug\BOL.pdb
+C:\Users\Shedge\source\repos\BookManagment\BLL\bin\Debug\Utils.dll
+C:\Users\Shedge\source\repos\BookManagment\BLL\bin\Debug\Utils.pdb

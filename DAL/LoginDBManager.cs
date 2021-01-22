@@ -176,7 +176,7 @@ namespace DAL
                     if (con.State == ConnectionState.Closed)
                         con.Open();
 
-                    string query = "SELECT * FROM customers where email = @uname and password = @upass";
+                    string query = "select * from customers where password = @upass and email = @uname or customer_name = @uname";
 
                     MySqlCommand cmd = new MySqlCommand(query, con);
                     cmd.Parameters.Add(new MySqlParameter("@uname", uname));
@@ -191,9 +191,9 @@ namespace DAL
                             string Name = reader["customer_name"].ToString();
                             string Email = reader["email"].ToString();
                             string Image = reader["image"].ToString();
+                            string banner = reader["banner"].ToString();
 
-
-                            customer = new Customer { email = Email, customerid = id, customer_name = Name , image = Image };
+                            customer = new Customer { email = Email, customerid = id, customer_name = Name , image = Image ,banner = banner};
                         }
                     }
                     con.Close();
@@ -210,7 +210,49 @@ namespace DAL
 
         }
 
+        public static Customer getUserByUsername(string uname)
+        {
+            Customer customer = null;
 
+            try
+            {
+                using (MySqlConnection con = new MySqlConnection(connString))
+                {
+                    if (con.State == ConnectionState.Closed)
+                        con.Open();
+
+                    string query = "select * from customers where customer_name = @uname";
+
+                    MySqlCommand cmd = new MySqlCommand(query, con);
+                    cmd.Parameters.Add(new MySqlParameter("@uname", uname));
+
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+
+                        while (reader.Read())
+                        {
+                            int id = int.Parse(reader["customerID"].ToString());
+                            string Name = reader["customer_name"].ToString();
+                            string Email = reader["email"].ToString();
+                            string Image = reader["image"].ToString();
+                            string banner = reader["banner"].ToString();
+
+                            customer = new Customer { email = Email, customerid = id, customer_name = Name, image = Image, banner = banner };
+                        }
+                    }
+                    con.Close();
+
+
+                }
+            }
+            catch (MySqlException e)
+            {
+                string message = e.Message;
+            }
+
+            return customer;
+
+        }
 
     }
 }

@@ -44,6 +44,7 @@ namespace BookManagment.Controllers
             if (customer != null)
             {
                 this.Session.Add("user", customer);
+                this.Session.Add("books", BussinessManager.Getbook());
                 string query = Request.QueryString["to"];
 
                 if (query != null)

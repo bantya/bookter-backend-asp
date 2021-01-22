@@ -30,20 +30,19 @@
                 <nav class="nav-menu flex flex-row">
                     <ul class="nav-list">
                         <li class="menu-item"><a href="index.html">Home</a></li>
-                        <li class="menu-item active"><a href="posts.html">Posts</a></li>
-                        <li class="menu-item active"><a href="/Wishlist/Index">Wishlist</a></li>
-                        <li class="menu-item"><a href="book.html">Books</a></li>
+                        <li class="menu-item active"><a href="/posts/index">Posts</a></li>
+                        <li class="menu-item"><a href="/books/bookslist">Books</a></li>
                         <li class="menu-item"><a href="orders.html">Orders</a></li>
-                        <li class="menu-item"><a href="/Cart/Index">Cart</a></li>
+                        <li class="menu-item"><a href="/cart/index">Cart</a></li>
                         @if (customer == null)
                         {
-                            <li class="menu-item"><a href="/Account/Register">Register</a></li>
-                            <li class="menu-item active"><a href="/Account/login">Login</a></li>
+                            <li class="menu-item"><a href="/account/register">Register</a></li>
+                            <li class="menu-item active"><a href="/account/login">Login</a></li>
                             //n? to = @this.Session["lastPage"]
                         }
                         else
                         {
-                            <li class="menu-item"><a href="wishlist">Wishlist</a></li>
+                            <li class="menu-item"><a href="/wishlist/index">Wishlist</a></li>
                         }
 
                         <!-- <li class="menu-item pointer"> -->

@@ -105,3 +105,5 @@ C:\Users\Shedge\source\repos\BookManagment\BookManagment\bin\K4os.Hash.xxHash.xm
 C:\Users\Shedge\source\repos\BookManagment\BookManagment\bin\System.Memory.xml
 C:\Users\Shedge\source\repos\BookManagment\BookManagment\bin\System.Numerics.Vectors.xml
 C:\Users\Shedge\source\repos\BookManagment\BookManagment\bin\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\Shedge\source\repos\BookManagment\BookManagment\bin\Utils.dll
+C:\Users\Shedge\source\repos\BookManagment\BookManagment\bin\Utils.pdb
