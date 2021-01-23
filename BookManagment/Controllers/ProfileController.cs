@@ -17,8 +17,10 @@ namespace BookManagment.Controllers
 
             if (username.Substring(0,1) ==  "@")
             {
+                Customer customer = (Customer)this.Session["user"];
                 this.ViewData["profile"] = BussinessManager.getUserByUsername(username.Substring(1));
                 List<Posts> allposts = BussinessManager.GetallPostsByUsername(username.Substring(1));
+                this.ViewData["follower"] = BussinessManager.CheckFollow(username.Substring(1), customer.customerid);
                 return View(allposts);
 
             }
@@ -54,7 +56,19 @@ namespace BookManagment.Controllers
         public ActionResult follow(int id,string fname)
         {
             Customer customer = (Customer)this.Session["user"];
-            bool status = BussinessManager.AddFollow(customer.customerid, id);
+            bool status = BussinessManager.AddFollow(customer.customerid, id,fname);
+            if (status)
+            {
+                return Redirect("/profile/index/@" + fname);
+            }
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult unfollow(int id, string fname)
+        {
+            Customer customer = (Customer)this.Session["user"];
+            bool status = BussinessManager.unFollow(customer.customerid, id, fname);
             if (status)
             {
                 return Redirect("/profile/index/@" + fname);

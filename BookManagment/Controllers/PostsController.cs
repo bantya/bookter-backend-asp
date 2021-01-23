@@ -83,5 +83,19 @@ namespace BookManagment.Controllers
 
         //    return View();
         //}
+
+        [HttpPost]
+        public ActionResult addcomment(string postcomment,int userid)
+        {
+            Customer customer = (Customer)this.Session["user"];
+            bool status = BussinessManager.insertcomment(customer.customerid, postcomment, customer.customer_name,userid);
+
+            if (status)
+            {
+                return this.RedirectToAction("index", "posts");
+            }
+            return View();
+
+        }
     }
 }

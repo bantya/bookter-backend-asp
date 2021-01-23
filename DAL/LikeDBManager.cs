@@ -101,7 +101,42 @@ namespace DAL
 
         }
 
-        public static bool AddFollow(int customerid, int id)
+        public static bool unFollow(int customerid, int id, string fname)
+        {
+
+            bool status = false;
+            try
+            {
+                using (MySqlConnection con = new MySqlConnection(connString))
+                {
+
+
+                    if (con.State == ConnectionState.Closed)
+                        con.Open();
+                    // post_id | user_id | status
+                    string query = "delete from followers where follower_id = @customerid and following_id = @id and following_name = @fname";
+
+                    MySqlCommand cmd = new MySqlCommand(query, con);
+                    cmd.Parameters.Add(new MySqlParameter("@id", id));
+                    cmd.Parameters.Add(new MySqlParameter("@customerid", customerid));
+                    cmd.Parameters.Add(new MySqlParameter("@fname", fname));
+
+
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+                    status = true;
+                }
+            }
+            catch (MySqlException e)
+            {
+                string message = e.Message;
+            }
+
+            return status;
+
+        }
+
+        public static bool AddFollow(int customerid, int id,string fname)
         {
             bool status = false;
             try
@@ -113,14 +148,12 @@ namespace DAL
                     if (con.State == ConnectionState.Closed)
                         con.Open();
                     // post_id | user_id | status
-                    string query = "INSERT INTO followers (follower_id,following_id) VALUES(@customerid ,@id)";
+                    string query = "INSERT INTO followers (follower_id,following_id,following_name) VALUES(@customerid ,@id,@fname)";
 
                     MySqlCommand cmd = new MySqlCommand(query, con);
                     cmd.Parameters.Add(new MySqlParameter("@id", id));
                     cmd.Parameters.Add(new MySqlParameter("@customerid", customerid));
-                    
-
-
+                    cmd.Parameters.Add(new MySqlParameter("@fname", fname));
 
 
                     cmd.ExecuteNonQuery();

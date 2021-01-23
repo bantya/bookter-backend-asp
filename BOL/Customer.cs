@@ -15,6 +15,8 @@ namespace BOL
 
         public string banner { get; set; }
 
+        public string f_name { get; set; }
+        public string l_name { get; set; }
 
         public string image { get; set; }
         public Customer() { }

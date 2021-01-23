@@ -44,6 +44,7 @@
     <Compile Include="Admin.cs" />
     <Compile Include="Books.cs" />
     <Compile Include="Cart.cs" />
+    <Compile Include="Comment.cs" />
     <Compile Include="Customer.cs" />
     <Compile Include="Followers.cs" />
     <Compile Include="forgotpass.cs" />

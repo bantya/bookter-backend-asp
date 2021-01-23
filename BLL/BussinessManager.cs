@@ -28,6 +28,11 @@ namespace BLL
             return LoginDBManager.getUserByUsername(username);
         }
 
+        public static Followers CheckFollow(string v, int customerid)
+        {
+            return PostDBManager.CheckFollow(v,customerid);
+        }
+
         public static List<Posts> GetallPostsByUsername(string v)
         {
             return PostDBManager.GetallPostsByUsername(v);
@@ -63,9 +68,9 @@ namespace BLL
             return LikeDBManager.AddDislike(customerid, id);
         }
 
-        public static bool AddFollow(int customerid, int id)
+        public static bool AddFollow(int customerid, int id, string fname)
         {
-            return LikeDBManager.AddFollow(customerid, id);
+            return LikeDBManager.AddFollow(customerid, id,fname);
         }
 
         public static Books GetBookdetails(int id)
@@ -76,6 +81,11 @@ namespace BLL
         public static bool deletepost(int id, int customerid)
         {
             return PostDBManager.deleteposts(id,customerid);
+        }
+
+        public static bool unFollow(int customerid, int id, string fname)
+        {
+            return LikeDBManager.unFollow(customerid, id, fname);
         }
 
         public static bool register(Customer cust)
@@ -91,6 +101,11 @@ namespace BLL
         public static bool AdminLogin(string uname, string upass)
         {
             return AdminDBManager.AdminLogin(uname, upass);
+        }
+
+        public static bool insertcomment(int customerid, string postcomment, string customer_name, int userid)
+        {
+            return PostDBManager.insertcomment(customerid,postcomment,customer_name,userid);
         }
 
         public static bool deletewishlist(int cid, int bid)

@@ -192,8 +192,11 @@ namespace DAL
                             string Email = reader["email"].ToString();
                             string Image = reader["image"].ToString();
                             string banner = reader["banner"].ToString();
+                            string f_name = reader["First_name"].ToString();
+                            string l_name = reader["Last_name"].ToString();
 
-                            customer = new Customer { email = Email, customerid = id, customer_name = Name , image = Image ,banner = banner};
+
+                            customer = new Customer { email = Email, customerid = id, customer_name = Name , image = Image ,banner = banner,f_name = f_name,l_name = l_name};
                         }
                     }
                     con.Close();
@@ -236,8 +239,10 @@ namespace DAL
                             string Email = reader["email"].ToString();
                             string Image = reader["image"].ToString();
                             string banner = reader["banner"].ToString();
+                            string f_name = reader["First_name"].ToString();
+                            string l_name = reader["Last_name"].ToString();
 
-                            customer = new Customer { email = Email, customerid = id, customer_name = Name, image = Image, banner = banner };
+                            customer = new Customer { email = Email, customerid = id, customer_name = Name, image = Image, banner = banner ,f_name=f_name,l_name=l_name};
                         }
                     }
                     con.Close();

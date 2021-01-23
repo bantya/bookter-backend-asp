@@ -12,6 +12,8 @@ namespace BOL
 
         public int following_id { get; set; }
 
+        public string following_name { get; set; }
+
     }
 }
 

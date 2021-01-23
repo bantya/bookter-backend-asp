@@ -27,7 +27,8 @@ namespace BOL
         public string bookname { set; get; }
         public string bookauthor { set; get; }
 
-
+        public string f_name { set; get; }
+        public string l_name { set; get; }
     }
 }
 
