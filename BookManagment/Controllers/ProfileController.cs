@@ -18,9 +18,13 @@ namespace BookManagment.Controllers
             if (username.Substring(0,1) ==  "@")
             {
                 Customer customer = (Customer)this.Session["user"];
-                this.ViewData["profile"] = BussinessManager.getUserByUsername(username.Substring(1));
+                Customer user = BussinessManager.getUserByUsername(username.Substring(1));
+                this.ViewData["profile"] = user;
                 List<Posts> allposts = BussinessManager.GetallPostsByUsername(username.Substring(1));
-                this.ViewData["follower"] = BussinessManager.CheckFollow(username.Substring(1), customer.customerid);
+                if (customer != null && user != null)
+                {
+                    this.ViewData["follower"] = BussinessManager.CheckFollow(username.Substring(1), customer.customerid);
+                }
                 return View(allposts);
 
             }

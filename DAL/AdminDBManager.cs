@@ -73,10 +73,10 @@ namespace DAL
                     cmd.Parameters.Add(new MySqlParameter("@lname", newadmin.lname));
                     cmd.Parameters.Add(new MySqlParameter("@email", newadmin.email));
                     cmd.Parameters.Add(new MySqlParameter("@contact", newadmin.contact));
-                    
+
                     cmd.Parameters.Add(new MySqlParameter("@password", newadmin.password));
 
-                   
+
                     cmd.ExecuteNonQuery();
                     con.Close();
                     status = true;
@@ -126,6 +126,119 @@ namespace DAL
                     cmd.Parameters.Add(new MySqlParameter("@bimag", newbook.image));
                     cmd.Parameters.Add(new MySqlParameter("@bimag2", newbook.image2));
                     cmd.Parameters.Add(new MySqlParameter("@bimag3", newbook.image3));
+
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+                    status = true;
+                }
+            }
+            catch (MySqlException e)
+            {
+                string message = e.Message;
+            }
+
+            return status;
+
+        }
+
+        public static bool CancelArchive(int booksID)
+        {
+            bool status = false;
+
+            try
+            {
+                using (MySqlConnection con = new MySqlConnection(connString))
+                {
+
+
+                    if (con.State == ConnectionState.Closed)
+                        con.Open();
+                    //(booksID, bookname, bookauthor, bookpage, booklang, bookpublisher, publishdate, bookdimension, paperprice, hardprice, ebookprice, bookdisc, aboutauthor, rating, image, image2, image3) VALUES" +
+                    //                                    "(default,@bname,@aname,@bpages,@blang,@bpub,@bdate,@bdimen,@bpp,@bhp,@ebp,@bdisc,@aathor,@brat,@bimag,@bimag2,@bimag3)";
+
+                    string query = "update books set  status = 1  where booksID=@bid";
+
+                    MySqlCommand cmd = new MySqlCommand(query, con);
+                    cmd.Parameters.Add(new MySqlParameter("@bid", booksID));
+
+
+
+
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+                    status = true;
+                }
+            }
+            catch (MySqlException e)
+            {
+                string message = e.Message;
+            }
+
+            return status;
+        }
+
+        public static bool ArchiveBook(int booksID)
+        {
+
+            bool status = false;
+
+            try
+            {
+                using (MySqlConnection con = new MySqlConnection(connString))
+                {
+
+
+                    if (con.State == ConnectionState.Closed)
+                        con.Open();
+                    //(booksID, bookname, bookauthor, bookpage, booklang, bookpublisher, publishdate, bookdimension, paperprice, hardprice, ebookprice, bookdisc, aboutauthor, rating, image, image2, image3) VALUES" +
+                    //                                    "(default,@bname,@aname,@bpages,@blang,@bpub,@bdate,@bdimen,@bpp,@bhp,@ebp,@bdisc,@aathor,@brat,@bimag,@bimag2,@bimag3)";
+
+                    string query = "update books set  status = 0  where booksID=@bid";
+
+                    MySqlCommand cmd = new MySqlCommand(query, con);
+                    cmd.Parameters.Add(new MySqlParameter("@bid", booksID));
+
+                 
+
+
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+                    status = true;
+                }
+            }
+            catch (MySqlException e)
+            {
+                string message = e.Message;
+            }
+
+            return status;
+
+        }
+
+        public static bool UpdateBookbyPrice(int bid, double bpp, double bhp, double ebp)
+        {
+            bool status = false;
+
+            try
+            {
+                using (MySqlConnection con = new MySqlConnection(connString))
+                {
+
+
+                    if (con.State == ConnectionState.Closed)
+                        con.Open();
+                    //(booksID, bookname, bookauthor, bookpage, booklang, bookpublisher, publishdate, bookdimension, paperprice, hardprice, ebookprice, bookdisc, aboutauthor, rating, image, image2, image3) VALUES" +
+                    //                                    "(default,@bname,@aname,@bpages,@blang,@bpub,@bdate,@bdimen,@bpp,@bhp,@ebp,@bdisc,@aathor,@brat,@bimag,@bimag2,@bimag3)";
+
+                    string query = "update books set  paperprice = @bpp , hardprice = @bhp , ebookprice = @ebp where booksID=@bid";
+
+                    MySqlCommand cmd = new MySqlCommand(query, con);
+                    cmd.Parameters.Add(new MySqlParameter("@bid", bid));
+                    
+                    cmd.Parameters.Add(new MySqlParameter("@bpp", bpp));
+                    cmd.Parameters.Add(new MySqlParameter("@bhp", bhp));
+                    cmd.Parameters.Add(new MySqlParameter("@ebp", ebp));
+           
 
                     cmd.ExecuteNonQuery();
                     con.Close();

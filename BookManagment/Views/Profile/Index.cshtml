@@ -33,10 +33,17 @@
                         </h4>
                     </div>
                     <div class="user-info">
-                        <p class="bio">
-                            <i class="fas fa-user"></i> Lorem ipsum dolor sit amet consectetur
-                            adipisicing elit.
-                        </p>
+
+                        @if (user.customer_name == "error404")
+                        {
+                            <i class="fas fa-user"></i>
+                            <p>Sorry, this user does not exist!</p>
+                        }
+                        else
+                        {
+                            <i class="fas fa-user"></i>
+                            <p> Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                        }
                         <p class="joined">
                             <i class="fas fa-calendar-alt"></i> 12<sup>th</sup> February, 2020
                         </p>
@@ -45,108 +52,113 @@
                         <p class="user-follwers"><b>256</b> followers</p>
                         <p class="user-follwings"><b>12</b> following</p>
 
-                        @if (foll == null)
+                        @if (customer != null && user.customer_name != "error404")
                         {
-                            <form action="/profile/follow/@user.customerid" method="post">
-                                <div class="user-follow-btn m-t-normal">
-                                    <input type="hidden" id="follow" name="follow" />
-                                    <input type="hidden" id="fname" name="fname" value="@user.customer_name" />
-                                    <button name="follow" class="input">FOLLOW</button>
-                                </div>
-                            </form>
-                        }
-                        else
-                        {
-                            <form action="/profile/unfollow/@user.customerid" method="post">
-                                <div class="user-follow-btn m-t-normal">
-                                    <input type="hidden" id="follow" name="follow" />
-                                    <input type="hidden" id="fname" name="fname" value="@user.customer_name" />
-                                    <button name="follow" class="input">UNFOLLOW</button>
-                                </div>
-                            </form>
+                            if (foll == null)
+                            {
+                                <form action="/profile/follow/@user.customerid" method="post">
+                                    <div class="user-follow-btn m-t-normal">
+                                        <input type="hidden" id="follow" name="follow" />
+                                        <input type="hidden" id="fname" name="fname" value="@user.customer_name" />
+                                        <button name="follow" class="input">FOLLOW</button>
+                                    </div>
+                                </form>
+                            }
+                            else
+                            {
+                                <form action="/profile/unfollow/@user.customerid" method="post">
+                                    <div class="user-follow-btn m-t-normal">
+                                        <input type="hidden" id="follow" name="follow" />
+                                        <input type="hidden" id="fname" name="fname" value="@user.customer_name" />
+                                        <button name="follow" class="input">UNFOLLOW</button>
+                                    </div>
+                                </form>
+                            }
                         }
 
-                        </div>
                     </div>
                 </div>
-                <div class="posts-container">
-                    <div class="sidebar sidebar-left">
-                        <div class="sidebar-content">
-                            <div class="sidebar-medias-container">
-                                <div class="sidebar-media-header">
-                                    <h3 class="sidebar-media-title">ACTIONS</h3>
-                                </div>
+            </div>
+            <div class="posts-container">
+                <div class="sidebar sidebar-left">
+                    <div class="sidebar-content">
+                        <div class="sidebar-medias-container">
+                            <div class="sidebar-media-header">
+                                <h3 class="sidebar-media-title">ACTIONS</h3>
                             </div>
                         </div>
                     </div>
-                    <div class="posts-wrapper">
+                </div>
+                <div class="posts-wrapper">
 
-                        <div class="posts p-wide border radius bg-white">
-                            @foreach (Posts pos in posts)
-                            {
-                                <div class="post-content">
-                                    <div class="post-header">
-                                        <div class="user-profile-pic">
-                                            <div class="user-profile-pic rounded flex items-center pointer">
-                                                <div class="pofile-pic-wrapper profile-pic-flair rounded">
-                                                    <img class="image rounded flex items-center" src="@user.image" width="50" height="50" alt="Profile Pic">
-                                                    <!-- <img class="image rounded" src="http://placeholder.code/50x50/RT/50/845206/201256" alt="Profile Pic"> -->
+                    <div class="posts p-wide border radius bg-white">
+                        @foreach (Posts pos in posts)
+                        {
+                            <div class="post-content">
+                                <div class="post-header">
+                                    <div class="user-profile-pic">
+                                        <div class="user-profile-pic rounded flex items-center pointer">
+                                            <div class="pofile-pic-wrapper profile-pic-flair rounded">
+                                                <img class="image rounded flex items-center" src="@user.image" width="50" height="50" alt="Profile Pic">
+                                                <!-- <img class="image rounded" src="http://placeholder.code/50x50/RT/50/845206/201256" alt="Profile Pic"> -->
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="user-basic-info">
+                                        <h4 class="user-full-name">@user.customer_name</h4>
+                                        <h5 class="user-handle"><a class="gray-6 anchor" href="profile.html">@@@user.email</a></h5>
+                                    </div>
+                                    <div class="user-book-info">
+                                        <h4 class="user-book-name">
+                                            <a class="anchor" href="/book/details/@pos.book_id">
+                                                @pos.bookname
+                                            </a>
+                                        </h4>
+                                        <h5 class="user-book-author">
+                                            <a class="gray-6 anchor" href="#">
+                                                @pos.bookauthor
+                                            </a>
+                                        </h5>
+                                    </div>
+                                </div>
+                                <div class="post-body">
+                                    <div class="post-text m-b-medium">
+                                        <p class="post-text-content" style="font-size: 1rem;">
+                                            @pos.content
+                                        </p>
+                                    </div>
+
+                                    @if (@pos.post_image_1 != "")
+                                    {
+                                        <div class="post-image flex relative radius" style="height: 500px">
+                                            <img class="image clr-white" src="@pos.post_image_1" alt="Post Image 1" data-image="1">
+                                            @if (@pos.post_image_2 != "")
+                                            {<img class="image hidden clr-white" src="@pos.post_image_2" alt="Post Image 2" data-image="2">}
+                                            @if (@pos.post_image_3 != "")
+                                            {<img class="image hidden clr-white" src="@pos.post_image_3" alt="Post Image 3" data-image="3">}
+                                            @if (@pos.post_image_4 != "")
+                                            {<img class="image hidden clr-white" src="@pos.post_image_4" alt="Post Image 4" data-image="4">}
+                                            @if (pos.post_image_2 != "")
+                                            {
+                                                <div class="post-image-handles absolute flex flex-row">
+                                                    <span class="post-image-handle active" data-span="1"></span>
+                                                    <span class="post-image-handle m-l-normal" data-span="2"></span>
+                                                    @if (@pos.post_image_3 != "")
+                                                    {<span class="post-image-handle m-l-normal" data-span="3"></span>}
+                                                    @if (@pos.post_image_4 != "")
+                                                    {<span class="post-image-handle m-l-normal" data-span="4"></span>}
                                                 </div>
-                                            </div>
+                                            }
                                         </div>
-                                        <div class="user-basic-info">
-                                            <h4 class="user-full-name">@user.customer_name</h4>
-                                            <h5 class="user-handle"><a class="gray-6 anchor" href="profile.html">@@@user.email</a></h5>
-                                        </div>
-                                        <div class="user-book-info">
-                                            <h4 class="user-book-name">
-                                                <a class="anchor" href="/book/details/@pos.book_id">
-                                                    @pos.bookname
-                                                </a>
-                                            </h4>
-                                            <h5 class="user-book-author">
-                                                <a class="gray-6 anchor" href="#">
-                                                    @pos.bookauthor
-                                                </a>
-                                            </h5>
-                                        </div>
-                                    </div>
-                                    <div class="post-body">
-                                        <div class="post-text m-b-medium">
-                                            <p class="post-text-content" style="font-size: 1rem;">
-                                                @pos.content
-                                            </p>
-                                        </div>
-
-                                        @if (@pos.post_image_1 != "")
-                                        {
-                                            <div class="post-image flex relative radius" style="height: 500px">
-                                                <img class="image clr-white" src="@pos.post_image_1" alt="Post Image 1" data-image="1">
-                                                @if (@pos.post_image_2 != "")
-                                                {<img class="image hidden clr-white" src="@pos.post_image_2" alt="Post Image 2" data-image="2">}
-                                                @if (@pos.post_image_3 != "")
-                                                {<img class="image hidden clr-white" src="@pos.post_image_3" alt="Post Image 3" data-image="3">}
-                                                @if (@pos.post_image_4 != "")
-                                                {<img class="image hidden clr-white" src="@pos.post_image_4" alt="Post Image 4" data-image="4">}
-                                                @if (pos.post_image_2 != "")
-                                                {
-                                                    <div class="post-image-handles absolute flex flex-row">
-                                                        <span class="post-image-handle active" data-span="1"></span>
-                                                        <span class="post-image-handle m-l-normal" data-span="2"></span>
-                                                        @if (@pos.post_image_3 != "")
-                                                        {<span class="post-image-handle m-l-normal" data-span="3"></span>}
-                                                        @if (@pos.post_image_4 != "")
-                                                        {<span class="post-image-handle m-l-normal" data-span="4"></span>}
-                                                    </div>
-                                                }
-                                            </div>
-                                        }
+                                    }
 
 
-                                    </div>
-                                    <div class="post-footer relative">
-                                        <div class="post-footer-bar flex flex-row justify-between">
-                                            <div class="post-footer-primary flex flex-row">
+                                </div>
+                                <div class="post-footer relative">
+                                    <div class="post-footer-bar flex flex-row justify-between">
+                                        <div class="post-footer-primary flex flex-row">
+                                            @if (@customer != null)
+                                            {
                                                 <form action="/profile/like/@pos.post_id" method="post">
                                                     <div class="like">
                                                         <input type="hidden" id="isliked" name="isliked" value="0" />
@@ -161,137 +173,151 @@
                                                         @pos.dislikes disklikes
                                                     </div>
                                                 </form>
-                                                <div class="comment"><i class="fas fa-comment"></i>13 comments</div>
-                                                <div class="share"><i class="fas fa-share"></i>Share</div>
-                                            </div>
-                                            @if (@customer != null)
+                                            }
+                                            else
                                             {
+                                                <div class="like">
+                                                    <button type="submit"><i class="fas fa-thumbs-up"></i></button>
+                                                    @pos.likes likes
+                                                </div>
 
-                                                <div class="post-footer-secondary relative">
-
-                                                    <div class="post-action-menu hidden absolute bg-white flex flex-column no-wrap radius" style="bottom: 1.5rem; right: 0; background-color: #451356">
-                                                        @if (@customer.customerid == user.customerid)
-                                                        {
-                                                            <div class="div-action-item flex flex-row p-medium bg-gray-darkest hover-bg-gray-darker">
-                                                                <p><a href="/posts/edit/@pos.post_id">Edit Post</a></p>
-                                                            </div>
-                                                            <div class="div-action-item flex flex-row p-medium bg-gray-darkest hover-bg-gray-darker">
-                                                                <p><a href="/posts/delete/@pos.post_id">Delete Post</a></p>
-                                                            </div>
-                                                        }
-                                                        else
-                                                        {
-                                                            <div class="div-action-item flex flex-row p-medium bg-gray-darkest hover-bg-gray-darker">
-                                                                <p><a href="/posts/report/@pos.post_id">Report Post</a></p>
-                                                            </div>
-                                                        }
-                                                    </div>
-                                                    <span class="div-action-btn select-none flex flex-center pointer p-medium radius border-transp hover-border-gray-dark" style="height: 1rem; width: 1rem; line-height: 1rem;">&nbsp;⫶&nbsp;</span>
+                                                <div class="dislike">
+                                                    <button type="submit"><i class="fas fa-thumbs-down"></i></button>
+                                                    @pos.dislikes disklikes
                                                 </div>
                                             }
+
+                                            <div class="comment"><i class="fas fa-comment"></i>13 comments</div>
+                                            <div class="share"><i class="fas fa-share"></i>Share</div>
                                         </div>
+                                        @if (@customer != null)
+                                        {
+
+                                            <div class="post-footer-secondary relative">
+
+                                                <div class="post-action-menu hidden absolute bg-white flex flex-column no-wrap radius" style="bottom: 1.5rem; right: 0; background-color: #451356">
+                                                    @if (@customer.customerid == user.customerid)
+                                                    {
+                                                        <div class="div-action-item flex flex-row p-medium bg-gray-darkest hover-bg-gray-darker">
+                                                            <p><a href="/posts/edit/@pos.post_id">Edit Post</a></p>
+                                                        </div>
+                                                        <div class="div-action-item flex flex-row p-medium bg-gray-darkest hover-bg-gray-darker">
+                                                            <p><a href="/posts/delete/@pos.post_id">Delete Post</a></p>
+                                                        </div>
+                                                    }
+                                                    else
+                                                    {
+                                                        <div class="div-action-item flex flex-row p-medium bg-gray-darkest hover-bg-gray-darker">
+                                                            <p><a href="/posts/report/@pos.post_id">Report Post</a></p>
+                                                        </div>
+                                                    }
+                                                </div>
+                                                <span class="div-action-btn select-none flex flex-center pointer p-medium radius border-transp hover-border-gray-dark" style="height: 1rem; width: 1rem; line-height: 1rem;">&nbsp;⫶&nbsp;</span>
+                                            </div>
+                                        }
                                     </div>
                                 </div>
-                            }
-                        </div>
+                            </div>
+                        }
                     </div>
-                    <div class="sidebar sidebar-right">
-                        <div class="sidebar-content">
-                            <div class="sidebar-medias-container">
-                                <div class="sidebar-media-header">
-                                    <h3 class="sidebar-media-title">MEDIA</h3>
-                                </div>
+                </div>
+                <div class="sidebar sidebar-right">
+                    <div class="sidebar-content">
+                        <div class="sidebar-medias-container">
+                            <div class="sidebar-media-header">
+                                <h3 class="sidebar-media-title">MEDIA</h3>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 
-        <script>
-            let postBtn = document.getElementById('post-something');
-            let postContent = document.getElementById('post-content-wrapper');
-            let postBox = document.getElementById('post-content-box');
-            let closeBtn = document.getElementById('close-post-modal');
-            let content = document.getElementById('post-content');
-            let indicator = document.getElementById('post-length-indicator');
-            let len = 0;
-            let pct = 0;
-            let maxLen = 200;
-            let contentValue = '';
+    <script>
+        let postBtn = document.getElementById('post-something');
+        let postContent = document.getElementById('post-content-wrapper');
+        let postBox = document.getElementById('post-content-box');
+        let closeBtn = document.getElementById('close-post-modal');
+        let content = document.getElementById('post-content');
+        let indicator = document.getElementById('post-length-indicator');
+        let len = 0;
+        let pct = 0;
+        let maxLen = 200;
+        let contentValue = '';
 
-            postBtn.addEventListener("click", function () {
-                postContent.classList.remove('hidden');
-            }, false);
-            closeBtn.addEventListener("click", function () {
+        postBtn.addEventListener("click", function () {
+            postContent.classList.remove('hidden');
+        }, false);
+        closeBtn.addEventListener("click", function () {
+            postContent.classList.add('hidden');
+            content.value = '';
+            indicator.style.width = 0;
+        }, false);
+
+        content.addEventListener("keyup", function (e) {
+            contentValue = content.value;
+            len = contentValue.length;
+            pct = (len / maxLen) * 100;
+            indicator.style.width = pct + '%';
+
+            if (e.keyCode == 27) {
                 postContent.classList.add('hidden');
                 content.value = '';
                 indicator.style.width = 0;
-            }, false);
+            }
 
-            content.addEventListener("keyup", function (e) {
-                contentValue = content.value;
-                len = contentValue.length;
-                pct = (len / maxLen) * 100;
-                indicator.style.width = pct + '%';
+            if (len > maxLen) {
+                indicator.style.backgroundColor = 'red';
+                e.preventDefault();
+                this.value = contentValue;
+            } else {
+                indicator.style.backgroundColor = 'green';
+            }
+        }, false);
+    </script>
+    <script>
+        let imagePosts = document.querySelectorAll('.post-image');
+        imagePosts.forEach(function (imagePost) {
+            let images = imagePost.querySelectorAll('.image');
+            let handles = imagePost.querySelectorAll('.post-image-handle');
+            let index = 1;
 
-                if (e.keyCode == 27) {
-                    postContent.classList.add('hidden');
-                    content.value = '';
-                    indicator.style.width = 0;
-                }
+            if (images.length == 1) {
+                return;
+            }
 
-                if (len > maxLen) {
-                    indicator.style.backgroundColor = 'red';
-                    e.preventDefault();
-                    this.value = contentValue;
-                } else {
-                    indicator.style.backgroundColor = 'green';
-                }
-            }, false);
-        </script>
-        <script>
-            let imagePosts = document.querySelectorAll('.post-image');
-            imagePosts.forEach(function (imagePost) {
-                let images = imagePost.querySelectorAll('.image');
-                let handles = imagePost.querySelectorAll('.post-image-handle');
-                let index = 1;
+            handles.forEach(function (handle) {
+                handle.addEventListener("click", function (e) {
+                    images.forEach(function (image) {
+                        index = handle.dataset['span'];
 
-                if (images.length == 1) {
-                    return;
-                }
-
-                handles.forEach(function (handle) {
-                    handle.addEventListener("click", function (e) {
-                        images.forEach(function (image) {
-                            index = handle.dataset['span'];
-
-                            if (index == image.dataset['image']) {
-                                image.classList.remove('hidden');
-                                handle.classList.add('active');
-                            } else {
-                                image.classList.add('hidden');
-                                handles.forEach(function (handle) {
-                                    if (index != handle.dataset['span']) {
-                                        handle.classList.remove('active');
-                                    }
-                                });
-                            }
-                        });
-                    }, false);
-                });
-            })
-        </script>
-        <script>
-            let actionBtns = document.querySelectorAll('.div-action-btn');
-            let menu;
-            actionBtns.forEach((btn) => {
-                btn.addEventListener("click", (e) => {
-                    menu = btn.parentNode.querySelector('.post-action-menu');
-                    menu.classList.toggle('hidden');
-                });
-            })
-        </script>
-        }
+                        if (index == image.dataset['image']) {
+                            image.classList.remove('hidden');
+                            handle.classList.add('active');
+                        } else {
+                            image.classList.add('hidden');
+                            handles.forEach(function (handle) {
+                                if (index != handle.dataset['span']) {
+                                    handle.classList.remove('active');
+                                }
+                            });
+                        }
+                    });
+                }, false);
+            });
+        })
+    </script>
+    <script>
+        let actionBtns = document.querySelectorAll('.div-action-btn');
+        let menu;
+        actionBtns.forEach((btn) => {
+            btn.addEventListener("click", (e) => {
+                menu = btn.parentNode.querySelector('.post-action-menu');
+                menu.classList.toggle('hidden');
+            });
+        })
+    </script>
+}
 
 

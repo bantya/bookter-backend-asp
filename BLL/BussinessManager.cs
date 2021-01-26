@@ -108,6 +108,12 @@ namespace BLL
             return PostDBManager.insertcomment(customerid,postcomment,customer_name,userid);
         }
 
+        public static bool UpdateBookbyPrice(int bid, double bpp, double bhp, double ebp)
+        {
+            return AdminDBManager.UpdateBookbyPrice(bid, bpp, bhp, ebp);
+        }
+
+        
         public static bool deletewishlist(int cid, int bid)
         {
             return WishlistDBManager.deletewishlist(cid, bid);
@@ -117,6 +123,17 @@ namespace BLL
         {
             return AdminDBManager.AdminRegistrartion(newadmin);
         }
+
+        public static bool ArchiveBook(int booksID)
+        {
+            return AdminDBManager.ArchiveBook(booksID);
+        }
+
+        public static bool CancelArchive(int booksID)
+        {
+            return AdminDBManager.CancelArchive(booksID);
+        }
+
 
         public static bool validateforgot(string email)
         {

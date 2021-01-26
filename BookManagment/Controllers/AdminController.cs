@@ -16,6 +16,21 @@ namespace BookManagment.Controllers
             return View();
         }
 
+        public ActionResult dasboard()
+        {
+
+           
+            return View();
+        }
+
+        public ActionResult Update()
+        {
+            List<Books> allbook = BussinessManager.Getbook();
+            this.ViewData["books"] = allbook;
+            return View();
+        }
+
+
         [HttpPost]
         public ActionResult Login(string uname , string upass)
         {
@@ -28,7 +43,7 @@ namespace BookManagment.Controllers
 
             if (status)
             {
-                return this.RedirectToAction("Insertbook", "Books");
+                return this.RedirectToAction("dasboard", "admin");
             }
             return View();
         }
@@ -93,9 +108,48 @@ namespace BookManagment.Controllers
 
             if (status)
             {
-                return this.RedirectToAction("index","home");
+                return this.RedirectToAction("dasboard", "admin");
             }
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult UpdateByPrice(int bid,double bpp, double bhp, double ebp)
+        {
+            bool status = BussinessManager.UpdateBookbyPrice(bid,bpp,bhp,ebp);
+
+            if (status)
+            {
+                return this.RedirectToAction("dasboard", "admin");
+            }
+            // TO AVOID NULL ERROR 
+            Books getbook = BussinessManager.GetBookdetails(bid);
+            return View(getbook);
+        }
+
+        
+        public ActionResult UpdateByPrice(int id)
+        {
+            Books getbook = BussinessManager.GetBookdetails(id);
+            return View(getbook);
+        }
+
+        public ActionResult ArchiveBook(int id)
+        {
+            Books getbook = BussinessManager.GetBookdetails(id);
+            
+            if (getbook.status == 1)
+            {
+                bool status = BussinessManager.ArchiveBook(getbook.booksID);
+            }
+            else
+            {
+                bool status = BussinessManager.CancelArchive(getbook.booksID);
+            }
+
+            return this.RedirectToAction("dasboard", "admin");
+
+            
         }
 
     }

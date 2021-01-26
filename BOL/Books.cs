@@ -38,6 +38,10 @@ namespace BOL
 
         public string image3 { get; set; }
 
+        public int status { get; set; }
+
+
+
         public Books()
         {
 

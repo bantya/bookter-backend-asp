@@ -26,7 +26,7 @@ namespace DAL
             //logic to fetch all records from database
             IDbConnection conn = new MySqlConnection();
             conn.ConnectionString = connString;
-            string query = "select * from books";
+            string query = "select * from books where status = 1";
             IDbCommand cmd = new MySqlCommand();
             cmd.CommandText = query;
             cmd.Connection = conn;
@@ -61,7 +61,7 @@ namespace DAL
                     theproducts.image = row["image"].ToString();
                     theproducts.image2 = row["image2"].ToString();
                     theproducts.image3 = row["image3"].ToString();
-
+                    theproducts.status = int.Parse(row["status"].ToString());
 
                     allProducts.Add(theproducts);
                 }
@@ -161,7 +161,7 @@ namespace DAL
                     theproducts.image = row["image"].ToString();
                     theproducts.image2 = row["image2"].ToString();
                     theproducts.image3 = row["image3"].ToString();
-
+                    theproducts.status = int.Parse(row["status"].ToString());
                 }
             }
             catch (MySqlException e)

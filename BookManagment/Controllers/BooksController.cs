@@ -63,7 +63,7 @@ namespace BookManagment.Controllers
             bool status = BussinessManager.Insertbook(newbook);
             if (status)
             {
-                return this.RedirectToAction("BooksList","Books");
+                return this.RedirectToAction("admindashboard","admin");
             }
             return View();
         }

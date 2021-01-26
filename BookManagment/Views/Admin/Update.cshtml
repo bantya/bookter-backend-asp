@@ -1,0 +1,19 @@
+﻿@using BOL;
+@{
+    ViewBag.Title = "Update";
+
+}
+
+<h2>Update</h2>
+
+@{ 
+    List<Books> bookm = (List<Books>)this.ViewData["books"];
+    foreach (Books book in bookm)
+    {
+    <li>
+        <p>@book.bookname</p>
+        
+        <a href="/admin/updatebook/@book.booksID">Update Book</a>    |     <a href="/admin/updatebyprice/@book.booksID">Update Book</a>     |     <a href="/admin/ArchiveBook/@book.booksID">Archive Book</a>
+    </li>
+    }
+}

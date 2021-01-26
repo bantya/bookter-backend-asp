@@ -259,22 +259,26 @@
                                             <p>To: <a class="anchor" href="#"><span>Jalgaon - 420 001</span></a></p>
                                         </div>
                                     </div>
+                                    @if(@customer != null){
+                                    
                                     <div class="book-add-to-wish-button border-button">
                                         <span class="book-add-to-wish-icon"><i class="fas fa-thumbtack"></i></span>
                                         <div class="book-action-text-container m-0">
-                                           
+
+
                                             <form action="/Wishlist/Add" method="post">
                                                 <input type="hidden" name="cid" value="@customer.customerid" />
                                                 <input type="hidden" name="bid" value="@book.booksID" />
                                                 <button type="submit" class="border-button">
                                                     <h4>Add to wishlist!</h4>
 
-                                                    
+
                                                 </button>
                                             </form>
                                         </div>
                                         <!-- <i class="fas fa-caret-down"></i> -->
                                     </div>
+                                    }
                                 </div>
                             </div>
                         </div>

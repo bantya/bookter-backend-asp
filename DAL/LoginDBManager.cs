@@ -215,7 +215,7 @@ namespace DAL
 
         public static Customer getUserByUsername(string uname)
         {
-            Customer customer = null;
+            Customer customer = new Customer { customer_name = "error404", f_name = "Not", l_name = "Found", banner = "/Images/Users/banner-e.png", image = "/Images/Users/error.jpg" };
 
             try
             {
