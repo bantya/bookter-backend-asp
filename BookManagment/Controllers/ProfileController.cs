@@ -79,5 +79,13 @@ namespace BookManagment.Controllers
             }
             return View();
         }
+
+
+        public ActionResult Me()
+        {
+            Customer customer = (Customer)this.Session["user"];
+            List<Posts> post = BussinessManager.GetallUsersPosts(customer.customerid);
+            return View(post);
+        }
     }
 }

@@ -1,49 +1,39 @@
-﻿@using BOL
+﻿@using BOL;
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Me";
     Customer customer = (Customer)this.Session["user"];
-
 }
+
 
 @{
     List<Posts> posts = Model as List<Posts>;
-    Customer user = (Customer)this.ViewData["profile"];
-    Followers foll = (Followers)this.ViewData["follower"];
-
-
 
     <div class="content">
         <div class="content-main">
             <div class="post-header">
                 <div class="hero-banner">
-                    <img class="hero-image" src="@user.banner" height="250" alt="Hero Banner">
+                    <img class="hero-image" src="@customer.banner" height="250" alt="Hero Banner">
                     <!-- <img class="image hero-image" src="http://placeholder.code/1920x250/Hero Image" height="200" alt="Hero Banner"> -->
                 </div>
                 <div class="user-info-wrapper">
                     <div class="user-profile-pic rounded">
                         <div class="pofile-pic-wrapper profile-pic-flair rounded">
-                            <img class="image rounded" src="@user.image" width="100" height="100" alt="Profile Pic">
+                            <img class="image rounded" src="@customer.image" width="100" height="100" alt="Profile Pic">
                             <!-- <img class="image rounded" src="http://placeholder.code/100x100/RT/50/845206/201256" alt="Profile Pic"> -->
                         </div>
                     </div>
                     <div class="user-basic-info">
-                        <h2 class="user-full-name">@user.f_name @user.l_name</h2>
+                        <h2 class="user-full-name">@customer.f_name @customer.l_name</h2>
                         <h4 class="user-handle">
-                            <a class="gray-6 anchor" href="profile.html">@@@user.customer_name</a>
+                            <a class="gray-6 anchor" href="profile.html">@@@customer.customer_name</a>
                         </h4>
                     </div>
                     <div class="user-info">
 
-                        @if (user.customer_name == "error404")
-                        {
-                            <i class="fas fa-user"></i>
-                            <p>Sorry, this user does not exist!</p>
-                        }
-                        else
-                        {
+                       
                             <i class="fas fa-user"></i>
                             <p> Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                        }
+                   
                         <p class="joined">
                             <i class="fas fa-calendar-alt"></i> 12<sup>th</sup> February, 2020
                         </p>
@@ -52,29 +42,6 @@
                         <p class="user-follwers"><b>256</b> followers</p>
                         <p class="user-follwings"><b>12</b> following</p>
 
-                        @if (customer != null && user.customer_name != "error404")
-                        {
-                            if (foll == null)
-                            {
-                                <form action="/profile/follow/@user.customerid" method="post">
-                                    <div class="user-follow-btn m-t-normal">
-                                        <input type="hidden" id="follow" name="follow" />
-                                        <input type="hidden" id="fname" name="fname" value="@user.customer_name" />
-                                        <button name="follow" class="input">FOLLOW</button>
-                                    </div>
-                                </form>
-                            }
-                            else
-                            {
-                                <form action="/profile/unfollow/@user.customerid" method="post">
-                                    <div class="user-follow-btn m-t-normal">
-                                        <input type="hidden" id="follow" name="follow" />
-                                        <input type="hidden" id="fname" name="fname" value="@user.customer_name" />
-                                        <button name="follow" class="input">UNFOLLOW</button>
-                                    </div>
-                                </form>
-                            }
-                        }
 
                     </div>
                 </div>
@@ -99,14 +66,14 @@
                                     <div class="user-profile-pic">
                                         <div class="user-profile-pic rounded flex items-center pointer">
                                             <div class="pofile-pic-wrapper profile-pic-flair rounded">
-                                                <img class="image rounded flex items-center" src="@user.image" width="50" height="50" alt="Profile Pic">
+                                                <img class="image rounded flex items-center" src="@customer.image" width="50" height="50" alt="Profile Pic">
                                                 <!-- <img class="image rounded" src="http://placeholder.code/50x50/RT/50/845206/201256" alt="Profile Pic"> -->
                                             </div>
                                         </div>
                                     </div>
                                     <div class="user-basic-info">
-                                        <h4 class="user-full-name">@user.customer_name</h4>
-                                        <h5 class="user-handle"><a class="gray-6 anchor" href="profile.html">@@@user.email</a></h5>
+                                        <h4 class="user-full-name">@customer.f_name @customer.l_name</h4>
+                                        <h5 class="user-handle"><a class="gray-6 anchor" href="profile.html">@@@customer.customer_name</a></h5>
                                     </div>
                                     <div class="user-book-info">
                                         <h4 class="user-book-name">
@@ -196,7 +163,7 @@
                                             <div class="post-footer-secondary relative">
 
                                                 <div class="post-action-menu hidden absolute bg-white flex flex-column no-wrap radius" style="bottom: 1.5rem; right: 0; background-color: #451356">
-                                                    @if (@customer.customerid == user.customerid)
+                                                    @if (@customer.customerid == customer.customerid)
                                                     {
                                                         <div class="div-action-item flex flex-row p-medium bg-gray-darkest hover-bg-gray-darker">
                                                             <p><a href="/posts/edit/@pos.post_id">Edit Post</a></p>
@@ -319,5 +286,8 @@
         })
     </script>
 }
+
+
+
 
 

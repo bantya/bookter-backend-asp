@@ -197,6 +197,7 @@
     <Content Include="Views\Admin\UpdateByPrice.cshtml" />
     <Content Include="Views\Admin\dasboard.cshtml" />
     <Content Include="Views\Admin\Update.cshtml" />
+    <Content Include="Views\Profile\Me.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

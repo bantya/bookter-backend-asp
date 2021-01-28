@@ -98,6 +98,11 @@ namespace BLL
             return WishlistDBManager.AddWishlist(cid, bid);
         }
 
+        public static List<Posts> GetallUsersPosts(int customerid)
+        {
+            return PostDBManager.GetallUsersPosts(customerid);
+        }
+
         public static bool AdminLogin(string uname, string upass)
         {
             return AdminDBManager.AdminLogin(uname, upass);
