@@ -1,41 +1,57 @@
-﻿
-@{
-    ViewBag.Title = "Register";
-}
+﻿@{
+    ViewBag.Title = "Register"; 
+    }
 
-                <div class="content">
-                    <div class="input-box">
-                        <div class="input-header">
-                            <h2>Please register</h2>
-                        </div>
-                        <div class="input-form">
-                            <form method="post">
-                                <!--<label for="uid">ID:</label>
-       <br />
-       <input class="input" type="text" name="uid" id="uid" autocomplete="off" autofocus required>
-       <br /> -->
-                                <label for="uname">Username:</label>
-                                <br />
-                                <input class="input" type="text" name="uname" id="uname" autocomplete="off" autofocus required>
-                                <br />
-                                <label for="uemail">Email:</label>
-                                <br />
-                                <input class="input" type="email" name="uemail" id="uemail" autocomplete="off" autofocus required>
-                                <br />
-                                <label for="upass">Password:</label>
-                                <br />
-                                <input class="input" type="password" name="upass" id="upass" autocomplete="off" required>
-                                <br />
-                                <label for="upass2">Confirm password:</label>
-                                <br />
-                                <input class="input" type="password" name="upass2" id="upass2" autocomplete="off" required>
-                                <div class="input-actions">
-                                    <button class="button" type="submit">Register</button>
-                                    <a class="a-button" href="/Account/Login">Log-in</a>
-                                </div>
-                            </form>
-                        </div>
+@model Models.Register
 
-                    </div>
-                </div>
-           
+<div class="content">
+    <div class="input-box">
+        <div class="input-header">
+            <h2>Please register</h2>
+        </div>
+        <div class="input-form">
+            @{ using (Html.BeginForm())
+
+                {
+
+        @Html.ValidationSummary(true)
+                        @Html.AntiForgeryToken()
+                                        if (ViewBag.Message != null)
+                                        {
+                        <div style="border:solid 1px green">
+                            ViewBag.Message
+                        </div>}
+                                                        @Html.LabelFor(m => m.Username)
+                                                                        <br />
+                                                                                        @Html.TextBoxFor(m => m.Username, new { @class = "input" })
+                                                                                                        <br />
+                                                                                                                        @Html.ValidationMessageFor(m => m.Username)
+                                                                                                                                        <br />
+                                                                                                                                                        <label for="uemail">Email:</label>
+                                                                                                                                                                        <br />
+                                                                                                                                                                                        @Html.LabelFor(m => m.Email)
+                                                                                                                                                                                                        <br />
+                                                                                                                                                                                                                        @Html.TextBoxFor(m => m.Email, new { @class = "input" })
+                                                                                                                                                                                                                                        <br />
+                                                                                                                                                                                                                                                        @Html.ValidationMessageFor(m => m.Email)
+                                                                                                                                                                                                                                                                        <br />
+                                                                                                                                                                                                                                                                                        @Html.LabelFor(m => m.Password)
+                                                                                                                                                                                                                                                                                                        <br />
+                                                                                                                                                                                                                                                                                                                        @Html.PasswordFor(m => m.Password, new { @class = "input" })
+                                                                                                                                                                                                                                                                                                                                        <br />
+                                                                                                                                                                                                                                                                                                                                                        @Html.ValidationMessageFor(m => m.Password)
+                                                                                                                                                                                                                                                                                                                                                                        <br />
+                                                                                                                                                                                                                                                                                                                                                                                        @Html.LabelFor(m => m.Password2)
+                                                                                                                                                                                                                                                                                                                                                                                                        <br />
+                                                                                                                                                                                                                                                                                                                                                                                                                        @Html.PasswordFor(m => m.Password2, new { @class = "input" })
+                                                                                                                                                                                                                                                                                                                                                                                                                                        <br />
+                                                                                                                                                                                                                                                                                                                                                                                                                                                        @Html.ValidationMessageFor(m => m.Password2)
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <br />
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <div class="input-actions">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <button class="button" type="submit">Register</button>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <a class="a-button" href="/Account/Login">Log-in</a>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        </div> } }
+        </div>
+
+    </div>
+</div>

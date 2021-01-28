@@ -3,14 +3,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations;
+
+
 
 namespace BOL
 {
     public class Customer
     {
         public int customerid { get; set; }
+        
+        [Required]
         public string customer_name { get; set; }
+
+        [Required]
         public string email { get; set; }
+
+        [Required]
         public string password { get; set; }
 
         public string banner { get; set; }

@@ -52,6 +52,42 @@ namespace DAL
 
             return status;
         }
+        //----TP----//
+        public static bool validatelogin(Login login)
+        {
+            bool status = false;
+            try
+            {
+                using (MySqlConnection con = new MySqlConnection(connString))
+                {
+                    if (con.State == ConnectionState.Closed)
+                        con.Open();
+
+                    string query = "SELECT Username , Password FROM login where Username = @username and Password = @password";
+
+                    MySqlCommand cmd = new MySqlCommand(query, con);
+                    cmd.Parameters.Add(new MySqlParameter("@username", login.Username));
+                    cmd.Parameters.Add(new MySqlParameter("@password", login.Password));
+
+                    object result = cmd.ExecuteScalar();
+
+                    if (result != null)
+                    {
+                        status = true;
+                    }
+                    con.Close();
+
+
+                }
+            }
+            catch (MySqlException e)
+            {
+                string message = e.Message;
+            }
+
+            return status;
+
+        }
 
         public static bool checkToken(string token)
         {

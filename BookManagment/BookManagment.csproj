@@ -218,6 +218,10 @@
       <Project>{688222ce-6b87-4920-9013-cb985c69cf2f}</Project>
       <Name>BOL</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Models\Models.csproj">
+      <Project>{f6093780-03b9-41ba-a9fe-ed284b0d76fe}</Project>
+      <Name>Models</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

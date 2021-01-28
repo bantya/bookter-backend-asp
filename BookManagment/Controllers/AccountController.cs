@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using BOL;
 using BLL;
+using Models;
 
 namespace BookManagment.Controllers
 {
@@ -12,55 +13,80 @@ namespace BookManagment.Controllers
     {
         // GET: Account
         [HttpGet]
-       
+
         public ActionResult Login()
         {
             return View();
 
         }
 
+        //  [HttpPost]
+
+        //public ActionResult Login(string uname, string upass)
+        //{
+
+        //    uname = uname.Trim();
+        //    upass = upass.Trim();
+
+        //    Customer customer = BussinessManager.validatecustomer(uname, upass);
+        //   // TryValidateModel(Customer);
+
+        //    if (customer != null)
+        //    {
+        //        this.Session.Add("user", customer);
+        //        this.Session.Add("books", BussinessManager.Getbook());
+        //        string query = Request.QueryString["to"];
+
+        //        if (/*ModelState.IsValid && */query != null)
+        //        {
+        //            //TODO: Primary Basis
+        //            return this.RedirectToRoute(Request.Url.Authority +  query);
+        //        } else {
+        //            return this.RedirectToAction("BooksList", "Books");
+        //        }
+        //    }
+
+        //    return View();
+        //}
+
+        // GET
+
+
         [HttpPost]
-      
-        public ActionResult Login(string uname, string upass)
+        [ValidateAntiForgeryToken]
+        public ActionResult Login(Models.Login login)
         {
+            TryValidateModel(login);
 
-            uname = uname.Trim();
-            upass = upass.Trim();
-
-            //Credentials newcredential = new Credentials
-            //{
-            //    Username = username,
-            //    Password = password
-            //};
-
-            //Customer newcus = new Customer
-            //{
-            //    email=uname,
-            //    password=upass
-            //};
-
-            Customer customer = BussinessManager.validatecustomer(uname, upass);
-
-            if (customer != null)
+            
+            if (ModelState.IsValid)
             {
-                this.Session.Add("user", customer);
-                this.Session.Add("books", BussinessManager.Getbook());
-                string query = Request.QueryString["to"];
-
-                if (query != null)
+                Customer customer = BussinessManager.validatecustomer(login.Username.Trim(), login.Password.Trim());
+                if (customer != null)
                 {
-                    //TODO: Primary Basis
-                    return this.RedirectToRoute(Request.Url.Authority +  query);
-                } else {
-                    return this.RedirectToAction("BooksList", "Books");
+                    this.Session.Add("user", customer);
+                    this.Session.Add("books", BussinessManager.Getbook());
+                    string query = Request.QueryString["to"];
+
+                    if ( query != null)
+                    {
+                        //TODO: Primary Basis
+                        return this.RedirectToRoute(Request.Url.Authority + query);
+                    }
+                    else
+                    {
+                        return this.RedirectToAction("BooksList", "Books");
+                    }
                 }
             }
+
+
 
             return View();
         }
 
         [HttpGet]
-     
+
         public ActionResult Register()
         {
 
@@ -68,35 +94,41 @@ namespace BookManagment.Controllers
         }
 
         [HttpPost]
-      
-        public ActionResult Register(/*int uid ,*/ string uname ,string uemail ,string upass)
+        [ValidateAntiForgeryToken]
+        public ActionResult Register(Models.Register register)
         {
-            Customer cust = new Customer
-            {
-                //customerid = uid,
-                customer_name = uname,
-                email = uemail,
-                password = upass
+            TryValidateModel(register);
 
-            };
-            bool status = BussinessManager.register(cust);
 
-            if (status)
+            if (ModelState.IsValid)
             {
-                return this.RedirectToAction("Login","Account");
+                Customer cust = new Customer
+                {
+                    //customerid = uid,
+                    customer_name = register.Username,
+                    email = register.Email,
+                    password = register.Password
+
+                };
+                bool status = BussinessManager.register(cust);
+
+                if (status)
+                {
+                    return this.RedirectToAction("Login", "Account");
+                }
             }
             return View();
         }
 
         [HttpGet]
-        
+
         public ActionResult Forgot()
         {
             return View();
         }
 
         [HttpPost]
-       
+
         public ActionResult Forgot(string uemail)
         {
             Customer newcust = new Customer
@@ -141,7 +173,7 @@ namespace BookManagment.Controllers
         }
 
         [HttpGet]
-      
+
         public ActionResult Restore(string token)
         {
             if (Request.QueryString["token"] != null)

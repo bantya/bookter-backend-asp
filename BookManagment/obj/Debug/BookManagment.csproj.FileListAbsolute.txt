@@ -107,3 +107,5 @@ C:\Users\Shedge\source\repos\BookManagment\BookManagment\bin\System.Numerics.Vec
 C:\Users\Shedge\source\repos\BookManagment\BookManagment\bin\System.Runtime.CompilerServices.Unsafe.xml
 C:\Users\Shedge\source\repos\BookManagment\BookManagment\bin\Utils.dll
 C:\Users\Shedge\source\repos\BookManagment\BookManagment\bin\Utils.pdb
+C:\Users\Shedge\source\repos\BookManagment\BookManagment\bin\Models.dll
+C:\Users\Shedge\source\repos\BookManagment\BookManagment\bin\Models.pdb

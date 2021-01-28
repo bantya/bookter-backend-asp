@@ -58,6 +58,11 @@ namespace BLL
             return WishlistDBManager.GetWishList(cid);
         }
 
+        public static bool validatecustomer(Login login)
+        {
+            return LoginDBManager.validatelogin(login);
+        }
+
         public static bool insertpost(int customerid, string postcontent, int postbooks, string customer_name)
         {
             return PostDBManager.insertpost(customerid, postcontent, postbooks,customer_name);
