@@ -14,12 +14,11 @@ namespace BookManagment.Controllers
         public ActionResult AddWishlist(int id)
         {
             Books thebook = BussinessManager.GetBookdetails(id);
-
-
             return View();
         }
 
         [HttpGet]
+        [Route("wishlist", Name = "wishlist")]
         public ActionResult Index()
         {
             Customer customer = (Customer)this.Session["user"];
@@ -47,7 +46,8 @@ namespace BookManagment.Controllers
         {
             if (BussinessManager.deletewishlist(cid,bid))
             {
-                return this.RedirectToAction("Index", "Wishlist");
+                return this.RedirectToRoute("wishlist");
+              //  return this.RedirectToRoute("admin.dashboard");
             }
             return View();
         }

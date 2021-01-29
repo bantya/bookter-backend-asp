@@ -11,6 +11,7 @@ namespace BookManagment.Controllers
     public class PostsController : Controller
     {
         // GET: Posts
+        [Route("posts" , Name = "posts")]
         public ActionResult Index()
         {
            
@@ -29,6 +30,7 @@ namespace BookManagment.Controllers
 
 
         [HttpPost]
+        [Route("posts")]
         public ActionResult Index(string postcontent,int postbooks)
         {
             Customer customer = (Customer)this.Session["user"];
@@ -36,7 +38,7 @@ namespace BookManagment.Controllers
 
             if (status)
             {
-                return this.RedirectToAction("index", "posts");
+                return this.RedirectToRoute("posts");
             }
             return View();
 
@@ -48,7 +50,7 @@ namespace BookManagment.Controllers
 
             if (BussinessManager.deletepost(id,customer.customerid ))
             {
-                return this.RedirectToAction("index", "posts");
+                return this.RedirectToRoute("posts");
 
             }
             return View();
@@ -61,7 +63,7 @@ namespace BookManagment.Controllers
             bool status = BussinessManager.AddLike(customer.customerid, id);
             if (status)
             {
-                return RedirectToAction("index", "posts");
+                return this.RedirectToRoute("posts");
             }
             return View();
         }
@@ -73,7 +75,7 @@ namespace BookManagment.Controllers
             bool status = BussinessManager.AddDislike(customer.customerid, id);
             if (status)
             {
-                return RedirectToAction("index", "posts");
+                return this.RedirectToRoute("posts");
             }
             return View();
         }
@@ -92,7 +94,7 @@ namespace BookManagment.Controllers
 
             if (status)
             {
-                return this.RedirectToAction("index", "posts");
+                return this.RedirectToRoute("posts");
             }
             return View();
 

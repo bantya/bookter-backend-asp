@@ -1,4 +1,5 @@
-﻿@{ ViewBag.Title = "Login"; }
+﻿@using Utils;
+@{ ViewBag.Title = "Login"; }
 
 @model Models.Login
 
@@ -8,6 +9,10 @@
             <h2>Please log-in</h2>
         </div>
         <div class="input-form">
+
+            @if (this.Session["message"] != null) {
+                <p>@Sessions.flash("message")</p>
+            }
 
             @{ using (Html.BeginForm())
                 {
@@ -35,7 +40,7 @@
                                                                                                                                                                                                                                                         <div class="input-actions">
                                                                                                                                                                                                                                                             <button class="button" type="submit">Log-in</button>
 
-                                                                                                                                                                                                                                                            <a class="a-button" href="/Account/Forgot">Forgot password ??</a>
+                                                                                                                                                                                                                                                            <a class="a-button" href="/forgot">Forgot password ??</a>
                                                                                                                                                                                                                                                         </div> } }
         </div>
 

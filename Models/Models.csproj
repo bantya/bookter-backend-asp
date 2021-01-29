@@ -42,6 +42,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdminLogin.cs" />
+    <Compile Include="AdminRegistration.cs" />
     <Compile Include="Login.cs" />
     <Compile Include="Register.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

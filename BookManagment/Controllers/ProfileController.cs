@@ -11,6 +11,8 @@ namespace BookManagment.Controllers
     public class ProfileController : Controller
     {
         // GET: Profile
+
+        [Route("profile/{id}")]
         public ActionResult Index()
         {
             string username = RouteData.Values["id"].ToString();
@@ -80,10 +82,18 @@ namespace BookManagment.Controllers
             return View();
         }
 
-
+        [HttpGet]
+        [Route("profile/me")]
         public ActionResult Me()
         {
             Customer customer = (Customer)this.Session["user"];
+
+            if (customer == null)
+            {
+                this.Session["message"] = "Please login first..";
+                return RedirectToRoute("account.login");
+            }
+
             List<Posts> post = BussinessManager.GetallUsersPosts(customer.customerid);
             return View(post);
         }

@@ -9,51 +9,24 @@ using Models;
 
 namespace BookManagment.Controllers
 {
+   
     public class AccountController : Controller
     {
         // GET: Account
         [HttpGet]
-
+        [Route("login", Name = "account.login")]
         public ActionResult Login()
         {
             return View();
 
         }
 
-        //  [HttpPost]
-
-        //public ActionResult Login(string uname, string upass)
-        //{
-
-        //    uname = uname.Trim();
-        //    upass = upass.Trim();
-
-        //    Customer customer = BussinessManager.validatecustomer(uname, upass);
-        //   // TryValidateModel(Customer);
-
-        //    if (customer != null)
-        //    {
-        //        this.Session.Add("user", customer);
-        //        this.Session.Add("books", BussinessManager.Getbook());
-        //        string query = Request.QueryString["to"];
-
-        //        if (/*ModelState.IsValid && */query != null)
-        //        {
-        //            //TODO: Primary Basis
-        //            return this.RedirectToRoute(Request.Url.Authority +  query);
-        //        } else {
-        //            return this.RedirectToAction("BooksList", "Books");
-        //        }
-        //    }
-
-        //    return View();
-        //}
-
-        // GET
+        
 
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Route("login")]
         public ActionResult Login(Models.Login login)
         {
             TryValidateModel(login);
@@ -86,7 +59,7 @@ namespace BookManagment.Controllers
         }
 
         [HttpGet]
-
+        [Route("register")]
         public ActionResult Register()
         {
 
@@ -95,6 +68,7 @@ namespace BookManagment.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Route("register")]
         public ActionResult Register(Models.Register register)
         {
             TryValidateModel(register);
@@ -114,21 +88,21 @@ namespace BookManagment.Controllers
 
                 if (status)
                 {
-                    return this.RedirectToAction("Login", "Account");
+                    return this.RedirectToAction("login","account"); ;
                 }
             }
             return View();
         }
 
         [HttpGet]
-
+        [Route("forgot")]
         public ActionResult Forgot()
         {
             return View();
         }
 
         [HttpPost]
-
+        [Route("forgot")]
         public ActionResult Forgot(string uemail)
         {
             Customer newcust = new Customer
@@ -173,7 +147,7 @@ namespace BookManagment.Controllers
         }
 
         [HttpGet]
-
+        [Route("restore")]
         public ActionResult Restore(string token)
         {
             if (Request.QueryString["token"] != null)

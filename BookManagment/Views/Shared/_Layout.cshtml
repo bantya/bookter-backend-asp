@@ -30,19 +30,19 @@
                 <nav class="nav-menu flex flex-row">
                     <ul class="nav-list">
                         <li class="menu-item"><a href="index.html">Home</a></li>
-                        <li class="menu-item active"><a href="/posts/index">Posts</a></li>
-                        <li class="menu-item"><a href="/books/bookslist">Books</a></li>
+                        <li class="menu-item active"><a href="/posts">Posts</a></li>
+                        <li class="menu-item"><a href="/books">Books</a></li>
                         <li class="menu-item"><a href="orders.html">Orders</a></li>
-                        <li class="menu-item"><a href="/cart/index">Cart</a></li>
+                        <li class="menu-item"><a href="/cart">Cart</a></li>
                         @if (customer == null)
                         {
-                            <li class="menu-item"><a href="/account/register">Register</a></li>
-                            <li class="menu-item active"><a href="/account/login">Login</a></li>
+                            <li class="menu-item"><a href="/register">Register</a></li>
+                            <li class="menu-item active"><a href="/login">Login</a></li>
                             //n? to = @this.Session["lastPage"]
                         }
                         else
                         {
-                            <li class="menu-item"><a href="/wishlist/index">Wishlist</a></li>
+                            <li class="menu-item"><a href="/wishlist">Wishlist</a></li>
                         }
 
                         <!-- <li class="menu-item pointer"> -->
@@ -74,7 +74,7 @@
                         <p class="footer-list-title">ESSENTIALS</p>
                         <ul class="footer-pages-list">
                             <li><a href="contactus.html">Contact Us</a></li>
-                            <li><a href="aboutus.html">About Us</a></li>
+                            <li><a href="/aboutus">About Us</a></li>
                             <li><a href="#">Careers</a></li>
                         </ul>
                     </div>
@@ -82,7 +82,7 @@
                         <p class="footer-list-title">PAGES</p>
                         <ul class="footer-pages-list">
                             <li><a href="#">Payment Security</a></li>
-                            <li><a href="privacypolicy.html">Privacy Policy</a></li>
+                            <li><a href="/privacy">Privacy Policy</a></li>
                             <li><a href="#">Terms and Conditions</a></li>
                         </ul>
                     </div>
