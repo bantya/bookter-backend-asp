@@ -23,9 +23,26 @@ namespace BLL
             return allbooks;
         }
 
+        //public static Address getaddress(int customerid)
+        //{
+        //    return BookDBManager.findaddress(customerid);
+        //}
+
+        public static Address findaddress(int customerid)
+        {
+            return BookDBManager.findaddress(customerid);
+        }
+
+
         public static Customer getUserByUsername(string username)
         {
             return LoginDBManager.getUserByUsername(username);
+        }
+
+        public static bool changeadd(int customerid, string flat_no, string build_no, string area, string street, string city, string district, string state, string pincode)
+        {
+            return BookDBManager.changeaddress(customerid,flat_no,build_no,area,street,city,district,state,pincode);        
+        
         }
 
         public static Followers CheckFollow(string v, int customerid)
@@ -36,6 +53,11 @@ namespace BLL
         public static List<Posts> GetallPostsByUsername(string v)
         {
             return PostDBManager.GetallPostsByUsername(v);
+        }
+
+        public static bool addaddress(int customerid, string flat_no, string build_no, string area, string street, string city, string district, string state, string pincode)
+        {
+            return BookDBManager.addaddress(customerid,flat_no,build_no,area,street,city,district,state,pincode);
         }
 
         public static List<Posts> GetallPosts(int customerid)

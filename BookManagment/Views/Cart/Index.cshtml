@@ -11,7 +11,8 @@
     }
 }
 
-@{ Cart myCart = (Cart)Model;
+@{ 
+    Cart myCart = (Cart)Model;
                 <div class="content">
                         <div class="content-main">
                             <!-- <div class="books-sidebar">
@@ -32,7 +33,7 @@
                                             </div>
                                             <div class="book-details p-x-wide flex flex-column justify-between">
                                                 <div class="book-cart-details">
-                                                    <h3 class="p-y-normal p-t-0"><a class='anchor' href="book.html">@theItem.bookname</a></h3>
+                                                    <h3 class="p-y-normal p-t-0"><a class='anchor' href="/books/@theItem.booksID">@theItem.bookname</a></h3>
                                                     <h4 class="p-y-small"><a class='anchor clr-gray-darkest-2x' href="author.html">by @theItem.bookauthor | @theItem.bookdate</a></h4>
                                                     <div class="p-y-small flex flex-row items-center">
                                                         <div class="book-stars">
@@ -58,20 +59,20 @@
                                                     </div>
                                                 </div>
                                                 <div class="book-cart-price">
-                                                    <h2 class="clr-gray-darkest-2x">₹@theItem.hardprice</h2>
+                                                    <h2 class="clr-gray-darkest-2x">₹@theItem.paperprice</h2>
                                                 </div>
                                             </div>
                                         </div>
 
                                     </div>
                                     { 
-                                        TotalAmount = TotalAmount + theItem.hardprice;
+                                        TotalAmount = TotalAmount + theItem.paperprice;
                                        }
                                     }
 
                                 <div class="book-cart-footer p-wide flex flex-row items-center justify-end border-t bg-gray-100">
                                     <div class="input-actions text-align:left">
-                                        <a class="a-button" href="/Books/BooksList">Buy More Book</a>
+                                        <a class="a-button" href="/books">Buy More Book</a>
                                     </div>
                                     <h4 class="cart-subtotal">
                                         Subtotal (@myCart.items.Count items):
@@ -91,14 +92,19 @@
                                         <div class="book-buy-now border-button flex flex-row w-100p m-t-wide">
                                             <span class="book-buy-now-icon"><i class="far fa-credit-card"></i></span>
                                             <div class="book-action-text-container">
-                                                <h4 class="book-buy-now-text">Buy now!</h4>
+                                                <h4 class="book-buy-now-text"><a href="/checkout">Buy now!</a></h4>
+                                            </div>
+                                        </div>
+                                        <div class="book-buy-now border-button flex flex-row w-100p m-t-wide">
+                                            <div class="book-action-text-container">
+                                                <h4 class="book-buy-now-text"><a href="/address">Show My Address</a></h4>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
                             </div>
                         </div>
                     </div>
+                 </div>   
                
 }
 

@@ -35,7 +35,7 @@ namespace BookManagment.Controllers
 
             if (BussinessManager.AddWishlist(cid, bid))
             {
-                return this.RedirectToAction("bookslist", "books");
+                return this.RedirectToRoute("wishlist");
 
             }
             return View();

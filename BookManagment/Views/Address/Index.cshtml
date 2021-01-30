@@ -1,0 +1,150 @@
+﻿@using BOL;
+@{
+    ViewBag.Title = "Index";
+}
+
+@{
+    Address add = Model as Address;
+
+    if (add.state != null)
+    {
+
+        <div class="content bg-white">
+            <form action="/address/changeadd" method="post" class="w-80p">
+                <div class="bg-white w-100p p-wide">
+                    <div class="input-header p-b-wide text-center">
+                        <h2>Add your address</h2>
+                    </div>
+                    <div class="flex flex-row" style="padding: 5rem 0;">
+                        <div class="add-address-left w-50p p-medium">
+                            <div class='book-basics p-medium'>
+                                <div class="add-address-row flex flex-row m-b-medium justify-between">
+                                    <label for="flat_no">Flat No:</label>
+                                    <input type="text" class="input w-50p" name="flat_no" id="flat_no" value="@add.flat_no" autocomplete="off" required>
+                                </div>
+                                <div class="add-address-row flex flex-row m-b-medium justify-between">
+                                    <label for="build_no">Building Name:</label>
+                                    <input type="text" class="input w-50p" name="build_no" id="build_no" value="@add.build_no" autocomplete="off" required>
+                                    <!-- <textarea class="input w-50p" rows="5" name="floorno" id="floorno" autocomplete="off" required></textarea> -->
+                                </div>
+                                <div class="add-address-row flex flex-row m-b-medium justify-between">
+                                    <label for="area">Area:</label>
+                                    <input type="text" class="input w-50p" name="area" id="area" value="@add.area" autocomplete="off" required>
+                                </div>
+                                <div class="add-address-row flex flex-row m-b-medium justify-between">
+                                    <label for="street">Street Name:</label>
+                                    <input type="text" class="input w-50p" name="street" id="street" value="@add.street" autocomplete="off" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="add-address-right w-50p p-medium">
+                            <div class="book-info p-medium">
+                                <div class="add-address-row flex flex-row m-b-medium justify-between">
+                                    <label for="city">City:</label>
+                                    <input type="text" class="input w-50p" name="city" id="city" value="@add.city" autocomplete="off" required>
+                                </div>
+                                <div class="add-address-row flex flex-row m-b-medium justify-between">
+                                    <label for="district">District:</label>
+                                    <input type="text" class="input w-50p" name="district" id="district" value="@add.district" autocomplete="off" required>
+                                </div>
+                                <div class="add-address-row flex flex-row m-b-medium justify-between">
+                                    <label for="state">State:</label>
+                                    <select name="state" id="state"  class="input w-50p">
+                                        <option value="@add.state">-- Select State --</option>
+                                        <option value="mh">Maharashtra</option>
+                                        <option value="ga">Goa</option>
+                                        <option value="gj">Gujarat</option>
+                                        <option value="mp">Madhya Pradesh</option>
+                                    </select>
+                                    <!-- <input type="text" class="input w-50p" name="state" id="state" autocomplete="off" required> -->
+                                </div>
+                                <div class="add-address-row flex flex-row m-b-medium justify-between">
+                                    <label for="pincode">Pincode:</label>
+                                    <input type="number" class="input w-50p" name="pincode" id="pincode" value="@add.pincode" autocomplete="off" required maxlength="6">
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="input-actions text-center">
+                        <button type="reset" class="button border border-2 input" type="submit">Cancel</button>
+                        <button class="button bg-accent-color border-accent border border-2 input clr-white" type="submit">Add Address</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+
+    }
+    else
+    {
+        <div class="content bg-white">
+            <form action="/address/addaddress" method="post" class="w-80p">
+                <div class="bg-white w-100p p-wide">
+                    <div class="input-header p-b-wide text-center">
+                        <h2>Add your address</h2>
+                    </div>
+                    <div class="flex flex-row" style="padding: 5rem 0;">
+                        <div class="add-address-left w-50p p-medium">
+                            <div class='book-basics p-medium'>
+                                <div class="add-address-row flex flex-row m-b-medium justify-between">
+                                    <label for="flat_no">Flat No:</label>
+                                    <input type="text" class="input w-50p" name="flat_no" id="flat_no" autocomplete="off" required>
+                                </div>
+                                <div class="add-address-row flex flex-row m-b-medium justify-between">
+                                    <label for="build_no">Building Name:</label>
+                                    <input type="text" class="input w-50p" name="build_no" id="build_no" autocomplete="off" required>
+                                    <!-- <textarea class="input w-50p" rows="5" name="floorno" id="floorno" autocomplete="off" required></textarea> -->
+                                </div>
+                                <div class="add-address-row flex flex-row m-b-medium justify-between">
+                                    <label for="area">Area:</label>
+                                    <input type="text" class="input w-50p" name="area" id="area" autocomplete="off" required>
+                                </div>
+                                <div class="add-address-row flex flex-row m-b-medium justify-between">
+                                    <label for="street">Street Name:</label>
+                                    <input type="text" class="input w-50p" name="street" id="street" autocomplete="off" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="add-address-right w-50p p-medium">
+                            <div class="book-info p-medium">
+                                <div class="add-address-row flex flex-row m-b-medium justify-between">
+                                    <label for="city">City:</label>
+                                    <input type="text" class="input w-50p" name="city" id="city" autocomplete="off" required>
+                                </div>
+                                <div class="add-address-row flex flex-row m-b-medium justify-between">
+                                    <label for="district">District:</label>
+                                    <input type="text" class="input w-50p" name="district" id="district" autocomplete="off" required>
+                                </div>
+                                <div class="add-address-row flex flex-row m-b-medium justify-between">
+                                    <label for="state">State:</label>
+                                    <select name="state" id="state" class="input w-50p">
+                                        <option value="--">-- Select State --</option>
+                                        <option value="mh">Maharashtra</option>
+                                        <option value="ga">Goa</option>
+                                        <option value="gj">Gujarat</option>
+                                        <option value="mp">Madhya Pradesh</option>
+                                    </select>
+                                    <!-- <input type="text" class="input w-50p" name="state" id="state" autocomplete="off" required> -->
+                                </div>
+                                <div class="add-address-row flex flex-row m-b-medium justify-between">
+                                    <label for="pincode">Pincode:</label>
+                                    <input type="number" class="input w-50p" name="pincode" id="pincode" autocomplete="off" required maxlength="6">
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="input-actions text-center">
+                        <button type="reset" class="button border border-2 input" type="submit">Cancel</button>
+                        <button class="button bg-accent-color border-accent border border-2 input clr-white" type="submit">Add Address</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+      
+    }
+}
+

@@ -76,6 +76,127 @@ namespace DAL
 
         }
 
+        public static bool changeaddress(int customerid, string flat_no, string build_no, string area, string street, string city, string district, string state, string pincode)
+        {
+            bool status = false;
+
+            try
+            {
+                using (MySqlConnection con = new MySqlConnection(connString))
+                {
+                    //address_id | user_id | flat_no | Area  | Building_no | Street_name | City | District | State       | Pincode |
+
+                    if (con.State == ConnectionState.Closed)
+                        con.Open();
+
+                    string query = "update address set  flat_no = @flat ,Area = @area ,Building_no = @build ,Street_name = @street , City = @city , District = @dis ,State = @state , Pincode = @pin  where user_id = @uid";
+
+                    MySqlCommand cmd = new MySqlCommand(query, con);
+                    cmd.Parameters.Add(new MySqlParameter("@flat", flat_no));
+                    cmd.Parameters.Add(new MySqlParameter("@area", area)); 
+                    cmd.Parameters.Add(new MySqlParameter("@build", build_no));
+                    cmd.Parameters.Add(new MySqlParameter("@street", street));
+                    cmd.Parameters.Add(new MySqlParameter("@city", city));
+                    cmd.Parameters.Add(new MySqlParameter("@dis", district));
+                    cmd.Parameters.Add(new MySqlParameter("@state", state));
+                    cmd.Parameters.Add(new MySqlParameter("@pin", pincode));
+
+                    cmd.Parameters.Add(new MySqlParameter("@uid", customerid));
+
+
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+                    status = true;
+                }
+            }
+            catch (MySqlException e)
+            {
+                string message = e.Message;
+            }
+
+            return status;
+
+        }
+
+        public static bool addaddress(int customerid, string flat_no, string build_no, string area, string street, string city, string district, string state, string pincode)
+        {
+            bool status = false;
+            try
+            {
+                using (MySqlConnection con = new MySqlConnection(connString))
+                {
+
+
+                    if (con.State == ConnectionState.Closed)
+                        con.Open();
+
+                    string query = "INSERT INTO address (address_id,user_id,flat_no,Area,Building_no,Street_name,City,District,State,Pincode) VALUES" +
+                                                        "(default,@uid,@flat,@area,@build,@street,@city,@district,@state,@pincode)";
+                    //  @bid,@bname,@aname,@bpages,@blang,@bpub,@bdate,@bdimen,@bpp,@bhp,@ebp,@bdisc,@aathor,@brat,@bimag,@bimag2,@bimag3
+                    MySqlCommand cmd = new MySqlCommand(query, con);
+                    //cmd.Parameters.Add(new MySqlParameter("@bid", newbook.booksID));
+                    cmd.Parameters.Add(new MySqlParameter("@uid", customerid));
+                    cmd.Parameters.Add(new MySqlParameter("@flat", flat_no));
+                    cmd.Parameters.Add(new MySqlParameter("@area", build_no));
+                    cmd.Parameters.Add(new MySqlParameter("@build", build_no));
+                    cmd.Parameters.Add(new MySqlParameter("@street", street));
+                    cmd.Parameters.Add(new MySqlParameter("@city", city));
+                    cmd.Parameters.Add(new MySqlParameter("@district", district));
+                    cmd.Parameters.Add(new MySqlParameter("@state", state));
+                    cmd.Parameters.Add(new MySqlParameter("@pincode", pincode));
+                    
+
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+                    status = true;
+                }
+            }
+            catch (MySqlException e)
+            {
+                string message = e.Message;
+            }
+
+            return status;
+        }
+
+        public static Address findaddress(int customerid)
+        {
+            Address address = new Address();
+
+            IDbConnection conn = new MySqlConnection();
+            conn.ConnectionString = connString;
+            string query = "Select * from address WHERE user_id=" + customerid;
+            IDbCommand cmd = new MySqlCommand();
+            cmd.CommandText = query;
+            cmd.Connection = conn;
+            MySqlDataAdapter da = new MySqlDataAdapter(cmd as MySqlCommand);
+            DataSet ds = new DataSet();
+            try
+            {
+                da.Fill(ds);
+                DataRowCollection rows = ds.Tables[0].Rows;
+                foreach (DataRow row in rows)
+                {
+                    address.user_id = int.Parse(row["user_id"].ToString());
+                    address.flat_no = row["flat_no"].ToString();
+                    address.area = row["Area"].ToString();
+                    address.build_no = row["Building_no"].ToString();
+                    address.street = row["Street_name"].ToString();
+                    address.city = row["City"].ToString();
+                    address.district = row["District"].ToString();
+                    address.state = row["State"].ToString();
+                    address.pincode = row["Pincode"].ToString();
+                   
+                }
+            }
+            catch (MySqlException e)
+            {
+                string message = e.Message;
+            }
+            // implementation 
+            return address;
+        }
+
         public static bool Insertbook(Books newbook)
         {
             bool status = false;

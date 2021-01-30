@@ -110,7 +110,7 @@
                                     </div>
                                     <div class="user-book-info">
                                         <h4 class="user-book-name">
-                                            <a class="anchor" href="/books/details/@pos.book_id">
+                                            <a class="anchor" href="/books/@pos.book_id">
                                                 @pos.bookname
                                             </a>
                                         </h4>
@@ -160,15 +160,19 @@
                                             @if (@customer != null)
                                             {
                                                 <form action="/profile/like/@pos.post_id" method="post">
+
                                                     <div class="like">
-                                                        <input type="hidden" id="isliked" name="isliked" value="0" />
+
+                                                        <input type="hidden" id="uname" name="uname" value="@pos.user_name" />
+                                                        <input type="hidden" id="isliked" name="isliked" value="@pos.post_id" />
                                                         <button type="submit"><i class="fas fa-thumbs-up"></i></button>
                                                         @pos.likes likes
                                                     </div>
                                                 </form>
                                                 <form action="/profile/dislike/@pos.post_id" method="post">
                                                     <div class="dislike">
-                                                        <input type="hidden" id="isdisliked" name="isdisliked" value="0" />
+                                                        <input type="hidden" id="uname" name="uname" value="@pos.user_name" />
+                                                        <input type="hidden" id="isdisliked" name="isdisliked" value="@pos.post_id" />
                                                         <button type="submit"><i class="fas fa-thumbs-down"></i></button>
                                                         @pos.dislikes disklikes
                                                     </div>
