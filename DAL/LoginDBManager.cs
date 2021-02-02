@@ -31,7 +31,7 @@ namespace DAL
                     if (con.State == ConnectionState.Closed)
                         con.Open();
 
-                    string query = "INSERT INTO customers (customerid,customer_name,email,password) VALUES(default,@uname,@email,@password)";
+                    string query = "INSERT INTO customers (customerid,customer_name,email,password,joined_on) VALUES(default,@uname,@email,@password,default)";
 
                     MySqlCommand cmd = new MySqlCommand(query, con);
                     //cmd.Parameters.Add(new MySqlParameter("@uid", cust.customerid));
@@ -52,8 +52,8 @@ namespace DAL
 
             return status;
         }
-
-        public static bool checkToken(string token)
+        //----TP----//
+        public static bool validatelogin(Login login)
         {
             bool status = false;
             try
@@ -63,24 +63,60 @@ namespace DAL
                     if (con.State == ConnectionState.Closed)
                         con.Open();
 
-                    string query = "SELECT token FROM forgotpass where token = @token";
+                    string query = "SELECT Username , Password FROM login where Username = @username and Password = @password";
 
                     MySqlCommand cmd = new MySqlCommand(query, con);
-                    cmd.Parameters.Add(new MySqlParameter("@token", token));
-
+                    cmd.Parameters.Add(new MySqlParameter("@username", login.Username));
+                    cmd.Parameters.Add(new MySqlParameter("@password", login.Password));
 
                     object result = cmd.ExecuteScalar();
 
                     if (result != null)
                     {
                         status = true;
-
-                        // CHECK if the token is time valid
-                            // IF NO then throw exception
-                            // IF YES then go ahead
-
-                        // DELETE The token from forgotpass table.
                     }
+                    con.Close();
+
+
+                }
+            }
+            catch (MySqlException e)
+            {
+                string message = e.Message;
+            }
+
+            return status;
+
+        }
+
+        public static string checkToken(string token)
+        {
+            string status = "";
+            try
+            {
+                using (MySqlConnection con = new MySqlConnection(connString))
+                {
+                    if (con.State == ConnectionState.Closed)
+                        con.Open();
+
+                    string query = "SELECT email FROM forgotpass where token = @token";
+
+                    MySqlCommand cmd = new MySqlCommand(query, con);
+                    cmd.Parameters.Add(new MySqlParameter("@token", token));
+
+                    //Wishlist wlist = new Wishlist();
+
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            string email = reader["email"].ToString();
+                            return email;
+                        }
+
+                    }
+
+
                     con.Close();
 
 
@@ -165,6 +201,43 @@ namespace DAL
 
         }
 
+        public static bool updatepass(string password, string custid)
+        {
+
+            bool status = false;
+            try
+            {
+                using (MySqlConnection con = new MySqlConnection(connString))
+                {
+                    if (con.State == ConnectionState.Closed)
+                        con.Open();
+
+                    string query = "Update customers set password = @pass where email = @cust";
+
+                    MySqlCommand cmd = new MySqlCommand(query, con);
+                    cmd.Parameters.Add(new MySqlParameter("@pass", password));
+                    cmd.Parameters.Add(new MySqlParameter("@cust", custid));
+
+
+                    object result = cmd.ExecuteScalar();
+
+                    if (result != null)
+                    {
+                        status = true;
+                    }
+                    con.Close();
+
+
+                }
+            }
+            catch (MySqlException e)
+            {
+                string message = e.Message;
+            }
+
+            return status;
+        }
+
         public static Customer validatelogin(string uname, string upass)
         {
             Customer customer = null;
@@ -192,8 +265,12 @@ namespace DAL
                             string Email = reader["email"].ToString();
                             string Image = reader["image"].ToString();
                             string banner = reader["banner"].ToString();
+                            string f_name = reader["First_name"].ToString();
+                            string l_name = reader["Last_name"].ToString();
+                            string joined_on = reader["joined_on"].ToString();
 
-                            customer = new Customer { email = Email, customerid = id, customer_name = Name , image = Image ,banner = banner};
+
+                            customer = new Customer { email = Email, customerid = id, customer_name = Name , image = Image ,banner = banner,f_name = f_name,l_name = l_name, joined_on = joined_on};
                         }
                     }
                     con.Close();
@@ -212,7 +289,7 @@ namespace DAL
 
         public static Customer getUserByUsername(string uname)
         {
-            Customer customer = null;
+            Customer customer = new Customer { customer_name = "error404", f_name = "Not", l_name = "Found", banner = "/Images/Users/banner-e.png", image = "/Images/Users/error.jpg" };
 
             try
             {
@@ -236,8 +313,11 @@ namespace DAL
                             string Email = reader["email"].ToString();
                             string Image = reader["image"].ToString();
                             string banner = reader["banner"].ToString();
+                            string f_name = reader["First_name"].ToString();
+                            string l_name = reader["Last_name"].ToString();
+                            string joined_on = reader["joined_on"].ToString();
 
-                            customer = new Customer { email = Email, customerid = id, customer_name = Name, image = Image, banner = banner };
+                            customer = new Customer { email = Email, customerid = id, customer_name = Name, image = Image, banner = banner ,f_name=f_name,l_name=l_name, joined_on = joined_on};
                         }
                     }
                     con.Close();

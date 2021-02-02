@@ -4,3 +4,9 @@ C:\Users\Shedge\source\repos\BookManagment\BOL\obj\Debug\BOL.csprojAssemblyRefer
 C:\Users\Shedge\source\repos\BookManagment\BOL\obj\Debug\BOL.csproj.CoreCompileInputs.cache
 C:\Users\Shedge\source\repos\BookManagment\BOL\obj\Debug\BOL.dll
 C:\Users\Shedge\source\repos\BookManagment\BOL\obj\Debug\BOL.pdb
+D:\CDAC\project\bookter-backend-asp\BOL\bin\Debug\BOL.dll
+D:\CDAC\project\bookter-backend-asp\BOL\bin\Debug\BOL.pdb
+D:\CDAC\project\bookter-backend-asp\BOL\obj\Debug\BOL.csproj.CoreCompileInputs.cache
+D:\CDAC\project\bookter-backend-asp\BOL\obj\Debug\BOL.dll
+D:\CDAC\project\bookter-backend-asp\BOL\obj\Debug\BOL.pdb
+D:\CDAC\project\bookter-backend-asp\BOL\obj\Debug\BOL.csprojAssemblyReference.cache

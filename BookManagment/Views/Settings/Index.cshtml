@@ -1,0 +1,317 @@
+﻿@using BOL;
+@{ ViewBag.Title = "Settings"; }
+
+@{
+    Address add = Model as Address;
+    Customer customer = (Customer)this.Session["user"];
+
+<div class="content">
+    <div class="content-main">
+        <!-- <div class="books-sidebar">
+            BOOKS SIDEBAR
+        </div> -->
+        <h1 class="p-wide bg-white m-y-wide shadow-light radius text-center">Your Settings</h1>
+        <div class="book-cart-container flex flex-row">
+            <div class="book-cart-amounts-container m-r-wide bg-white w-25p flex h-25p shadow-light radius">
+                <div class="book-cart-amounts flex flex-column w-100p h-25p">
+                    <div class="setting-actions">
+                        <div class="setting-action">
+                            <a class="anchor p-y-medium p-x-wide block left-links" href="#name">Change Name</a>
+                            <a class="anchor p-y-medium p-x-wide block left-links" href="#display-pic">Change Profile Pic</a>
+                            <a class="anchor p-y-medium p-x-wide block left-links" href="#email">Change Email</a>
+                            <a class="anchor p-y-medium p-x-wide block left-links" href="#address">Add Address</a>
+                            <a class="anchor p-y-medium p-x-wide block left-links" href="#password">Change Password</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="book-lists-container flex flex-column bg-white flex flex-row w-75p m-b-wide shadow-light radius p-wide">
+                <div id="name" class="sections " style="min-height: 25rem;">
+
+                    <form action="/settings/update/name" method="post">
+                        <div class="input-header p-b-wide text-center">
+                            <h2>Update your name</h2>
+                        </div>
+                        <div class="flex flex-row">
+                            <div class="add-address-left w-50p p-medium">
+                                <div class='book-basics p-medium'>
+                                    <div class="add-address-row flex flex-row m-b-medium justify-between">
+                                        <label for="firstname">First Name</label>
+                                        <input type="text" class="input w-50p" name="firstname" id="firstname" value="@customer.f_name" autocomplete="off" required>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="add-address-right w-50p p-medium">
+                                <div class="book-info p-medium">
+                                    <div class="add-address-row flex flex-row m-b-medium justify-between">
+                                        <label for="lastname">Last Name:</label>
+                                        <input type="text" class="input w-50p" name="lastname" id="lastname" value="@customer.l_name" autocomplete="off" required>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="input-actions text-center">
+                            <button type="reset" class="button border border-2 input" type="submit">Cancel</button>
+                            <button class="button bg-accent-color border-accent border border-2 input clr-white" type="submit">Update Name</button>
+                        </div>
+                    </form>
+                </div>
+                <div id="display-pic" class="sections  hidden" style="min-height: 25rem;">
+                    <div class="input-header p-b-wide text-center">
+                        <h2>Change Profile Pic and Banner Image</h2>
+                    </div>
+                    <div class="flex flex-row">
+                        <div class="add-address-left w-50p p-medium">
+                            <div class='book-basics p-medium'>
+                                <div class="add-address-row flex flex-row m-b-medium justify-between">
+                                    <p>Profile Picture</p>
+                                    <button class="input relative">
+                                        + Select profile pic
+                                        <label for="profilepic">
+                                            <input type="file" accept="image/*" id="profilepic" class="new-post-image a-button input input-file">
+                                        </label>
+                                    </button>
+                                </div>
+                                <div style="width: 10rem; height: 10rem;" id="profilepic-preview" class="border radius"></div>
+                            </div>
+                        </div>
+
+                        <div class="add-address-right w-50p p-medium">
+                            <div class="book-info p-medium">
+                                <div class="add-address-row flex flex-row m-b-medium justify-between">
+                                    <p>Banner Image</p>
+                                    <button class="input relative">
+                                        + Select banner image
+                                        <label for="bannerimage">
+                                            <input type="file" accept="image/*" id="bannerimage" class="new-post-image a-button input input-file">
+                                        </label>
+                                    </button>
+                                </div>
+                                <div style="width: 30rem; height: 10rem;" id="bannerimage-preview" class="border radius"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input-actions text-center">
+                        <button type="reset" class="button border border-2 input" type="submit">Cancel</button>
+                        <button class="button bg-accent-color border-accent border border-2 input clr-white" type="submit">Update Images</button>
+                    </div>
+                </div>
+                <div id="email" class="sections  hidden" style="min-height: 25rem;">
+                    <form action="/settings/update/email" method="post">
+                        <div class="input-header p-b-wide text-center">
+                            <h2>Update your email</h2>
+                        </div>
+                        <div class="flex flex-row">
+                            <div class="add-address-left w-50p p-medium">
+                                <div class='book-basics p-medium'>
+                                    <div class="add-address-row flex flex-row m-b-medium justify-between">
+                                        <label for="email">Email</label>
+                                        <input type="email" class="input w-50p" name="email" id="email" value="@customer.email" autocomplete="off" required>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="input-actions text-center">
+                            <button type="reset" class="button border border-2 input" type="submit">Cancel</button>
+                            <button class="button bg-accent-color border-accent border border-2 input clr-white" type="submit">Update Email</button>
+                        </div>
+                    </form>
+                </div>
+                @if (add.state != null)
+                {
+    <div id="address" class="sections  hidden" style="min-height: 25rem;">
+        <form action="/settings/update/address" method="post" class="w-80p">
+
+            <div class="input-header p-b-wide text-center">
+                <h2>Add your address</h2>
+            </div>
+            <div class="flex flex-row">
+                <div class="add-address-left w-50p p-medium">
+                    <div class='book-basics p-medium'>
+                        <div class="add-address-row flex flex-row m-b-medium justify-between">
+                            <label for="flat_no">Flat No:</label>
+                            <input type="text" class="input w-50p" name="flat_no" id="flat_no" value="@add.flat_no" autocomplete="off" required>
+                        </div>
+                        <div class="add-address-row flex flex-row m-b-medium justify-between">
+                            <label for="build_no">Building Name:</label>
+                            <input type="text" class="input w-50p" name="build_no" id="build_no" value="@add.build_no" autocomplete="off" required>
+                            <!-- <textarea class="input w-50p" rows="5" name="floorno" id="floorno" autocomplete="off" required></textarea> -->
+                        </div>
+                        <div class="add-address-row flex flex-row m-b-medium justify-between">
+                            <label for="area">Area:</label>
+                            <input type="text" class="input w-50p" name="area" id="area" value="@add.area" autocomplete="off" required>
+                        </div>
+                        <div class="add-address-row flex flex-row m-b-medium justify-between">
+                            <label for="street">Street Name:</label>
+                            <input type="text" class="input w-50p" name="street" id="street" value="@add.street" autocomplete="off" required>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="add-address-right w-50p p-medium">
+                    <div class="book-info p-medium">
+                        <div class="add-address-row flex flex-row m-b-medium justify-between">
+                            <label for="city">City:</label>
+                            <input type="text" class="input w-50p" name="city" id="city" value="@add.city" autocomplete="off" required>
+                        </div>
+                        <div class="add-address-row flex flex-row m-b-medium justify-between">
+                            <label for="district">District:</label>
+                            <input type="text" class="input w-50p" name="district" id="district" value="@add.district" autocomplete="off" required>
+                        </div>
+                        <div class="add-address-row flex flex-row m-b-medium justify-between">
+                            <label for="state">State:</label>
+                            <select name="state" id="state" class="input w-50p">
+                                <option value="@add.state">-- Select State --</option>
+                                <option value="mh">Maharashtra</option>
+                                <option value="ga">Goa</option>
+                                <option value="gj">Gujarat</option>
+                                <option value="mp">Madhya Pradesh</option>
+                            </select>
+                            <!-- <input type="text" class="input w-50p" name="state" id="state" autocomplete="off" required> -->
+                        </div>
+                        <div class="add-address-row flex flex-row m-b-medium justify-between">
+                            <label for="pincode">Pincode:</label>
+                            <input type="number" class="input w-50p" name="pincode" id="pincode" value="@add.pincode" autocomplete="off" required maxlength="6">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="input-actions text-center">
+                <button type="reset" class="button border border-2 input" type="submit">Cancel</button>
+                <button class="button bg-accent-color border-accent border border-2 input clr-white" type="submit">Add Address</button>
+            </div>
+        </form>
+    </div> }
+else
+{
+
+<div id="address" class="sections  hidden" style="min-height: 25rem;">
+    <form action="/settings/add/address" method="post" class="w-80p">
+
+        <div class="input-header p-b-wide text-center">
+            <h2>Add your address</h2>
+        </div>
+        <div class="flex flex-row">
+            <div class="add-address-left w-50p p-medium">
+                <div class='book-basics p-medium'>
+                    <div class="add-address-row flex flex-row m-b-medium justify-between">
+                        <label for="flat_no">Flat No:</label>
+                        <input type="text" class="input w-50p" name="flat_no" id="flat_no" autocomplete="off" required>
+                    </div>
+                    <div class="add-address-row flex flex-row m-b-medium justify-between">
+                        <label for="build_no">Building Name:</label>
+                        <input type="text" class="input w-50p" name="build_no" id="build_no" autocomplete="off" required>
+                        <!-- <textarea class="input w-50p" rows="5" name="floorno" id="floorno" autocomplete="off" required></textarea> -->
+                    </div>
+                    <div class="add-address-row flex flex-row m-b-medium justify-between">
+                        <label for="area">Area:</label>
+                        <input type="text" class="input w-50p" name="area" id="area" autocomplete="off" required>
+                    </div>
+                    <div class="add-address-row flex flex-row m-b-medium justify-between">
+                        <label for="street">Street Name:</label>
+                        <input type="text" class="input w-50p" name="street" id="street" autocomplete="off" required>
+                    </div>
+                </div>
+            </div>
+
+            <div class="add-address-right w-50p p-medium">
+                <div class="book-info p-medium">
+                    <div class="add-address-row flex flex-row m-b-medium justify-between">
+                        <label for="city">City:</label>
+                        <input type="text" class="input w-50p" name="city" id="city" autocomplete="off" required>
+                    </div>
+                    <div class="add-address-row flex flex-row m-b-medium justify-between">
+                        <label for="district">District:</label>
+                        <input type="text" class="input w-50p" name="district" id="district" autocomplete="off" required>
+                    </div>
+                    <div class="add-address-row flex flex-row m-b-medium justify-between">
+                        <label for="state">State:</label>
+                        <select name="state" id="state" class="input w-50p">
+                            <option value="--">-- Select State --</option>
+                            <option value="mh">Maharashtra</option>
+                            <option value="ga">Goa</option>
+                            <option value="gj">Gujarat</option>
+                            <option value="mp">Madhya Pradesh</option>
+                        </select>
+                        <!-- <input type="text" class="input w-50p" name="state" id="state" autocomplete="off" required> -->
+                    </div>
+                    <div class="add-address-row flex flex-row m-b-medium justify-between">
+                        <label for="pincode">Pincode:</label>
+                        <input type="number" class="input w-50p" name="pincode" id="pincode" autocomplete="off" required maxlength="6">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="input-actions text-center">
+            <button type="reset" class="button border border-2 input" type="submit">Cancel</button>
+            <button class="button bg-accent-color border-accent border border-2 input clr-white" type="submit">Add Address</button>
+        </div>
+    </form>
+</div>}
+                <!--PASSWORD-->
+                <div id="password" class="sections  hidden" style="min-height: 25rem;">
+                    <form action="/settings/update/password" method="post">
+                        <div class="input-header p-b-wide text-center">
+                            <h2>Update your password</h2>
+                        </div>
+                        <div class="flex flex-row">
+                            <div class="add-address-left w-50p p-medium">
+                                <div class='book-basics p-medium'>
+                                    <div class="add-address-row flex flex-row m-b-medium justify-between">
+                                        <label for="currentpassword">Current Password</label>
+                                        <input type="password" class="input w-50p" name="currentpassword" id="currentpassword" autocomplete="off" required>
+                                    </div>
+                                    <div class="add-address-row flex flex-row m-b-medium justify-between">
+                                        <label for="newpassword">New Password</label>
+                                        <input type="password" class="input w-50p" name="newpassword" id="newpassword" autocomplete="off" required>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="input-actions text-center">
+                            <button type="reset" class="button border border-2 input" type="submit">Cancel</button>
+                            <button class="button bg-accent-color border-accent border border-2 input clr-white" type="submit">Update Email</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> }
+
+<script>let leftLinks = document.querySelectorAll('.left-links');
+
+    leftLinks.forEach(link => {
+        link.addEventListener("click", e => {
+            let hash = e.target.hash;
+            let section = document.querySelector(hash);
+            section.classList.remove('hidden');
+
+            document.querySelectorAll('.sections').forEach(lnk => {
+                // console.log(lnk.id)
+                if ('#' + lnk.id != hash) {
+                    lnk.classList.add('hidden');
+                }
+            });
+        });
+    });
+    </script>
+<script>
+    let displayPic = document.querySelector('#profilepic')
+    let bannerImage = document.querySelector('#bannerimage')
+    let profilePicPreview = document.querySelector('#profilepic-preview')
+    let bannerImagePreview = document.querySelector('#bannerimage-preview')
+
+    displayPic.addEventListener("change", e => {
+        let file = e.target.files[0];
+        profilePicPreview.innerHTML = `<img src="${URL.createObjectURL(file)}" alt="Profile Pic" style="object-fit:cover;height:100%;width:100%;">`;
+    }, false);
+
+    bannerImage.addEventListener("change", e => {
+        let file = e.target.files[0];
+        bannerImagePreview.innerHTML = `<img src="${URL.createObjectURL(file)}" alt="Banner Image" style="object-fit:cover;height:100%;width:100%;">`;
+    }, false);
+</script>

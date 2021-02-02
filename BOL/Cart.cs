@@ -8,6 +8,6 @@ namespace BOL
 {
     public class Cart
     {
-        public List<Books> items = new List<Books>();
+        public List<Item> items { set; get; } = new List<Item>();
     }
 }

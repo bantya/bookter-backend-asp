@@ -1,0 +1,174 @@
+﻿
+@{
+    ViewBag.Title = "Insertbook";
+}
+
+<div class="content">
+    <form method="post" class="w-100p" enctype="multipart/form-data">
+        <div class="bg-white w-100p p-wide">
+            <div class="input-header p-b-wide text-center">
+                <h2>Add New Book</h2>
+            </div>
+            <div class="flex flex-row">
+                <div class="book-details-left w-50p p-medium">
+                    <div class='book-basics p-medium'>
+                        <h3 class="m-b-medium p-medium border-b bg-gray-100">Basic Details</h3>
+                        <div class="book-details-row flex flex-row m-b-medium justify-between">
+                            <label for="bname">Book Name:</label>
+                            <input type="text" class="input w-50p" name="bname" id="bname" autocomplete="off" required>
+                        </div>
+                        <div class="book-details-row flex flex-row m-b-medium justify-between">
+                            <label for="bdisc">Book Discription:</label>
+                            <textarea class="input w-50p" rows="5" name="bdisc" id="bdisc" autocomplete="off" required></textarea>
+                        </div>
+                        <div class="book-details-row flex flex-row m-b-medium justify-between">
+                            <label for="aname">Author Name:</label>
+                            <input type="text" class="input w-50p" name="aname" id="aname" autocomplete="off" required>
+                        </div>
+                        <div class="book-details-row flex flex-row m-b-medium justify-between">
+                            <label for="aathor">About Author:</label>
+                            <textarea class="input w-50p" rows="5" type="text" name="aathor" id="aathor" autocomplete="off" required></textarea>
+                        </div>
+                        <div class="book-details-row flex flex-row m-b-medium justify-between">
+                            <label for="bpub">Book Publisher:</label>
+                            <input type="text" class="input w-50p" name="bpub" id="bpub" autocomplete="off" required>
+                        </div>
+                    </div>
+
+                    <div class="book-prices p-medium">
+                        <h3 class="m-b-medium p-medium border-b bg-gray-100">Book Prices</h3>
+                        <div class="options-selector flex flex-row m-b-medium justify-end">
+                            <div class="flex items-centre m-r-medium">
+                                <input type="checkbox" class="book-type-selector checkbox checkbox-small" name="book-option" value="paperback" id="paperback" checked data-book-selector="1">
+                                <label for="paperback" class="select-none m-l-normal">Paperback</label>
+                            </div>
+                            <div class="flex items-centre m-r-medium">
+                                <input type="checkbox" class="book-type-selector checkbox checkbox-small" name="book-option" value="hardcover" id="hardcover" data-book-selector="2">
+                                <label for="hardcover" class="select-none m-l-normal">Hardcover</label>
+                            </div>
+                            <div class="flex items-centre">
+                                <input type="checkbox" class="book-type-selector checkbox checkbox-small" name="book-option" value="ebook" id="ebook" data-book-selector="3">
+                                <label for="ebook" class="select-none m-l-normal">Ebook</label>
+                            </div>
+                        </div>
+
+                        <div class="book-details-row book-options-prices flex flex-row m-b-medium justify-between" data-book-type="1">
+                            <label for="bpp">Paperback Price:</label>
+                            <input type="number" class="input w-50p" name="bpp" id="bpp" autocomplete="off" required>
+                        </div>
+                        <div class="book-details-row book-options-prices flex flex-row m-b-medium justify-between hidden" data-book-type="2">
+                            <label for="bhp">Hardcover Price:</label>
+                            <input type="number" class="input w-50p" name="bhp" id="bhp" autocomplete="off" required>
+                        </div>
+                        <div class="book-details-row book-options-prices flex flex-row m-b-medium justify-between hidden" data-book-type="3">
+                            <label for="ebp">E-Book Price:</label>
+                            <input type="number" class="input w-50p" name="ebp" id="ebp" autocomplete="off" required>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="book-details-right w-50p p-medium">
+                    <div class="book-info p-medium">
+                        <h3 class="m-b-medium p-medium border-b bg-gray-100">Book Statistics</h3>
+                        <div class="book-details-row flex flex-row m-b-medium justify-between">
+                            <label for="bpages">Books Pages:</label>
+                            <input type="number" class="input w-50p" name="bpages" id="bpages" autocomplete="off" required>
+                        </div>
+                        <div class="book-details-row flex flex-row m-b-medium justify-between">
+                            <label for="blang">Book Language:</label>
+                            <input type="text" class="input w-50p" name="blang" id="blang" autocomplete="off" required>
+                        </div>
+                        <div class="book-details-row flex flex-row m-b-medium justify-between">
+                            <label for="bdate">Publish Date:</label>
+                            <input type="date" class="input w-50p" name="bdate" id="bdate" autocomplete="off" required>
+                        </div>
+                        <div class="book-details-row flex flex-row m-b-medium justify-between">
+                            <label for="bdimen">Book Dimension:</label>
+                            <input type="text" class="input w-50p" name="bdimen" id="bdimen" autocomplete="off" required>
+                            <!-- <div class="w-50p flex flex-row">
+                                <input type="text" class="input w-33p" name="bdimenw" id="bdimenw" autocomplete="off" required>
+                                <input type="text" class="input w-33p m-l-medium" name="bdimenh" id="bdimenh" autocomplete="off" required>
+                                <input type="text" class="input w-33p m-l-medium" name="bdimenb" id="bdimenb" autocomplete="off" required>
+                            </div> -->
+                        </div>
+                        <div class="book-details-row flex flex-row m-b-medium justify-between">
+                            <label for="brat">Books Rating:</label>
+                            <input type="number" class="input w-50p" name="brat" id="brat" autocomplete="off" min="0" max="5" step="0.1" required>
+                        </div>
+                    </div>
+
+                    <div class="book-images p-medium">
+                        <h3 class="m-b-medium p-medium border-b bg-gray-100">Book Images</h3>
+                        <div class="book-details-row flex flex-row m-b-medium justify-between">
+                            <label for="bimag">Books Image:</label>
+                            <!-- <input type="number" class="input w-50p" name="bimag" id="bimag" autocomplete="off" required> -->
+                            <button class="input w-50p relative">
+                                + Add an image
+                                <label for="add-post-image">
+                                    <input type="file" accept="image/*" id="addbookimage" name="addbookimage" class="new-post-image a-button input input-file" multiple>
+                                </label>
+                            </button>
+                        </div>
+
+                        <div class="book-images-preview flex justify-end">
+                            <div class="book-image bg-gray-100 h-10r w-10r radius flex flex-center border">
+                                <span class="clr-gray-darker">Image</span>
+                            </div>
+                            <div class="book-image bg-gray-100 h-10r w-10r radius m-l-medium flex flex-center border">
+                                <span class="clr-gray-darker">Image</span>
+                            </div>
+                            <div class="book-image bg-gray-100 h-10r w-10r radius m-l-medium flex flex-center border">
+                                <span class="clr-gray-darker">Image</span>
+                            </div>
+                        </div>
+
+                        <!-- <div class="book-details-row flex flex-row m-b-medium justify-between">
+                            <label for="bimag2">Books Image 2:</label>
+                            <input type="number" class="input w-50p" name="bimag2" id="bimag2" autocomplete="off" required>
+                        </div>
+                        <div class="book-details-row flex flex-row m-b-medium justify-between">
+                            <label for="bimag3">Books Image 3:</label>
+                            <input type="number" class="input w-50p" name="bimag3" id="bimag3" autocomplete="off" required>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+            <div class="input-actions text-center">
+                <button type="reset" class="button border border-2 input" type="submit">Cancel</button>
+                <button class="button bg-accent-color border-accent border border-2 input clr-white" type="submit">Add Book</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<script>
+    let bookSelectors = document.querySelectorAll('.book-type-selector');
+    let bookPrices = document.querySelectorAll('.book-options-prices');
+    let bookImages = document.querySelectorAll('.book-image');
+    let bookImgBtn = document.querySelector('#addbookimage');
+    let checked = ["1"];
+
+    bookSelectors.forEach(selector => {
+        selector.addEventListener("click", e => {
+            let elem = bookPrices[e.target.dataset.bookSelector - 1];
+            if (e.target.checked) {
+                elem.classList.remove('hidden');
+                checked.push(e.target.dataset.bookSelector);
+            } else {
+                if (checked.length > 1) {
+                    elem.classList.add('hidden');
+                    checked.pop();
+                } else {
+                    e.target.checked = true;
+                }
+            }
+        }, false);
+    });
+
+    bookImgBtn.addEventListener("change", e => {
+        let files = e.target.files;
+        for (let i = 0; i < 3; i++) {
+            bookImages[i].innerHTML = `<img src="${URL.createObjectURL(e.target.files[i])}" alt="Book Image ${i}" style="object-fit:cover;height:100%;width:100%;">`;
+        }
+    });
+</script>

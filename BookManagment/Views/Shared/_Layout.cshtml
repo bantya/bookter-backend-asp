@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="~/Content/font-awesome.css">
     <link rel="stylesheet" href="~/Content/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Miriam+Libre:wght@400;700&display=swap" rel="stylesheet">
-    <script src="js/script.js" defer></script>
+    @*<script src="js/script.js" defer></script>*@
 </head>
 
 <body>
@@ -19,7 +19,7 @@
         <div class="wrapper">
             <header class="navbar">
                 <div class="logo">
-                    <a href="#"><i class="fas fa-book"></i></a>
+                    <a href="/posts"><i class="fas fa-book"></i></a>
                 </div>
                 <div class="search-container">
                     <input class="input" type="text" id="search-input" placeholder="Search me.." autocomplete="off">
@@ -30,33 +30,52 @@
                 <nav class="nav-menu flex flex-row">
                     <ul class="nav-list">
                         <li class="menu-item"><a href="index.html">Home</a></li>
-                        <li class="menu-item active"><a href="/posts/index">Posts</a></li>
-                        <li class="menu-item"><a href="/books/bookslist">Books</a></li>
-                        <li class="menu-item"><a href="orders.html">Orders</a></li>
-                        <li class="menu-item"><a href="/cart/index">Cart</a></li>
+                        <li class="menu-item"><a href="/posts">Posts</a></li>
+                        <li class="menu-item"><a href="/books">Books</a></li>
                         @if (customer == null)
                         {
-                            <li class="menu-item"><a href="/account/register">Register</a></li>
-                            <li class="menu-item active"><a href="/account/login">Login</a></li>
+                            <li class="menu-item"><a href="/register">Register</a></li>
+                            <li class="menu-item active"><a href="/login">Login</a></li>
                             //n? to = @this.Session["lastPage"]
                         }
                         else
                         {
-                            <li class="menu-item"><a href="/wishlist/index">Wishlist</a></li>
+                            <li class="menu-item"><a href="/orders">Orders</a></li>
+                            <li class="menu-item"><a href="/wishlist">Wishlist</a></li>
                         }
 
                         <!-- <li class="menu-item pointer"> -->
                         <!-- <img class="image rounded" src="http://placeholder.code/40x40/RT/40/845206/201256" alt="Profile Pic"> -->
                         <!-- </li> -->
+
+                        <li class="menu-item"><a href="/cart"><i class="fas fa-cart-plus"></i></a></li>
                     </ul> <!-- ul.nav-list -->
 
                     @if (customer != null)
                     {
-                        <div class="user-profile-pic rounded flex items-center pointer m-l-medium">
-                            <div class="pofile-pic-wrapper profile-pic-flair rounded">
-                                <img class="image rounded flex items-center"
-                                     src="@customer.image"
-                                     width="40" height="40" alt="Profile Pic">
+                        <div class="user-profile-pic rounded flex flex-center pointer m-l-medium relative">
+                            <div class="pofile-pic-wrapper profile-pic-flair rounded" id="profile-pic">
+                                <img class="image rounded" src="@customer.image" height="40" width="40" alt="Profile Pic">
+                            </div>
+                            <div class="profile-pic-menu hidden absolute bg-white flex flex-column no-wrap radius bg-white shadow-light border m-t-normal right-bottom zindex-8" id="profile-pic-menu">
+                                <a href="/me" class="anchor">
+                                    <div class="flex flex-row p-y-medium p-x-wide radius hover-bg-gray-darker">
+                                        <p>Profile</p>
+                                    </div>
+                                </a>
+                                <a href="/settings" class="anchor">
+                                    <div class="flex flex-row p-y-medium p-x-wide radius hover-bg-gray-darker">
+                                        <p>Settings</p>
+                                    </div>
+                                </a>
+                                <!-- <a href="/logout" class="anchor"> -->
+                                <div class="flex flex-row p-y-medium p-x-wide radius hover-bg-gray-darker">
+                                    <p>Logout</p>
+                                </div>
+                                <!-- </a> -->
+                                <div class="flex flex-row p-y-medium p-x-wide radius hover-bg-gray-darker">
+                                    <input type="checkbox" id="checkbox-toggle" class="toggle toggle-medium">
+                                </div>
                             </div>
                         </div>
                     }
@@ -74,7 +93,7 @@
                         <p class="footer-list-title">ESSENTIALS</p>
                         <ul class="footer-pages-list">
                             <li><a href="contactus.html">Contact Us</a></li>
-                            <li><a href="aboutus.html">About Us</a></li>
+                            <li><a href="/aboutus">About Us</a></li>
                             <li><a href="#">Careers</a></li>
                         </ul>
                     </div>
@@ -82,7 +101,7 @@
                         <p class="footer-list-title">PAGES</p>
                         <ul class="footer-pages-list">
                             <li><a href="#">Payment Security</a></li>
-                            <li><a href="privacypolicy.html">Privacy Policy</a></li>
+                            <li><a href="/privacy">Privacy Policy</a></li>
                             <li><a href="#">Terms and Conditions</a></li>
                         </ul>
                     </div>
@@ -102,6 +121,26 @@
             </footer> <!-- FOOTER -->
         </div>
     </div>
+    <!-- Pofile pic menu -->
+    <script>
+        let profilePic = document.querySelector('#profile-pic');
+        let profilePicMenu = document.querySelector('#profile-pic-menu');
+        profilePic.addEventListener("click", e => {
+            if (e.target != profilePicMenu) {
+                profilePicMenu.classList.toggle('hidden');
+            }
+        }, true);
+    </script>
+    <script>
+        let goDark = document.querySelector('#checkbox-toggle');
+        goDark.addEventListener("click", e => {
+            if (e.target.checked) {
+                document.body.classList.add('dark')
+            } else {
+                document.body.classList.remove('dark')
+            }
+        }, false);
+    </script>
 </body>
 
 </html>

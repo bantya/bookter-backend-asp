@@ -3,47 +3,121 @@
     ViewBag.Title = "Registration";
 }
 
-                <div class="content">
-                    <div class="input-box">
-                        <div class="input-header">
-                            <h2>Admin Registration</h2>
-                        </div>
-                        <div class="input-form">
-                            <form method="POST">
-                                <!--  <label for="id">Admin ID:</label>
-      <br />
-      <input class="input" type="text" name="id" id="id" autocomplete="off" autofocus required>
-      <br /> -->
-                                <label for="fname">First Name:</label>
-                                <br />
-                                <input class="input" type="text" name="fname" id="fname" autocomplete="off" autofocus required>
-                                <br />
-                                <label for="lname">Last Name:</label>
-                                <br />
-                                <input class="input" type="text" name="lname" id="lname" autocomplete="off" autofocus required>
-                                <br />
-                                <label for="cont">Contact Number:</label>
-                                <br />
-                                <input class="input" type="text" name="cont" id="cont" autocomplete="off" autofocus placeholder="+91" required>
-                                <br />
-                                <label for="email">Email:</label>
-                                <br />
-                                <input class="input" type="email" name="email" id="email" autocomplete="off" autofocus required>
-                                <br />
-                                <label for="pass">Password:</label>
-                                <br />
-                                <input class="input" type="password" name="pass" id="pass" autocomplete="off" required>
-                                <br />
-                                <label for="upass2">Confirm password:</label>
-                                <br />
-                                <input class="input" type="password" name="upass2" id="upass2" autocomplete="off" required>
-                                <div class="input-actions">
-                                    <button class="button" type="submit">Register</button>
-                                    <a class="a-button" href="/Admin/Login">Log-in</a>
-                                </div>
-                            </form>
-                        </div>
+@*<div class="content">
+        <div class="input-box">
+            <div class="input-header">
+                <h2>Admin Registration</h2>
+            </div>
+            <div class="input-form">
+                <form method="POST">
 
+                    <label for="fname">First Name:</label>
+                    <br />
+                    <input class="input" type="text" name="fname" id="fname" autocomplete="off" autofocus required>
+                    <br />
+                    <label for="lname">Last Name:</label>
+                    <br />
+                    <input class="input" type="text" name="lname" id="lname" autocomplete="off" autofocus required>
+                    <br />
+                    <label for="cont">Contact Number:</label>
+                    <br />
+                    <input class="input" type="text" name="cont" id="cont" autocomplete="off" autofocus placeholder="+91" required>
+                    <br />
+                    <label for="email">Email:</label>
+                    <br />
+                    <input class="input" type="email" name="email" id="email" autocomplete="off" autofocus required>
+                    <br />
+                    <label for="pass">Password:</label>
+                    <br />
+                    <input class="input" type="password" name="pass" id="pass" autocomplete="off" required>
+                    <br />
+                    <label for="upass2">Confirm password:</label>
+                    <br />
+                    <input class="input" type="password" name="upass2" id="upass2" autocomplete="off" required>
+                    <div class="input-actions">
+                        <button class="button" type="submit">Register</button>
+                        <a class="a-button" href="/Admin/Login">Log-in</a>
                     </div>
-                </div>
-           
+                </form>
+            </div>
+
+        </div>
+    </div>*@
+
+
+@model Models.AdminRegistration
+
+<div class="content">
+    <div class="input-box">
+        <div class="input-header">
+            <h2>Please register</h2>
+        </div>
+        <div class="input-form">
+            @{ using (Html.BeginForm())
+
+                {
+
+                    @Html.ValidationSummary(true)
+                    @Html.AntiForgeryToken() if (ViewBag.Message != null)
+                    {
+                        <div style="border:solid 1px green">
+                            ViewBag.Message
+                        </div>}
+
+                    @Html.LabelFor(m => m.First_Name)
+                    <br />
+                    @Html.TextBoxFor(m => m.First_Name, new { @class = "input" })
+                    <br />
+                    @Html.ValidationMessageFor(m => m.First_Name)
+                    <br />
+
+                    @Html.LabelFor(m => m.Last_Name)
+                    <br />
+                    @Html.TextBoxFor(m => m.Last_Name, new { @class = "input" })
+                    <br />
+                    @Html.ValidationMessageFor(m => m.Last_Name)
+                    <br />
+
+
+
+                    @Html.LabelFor(m => m.Contact)
+                    <br />
+                    @Html.TextBoxFor(m => m.Contact, new { @class = "input" })
+                    <br />
+                    @Html.ValidationMessageFor(m => m.Contact)
+                    <br />
+
+                    <!---->
+                    @Html.LabelFor(m => m.Username)
+                    <br />
+                    @Html.TextBoxFor(m => m.Username, new { @class = "input" })
+                    <br />
+                    @Html.ValidationMessageFor(m => m.Username)
+                    <br />
+                    <!---->
+                    @Html.LabelFor(m => m.Email)
+                    <br />
+                    @Html.TextBoxFor(m => m.Email, new { @class = "input" })
+                    <br />
+                    @Html.ValidationMessageFor(m => m.Email)
+                    <br />
+                    @Html.LabelFor(m => m.Password)
+                    <br />
+                    @Html.PasswordFor(m => m.Password, new { @class = "input" })
+                    <br />
+                    @Html.ValidationMessageFor(m => m.Password)
+                    <br />
+                    @Html.LabelFor(m => m.ConfirmPassword)
+                    <br />
+                    @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "input" })
+                    <br />
+                    @Html.ValidationMessageFor(m => m.ConfirmPassword)
+                    <br />
+                    <div class="input-actions">
+                        <button class="button" type="submit">Register</button>
+                        <a class="a-button" href="/admin-login">Log-in</a>
+                    </div> } }
+        </div>
+
+    </div>
+</div>

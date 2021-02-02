@@ -1,0 +1,138 @@
+﻿@using BOL
+@{
+    ViewBag.Title = "Index";
+    Customer customer = (Customer)this.Session["user"];
+
+}
+
+@{
+    double TotalAmount = 0;
+    List<OrderBooks> books = (List<OrderBooks>)this.ViewData["order_books"];
+    Address address = (Address) this.ViewData["address"];
+    string token = (string) this.ViewData["token"];
+}
+<div class="content-main p-wide">
+    <div class="checkout-hedader">
+        <div class="input-header p-wide text-center bg-white shadow-light radius flex flex-row">
+            <h2 class="text-center w-100p">Order No. 4562131535132</h2>
+        </div>
+    </div>
+    <div class="checkbox-body w-100p flex flex-row m-t-wide">
+        <div class="checkout-summary w-75p bg-white shadow-light radius m-r-wide h-25p">
+            <div class="sub-section flex flex-column justify-between">
+                <div class="checkout-summary-main">
+                    <div class="book-lists flex flex-column w-100p">
+
+                        @foreach (OrderBooks book in books)
+                        {
+
+                            <div class="book-list flex flex-row p-wide w-100p">
+                                <div class="book-image w-10r radius">
+                                    <a href="book.html" class="w-100p">
+                                        <img class="w-100p" src="@book.image" alt="@book.book_name">
+                                    </a>
+                                </div>
+                                <div class="book-details m-l-wide flex flex-column justify-between relative w-100p">
+                                    <div class="book-cart-details flex flex-row justify-between h-100p">
+                                        <div class="book-cart-details-left flex flex-column">
+                                            <div class="book-cart-details-main">
+                                                <h3 class="p-y-normal p-t-0"><a class="anchor" href="/books/@book.booksID">@book.book_name</a></h3>
+                                                <h4 class="p-y-small"><a class="anchor clr-gray-darkest-2x" href="/author">by @book.book_author</a></h4>
+                                                <div class="p-y-small flex flex-row items-center">
+                                                    <div class="book-stars">
+                                                        <i class="fas fa-star starred"></i>
+                                                        <i class="fas fa-star starred"></i>
+                                                        <i class="fas fa-star starred"></i>
+                                                        <i class="fas fa-star starred"></i>
+                                                        <i class="fas fa-star"></i>
+                                                    </div>
+                                                    <p class="m-l-normal">(165)</p>
+                                                </div>
+                                                <p class="p-y-small bg-gray-dark p-small inline-block">Paperback</p>
+                                                <p class="p-y-small clr-gray-darkest-2x">Get it by <span class="bold clr-inherit">Tuesday, January 19</span></p>
+                                            </div>
+                                            <h2 class="clr-gray-darkest-2x m-t-auto">₹<span>@book.price</span>x<span>@book.quantity</span></h2>
+                                        </div>
+                                        <div class="book-cart-details-right flex flex-column justify-end">
+                                            
+                                            <div class="book-cart-price">
+                                                <h2 class="clr-gray-darkest-2x text-right">₹<span class="book-total-price">@(book.price * book.quantity)</span></h2>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {
+                                TotalAmount = TotalAmount + (book.price * book.quantity);
+                            }
+                        }
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="checkout-details w-25p">
+            <div class="checkout-addresses bg-white m-b-wide w-100p shadow-light radius ">
+                <h3 class="p-medium border-b bg-gray-100"><span class="radius-full bg-accent"></span>Details</h3>
+                <div class="sub-section p-wide">
+                    <div class="summary-price flex w-100p m-b-normal">
+                        <h4 class="cart-subtotal clr-gray-darkest m-r-auto no-wrap">
+                            Subtotal (<span class="total-books clr-gray-darkest">2</span> books):
+                        </h4>
+
+                        <div class="book-cart-price p-l-wide text-right">
+                            <p class="text-big no-wrap" style="width: 9ch;">₹<span class="total-price">@TotalAmount</span></p>
+                        </div>
+                    </div>
+                    <div class="summary-price flex w-100p m-b-normal">
+                        <h4 class="cart-subtotal clr-gray-darkest m-r-auto no-wrap">
+                            Ordered on: 
+                        </h4>
+
+                        <div class="book-cart-price p-l-wide text-right no-wrap">
+                            <p class="text-big">@books[0].added_on</p>
+                        </div>
+                    </div>
+                    <div class="summary-price flex w-100p m-b-normal">
+                        <h4 class="cart-subtotal clr-gray-darkest m-r-auto no-wrap">
+                            Delivered to:
+                        </h4>
+
+                        <div class="book-cart-price p-l-wide text-right">
+                            <span class="checkout-address-main">
+                                <p class="text-big no-wrap">@address.flat_no, @address.build_no</p>
+                                <p class="text-big no-wrap">@address.street,</p>
+                                <p class="text-big no-wrap">@address.area,</p>
+                                <p class="text-big no-wrap">@address.city - <strong>@address.pincode</strong>.</p>
+                                <p class="text-big no-wrap">Dist: @address.district <strong>[MH]</strong></p>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="checkout-addresses bg-white m-b-wide w-100p shadow-light radius ">
+                <h3 class="p-medium border-b bg-gray-100"><span class="radius-full bg-accent"></span>Return period</h3>
+                <div class="sub-section p-wide flex flex-column">
+                    <div class="return-trackbar w-100p radius m-b-medium" style="height: 1rem;background: aqua;">
+                        <div class="return-progress h-100p radius-right" style="width: 33%;background: blueviolet;"></div>
+                    </div>
+                    <div class="text-right">
+                        <p class="text-big">2/3 days remaining</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="checkout-addresses bg-white m-b-wide w-100p shadow-light radius ">
+                <h3 class="p-medium border-b bg-gray-100"><span class="radius-full bg-accent"></span>Actions</h3>
+                <div class="sub-section p-wide flex flex-column">
+                    <form action="/order/@token/report" method="post">
+                        <button class="input w-100p m-b-medium pointer">Download Invoice</button>
+                    </form>
+
+                    <button class="input pointer">Place Return Order</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

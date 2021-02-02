@@ -33,6 +33,8 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -41,7 +43,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dates.cs" />
+    <Compile Include="Files.cs" />
+    <Compile Include="Images.cs" />
     <Compile Include="mail.cs" />
+    <Compile Include="Mailing.cs" />
+    <Compile Include="PostFormatter.cs" />
+    <Compile Include="Randoms.cs" />
+    <Compile Include="Sessions.cs" />
+    <Compile Include="Strings.cs" />
     <Compile Include="Utils.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

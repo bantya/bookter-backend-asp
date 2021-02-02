@@ -3,7 +3,7 @@
 @{
     ViewBag.Title = "AddtoCart";
     double TotalAmount = 0;
-    Customer customer = (Customer) this.Session["user"];
+    Customer customer = (Customer)this.Session["user"];
     string userName = "Your";
     if (customer != null)
     {
@@ -11,95 +11,203 @@
     }
 }
 
-@{ Cart myCart = (Cart)Model;
-                <div class="content">
-                        <div class="content-main">
-                            <!-- <div class="books-sidebar">
-                                BOOKS SIDEBAR
-                            </div> -->
-                            <h1 class="p-wide bg-white m-y-wide shadow-light radius">@userName's Cart</h1>
-                            <div class="book-cart-container flex flex-row">
-                                <div class="book-lists-container flex flex-column bg-white flex flex-row w-75p m-b-wide shadow-light radius">
+@{
+    Cart myCart = (Cart)Model;
+}
+    <div class="content">
+        <div class="content-main">
+            <!-- <div class="books-sidebar">
+                BOOKS SIDEBAR
+            </div> -->
+            <h1 class="p-wide bg-white m-y-wide shadow-light radius text-center">@userName's Cart</h1>
+            <div class="book-cart-container flex flex-row">
+                <div class="book-lists-container flex flex-column bg-white flex flex-row w-75p m-b-wide shadow-light radius">
+                    <div class="book-lists flex flex-column w-100p">
 
-                                    @foreach (Books theItem in myCart.items)
-                                    {
-                                    <div class="book-lists flex flex-column">
-                                        <div class="book-list flex flex-row p-wide">
-                                            <div class="book-image w-10r radius">
-                                                <a href="book.html" class="w-100p">
-                                                    <img class="w-100p" src="@theItem.image" alt="Dream with your Eyes Open: An Entrepreneurial Journey">
-                                                </a>
-                                            </div>
-                                            <div class="book-details p-x-wide flex flex-column justify-between">
-                                                <div class="book-cart-details">
-                                                    <h3 class="p-y-normal p-t-0"><a class='anchor' href="book.html">@theItem.bookname</a></h3>
-                                                    <h4 class="p-y-small"><a class='anchor clr-gray-darkest-2x' href="author.html">by @theItem.bookauthor | @theItem.bookdate</a></h4>
-                                                    <div class="p-y-small flex flex-row items-center">
-                                                        <div class="book-stars">
-                                                            <i class="fas fa-star starred"></i>
-                                                            <i class="fas fa-star starred"></i>
-                                                            <i class="fas fa-star starred"></i>
-                                                            <i class="fas fa-star starred"></i>
-                                                            <i class="fas fa-star"></i>
-                                                        </div>
-                                                        <p class='m-l-normal'>(165)</p>
-                                                    </div>
-                                                    <p class='p-y-small bg-gray-dark p-small inline-block'>Paperback</p>
-                                                    <p class="p-y-small clr-gray-darkest-2x">Get it by <span class='bold clr-inherit'>Tuesday, January 19</span></p>
-                                                    <div class="book-cart-quantity flex flex-row items-center">
-                                                        <h4>Quantity:</h4>
-                                                        <select class="input input-short m-l-medium" name="book-qtt" id="book-qtt">
-                                                            <option value="1">1</option>
-                                                            <option value="2">2</option>
-                                                            <option value="3">3</option>
-                                                            <option value="4">4</option>
-                                                            <option value="5">5</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="book-cart-price">
-                                                    <h2 class="clr-gray-darkest-2x">₹@theItem.hardprice</h2>
-                                                </div>
-                                            </div>
-                                        </div>
+                        @if (myCart.items.Count == 0)
+                        {
+                            <h1>Sorry, nothing to see here right now!</h1>
+                        }
 
-                                    </div>
-                                    { 
-                                        TotalAmount = TotalAmount + theItem.hardprice;
-                                       }
-                                    }
+                        @foreach (Item theItem in myCart.items)
+                        {
 
-                                <div class="book-cart-footer p-wide flex flex-row items-center justify-end border-t bg-gray-100">
-                                    <div class="input-actions text-align:left">
-                                        <a class="a-button" href="/Books/BooksList">Buy More Book</a>
-                                    </div>
-                                    <h4 class="cart-subtotal">
-                                        Subtotal (@myCart.items.Count items):
-                                    </h4>
-                                    <div class="book-cart-price p-l-wide">
-                                        <h3>₹@TotalAmount</h3>
-                                    </div>
+                            <div class="book-list flex flex-row p-wide w-100p">
+                                <div class="book-image w-10r radius">
+                                    <a href="book.html" class="w-100p">
+                                        <img class="w-100p" src="@theItem.book.image" alt="@theItem.book.bookname">
+                                    </a>
                                 </div>
-                                </div>
-                                <div class="book-cart-amounts-container m-l-wide bg-white w-25p flex p-wide h-25p shadow-light radius">
-                                    <div class="book-cart-amounts flex flex-column w-100p">
-                                        <h3>@myCart.items.Count Books</h3>
-                                        <div class="book-cart-amount-row flex flex-row">
-                                            <h3>Subtotal: </h3>
-                                            <h3 class="m-l-normal">₹@TotalAmount</h3>
+                                <div class="book-details m-l-wide flex flex-column justify-between relative w-100p">
+                                    <div class="add-to-wishlist-container flex absolute tr-0">
+                                        <form action="/cart/@theItem.book.booksID/delete" method="post">
+                                            <button type="submit" class="border-button border border-2 border-red bg-white hover-bg-red-half">
+                                                <span class="book-add-to-wish-icon"><i class="fas fa-trash clr-red"></i></span>
+                                                <!-- <i class="fas fa-caret-down"></i> -->
+                                            </button>
+                                        </form>
+                                    </div>
+                                    @*<input type="hidden" name="cid" value="@customer.customerid" />
+                    <span class="border-button border border-2 border-red bg-white hover-bg-red-half">
+                        <i class="fas fa-trash clr-red"></i>
+                    </span>
+                    <input type="hidden" name="bid" value="@theItem.book.booksID" />*@
+
+                                    <div class="book-cart-details flex flex-row justify-between h-100p">
+                                        <div class="book-cart-details-left flex flex-column">
+                                            <div class="book-cart-details-main">
+                                                <h3 class="p-y-normal p-t-0"><a class="anchor" href="/books/@theItem.book.booksID">@theItem.book.bookname</a></h3>
+                                                <h4 class="p-y-small"><a class="anchor clr-gray-darkest-2x" href="/author">by @theItem.book.bookauthor | @theItem.book.bookdate</a></h4>
+                                                <div class="p-y-small flex flex-row items-center">
+                                                    <div class="book-stars">
+                                                        <i class="fas fa-star starred"></i>
+                                                        <i class="fas fa-star starred"></i>
+                                                        <i class="fas fa-star starred"></i>
+                                                        <i class="fas fa-star starred"></i>
+                                                        <i class="fas fa-star"></i>
+                                                    </div>
+                                                    <p class="m-l-normal">(165)</p>
+                                                </div>
+                                                <p class="p-y-small bg-gray-dark p-small inline-block">Paperback</p>
+                                                <p class="p-y-small clr-gray-darkest-2x">Get it by <span class="bold clr-inherit">Tuesday, January 19</span></p>
+                                            </div>
+                                            <h2 class="clr-gray-darkest-2x m-t-auto">₹<span>@theItem.book.paperprice</span></h2>
                                         </div>
-                                        <div class="book-buy-now border-button flex flex-row w-100p m-t-wide">
-                                            <span class="book-buy-now-icon"><i class="far fa-credit-card"></i></span>
-                                            <div class="book-action-text-container">
-                                                <h4 class="book-buy-now-text">Buy now!</h4>
+                                        <div class="book-cart-details-right flex flex-column justify-end">
+                                            <div class="book-cart-quantity flex flex-row items-center">
+                                                <!-- <h4>Quantity:</h4>
+                            <select class="input input-short m-l-medium" name="book-qtt" id="book-qtt">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select> -->
+                                                <button class="qtt-dec input input-short" data-bookid="@theItem.book.booksID">-</button>
+                                                <input type="number" class="qtt input input-short m-l-small" style="width: 4rem;" value="@theItem.quantity" min="0" max="10" data-price="@theItem.book.paperprice">
+                                                <button class="qtt-inc input input-short m-l-small" data-bookid="@theItem.book.booksID">+</button>
+                                            </div>
+                                            <div class="book-cart-price">
+                                                <h2 class="clr-gray-darkest-2x text-right">₹<span class="book-total-price">@(theItem.book.paperprice * theItem.quantity)</span></h2>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                            {
+                                TotalAmount = TotalAmount + theItem.book.paperprice;
+                            }
+                        }
+
+                        @if (myCart.items.Count > 0)
+                        {
+                            <div class="book-cart-footer p-wide flex flex-row items-center justify-end border-t bg-gray-100">
+                                <h4 class="cart-subtotal">
+                                    Subtotal (@myCart.items.Count items):
+                                </h4>
+                                <div class="book-cart-price p-l-wide">
+                                    <h3>₹<span class="total-price">@TotalAmount</span></h3>
+                                </div>
+                            </div>
+                        }
+                        
                     </div>
-               
-}
+                </div>
+                <div class="book-cart-amounts-container m-l-wide bg-white w-25p flex p-wide h-25p shadow-light radius">
+                    <div class="book-cart-amounts flex flex-column w-100p">
+                        <h3><span id="total-books">@myCart.items.Count</span> Books</h3>
+                        <div class="summary-price flex w-100p m-b-normal">
+                            <h4 class="cart-subtotal clr-gray-darkest m-r-auto">
+                                Subtotal (<span class="total-books clr-gray-darkest">2</span> books):
+                            </h4>
 
+                            <div class="book-cart-price p-l-wide text-right">
+                                <h3 style="width: 9ch;">₹<span class="total-price">@TotalAmount</span></h3>
+                            </div>
+                        </div>
+                        <button class="input pointer flex flex-row items-center w-100p bg-accent-color border-accent m-t-wide">
+                            <span class="book-buy-now-icon"><i class="far fa-credit-card clr-white"></i></span>
+                            <div class="book-action-text-container">
+                                <a href="/checkout" style="text-decoration: none;"><h4 class="book-buy-now-text clr-white">Buy now!</h4></a>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
+        <script>
+    async function postData(id, data = {}) {
+        let url = `http://localhost:7777/cart/${id}/quantity`;
+        // Default options are marked with *
+        const response = await fetch(url, {
+            method: 'POST', // *GET, POST, PUT, DELETE, etc.
+            mode: 'cors', // no-cors, *cors, same-origin
+            cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+            credentials: 'same-origin', // include, *same-origin, omit
+            headers: {
+                @*'Content-Type': 'application/json'*@
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            redirect: 'follow', // manual, *follow, error
+            referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+            body: Object.keys(data).map(key => encodeURIComponent(key) + '=' + encodeURIComponent(data[key])).join('&') // body data type must match "Content-Type" header
+        });
+
+        console.log(response);
+
+        return response; // parses JSON response into native JavaScript objects
+    }
+        </script>
+
+        <script>
+            let qttContainer = document.querySelectorAll('.book-cart-details-right');
+
+            qttContainer.forEach(container => {
+                let qtt = container.querySelector('.qtt');
+                let qttInc = container.querySelector('.qtt-inc');
+                let qttDec = container.querySelector('.qtt-dec');
+                let bookPrice = container.querySelector('.book-total-price');
+
+                qttInc.addEventListener("click", function (e) {
+                    if (parseInt(qtt.value) < parseInt(qtt.getAttribute('max'))) {
+                        qtt.value = parseInt(qtt.value) + 1;
+                        bookPrice.innerText = qtt.value * qtt.dataset["price"];
+
+                        updatePrices();
+
+                        postData(this.dataset.bookid, { qtt: qtt.value })
+                            .then(data => {
+                                console.log(data); // JSON data parsed by `data.json()` call
+                            });
+                    }
+                }, false);
+
+                qttDec.addEventListener("click", function (e) {
+                    if (parseInt(qtt.value) > parseInt(qtt.getAttribute('min'))) {
+                        qtt.value = parseInt(qtt.value) - 1;
+                        bookPrice.innerText = qtt.value * qtt.dataset["price"];
+
+                        updatePrices();
+
+                        postData(this.dataset.bookid, { qtt: qtt.value })
+                            .then(data => {
+                                console.log(data); // JSON data parsed by `data.json()` call
+                            });
+                    }
+                }, false);
+            });
+
+            function updatePrices() {
+                let totals = document.querySelectorAll('.total-price');
+                let total = 0;
+
+                document.querySelectorAll('.book-total-price').forEach(item => {
+                    total += parseInt(item.innerText);
+                    totals.forEach(ttl => {
+                        ttl.innerText = total;
+                    });
+                });
+            }
+        </script>

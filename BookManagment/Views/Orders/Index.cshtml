@@ -1,0 +1,86 @@
+﻿@using BOL
+@using Utils
+@{
+    ViewBag.Title = "Index";
+    Customer customer = (Customer)this.Session["user"];
+
+}
+
+@{
+    Dates dates = new Dates();
+    int index = 1;
+    List<Order> orders = (List<Order>)this.ViewData["orders"];
+}
+<div class="content">
+    <div class="content-main p-wide">
+        <div class="checkout-hedader">
+            <div class="input-header p-wide text-center bg-white shadow-light radius">
+                <h2>Your Orders</h2>
+            </div>
+        </div>
+        <div class="checkbox-body w-100p flex flex-row m-t-wide">
+            <div class="checkout-summary w-75p bg-white shadow-light radius m-r-wide h-25p">
+                <div class="sub-section flex flex-column justify-between">
+                    <div class="checkout-summary-main">
+                        <div class="book-lists flex flex-column w-100p">
+                            @foreach (Order order in orders)
+                            {
+                            <div class="book-list flex flex-row p-wide w-100p">
+                                <div class="book-image w-8r radius">
+                                    <a href="book.html" class="w-100p">
+                                        <img class="w-100p" src="@order.image" alt="@order.book_name">
+                                    </a>
+                                </div>
+                                <div class="book-details m-l-wide flex flex-column justify-between relative w-100p">
+                                    <div class="book-cart-details flex flex-row justify-between h-100p">
+                                        <div class="book-cart-details-left flex flex-column">
+                                            <div class="book-cart-details-main">
+                                                <h3 class="p-y-normal p-t-0"><a class="anchor" href="/order/@order.order_token">@order.book_name</a></h3>
+                                                <h4 class="p-y-small"><a class="anchor clr-gray-darkest-2x" href="/author">by @order.book_author</a></h4>
+                                            </div>
+                                            <div>
+                                                +@(order.total_items - 1) more book(s)
+                                            </div>
+                                            <h3 class="clr-gray-darkest-2x m-t-auto">Ordered on: <span>@dates.Readable(order.added_on, "dd MMMM, yyyy")</span></h3>
+                                        </div>
+                                        <div class="book-cart-details-right flex flex-column justify-end">
+                                            <div class="book-cart-price">
+                                                <h2 class="clr-gray-darkest-2x text-right">₹<span>@order.amount</span></h2>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="checkout-details w-25p">
+                <div class="checkout-addresses bg-white m-b-wide w-100p shadow-light radius ">
+                    <h3 class="p-medium border-b bg-gray-100"><span class="radius-full bg-accent"></span>Some details</h3>
+                    <div class="sub-section p-wide">
+                        <div class="summary-price flex w-100p m-b-normal">
+                            <h4 class="cart-subtotal clr-gray-darkest m-r-auto">
+                                Total orders:
+                            </h4>
+
+                            <div class="book-cart-price p-l-wide text-right">
+                                <h3 style="width: 9ch;">@orders.Count</h3>
+                            </div>
+                        </div>
+                        <div class="summary-price flex w-100p m-b-normal">
+                            <h4 class="cart-subtotal clr-gray-darkest m-r-auto">
+                                Failed orders:
+                            </h4>
+
+                            <div class="book-cart-price p-l-wide text-right">
+                                <h3 style="width: 9ch;">0</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

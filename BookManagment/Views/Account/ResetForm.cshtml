@@ -1,0 +1,31 @@
+﻿
+@{
+    ViewBag.Title = "Reset";
+    string email = (string)ViewData["email"];
+}
+
+<div class="content">
+    <div class="input-box">
+        <div class="input-header">
+            <h2>Reset your password</h2>
+        </div>
+            <div class="input-form">
+        <form method="post">
+            <input type="hidden" name="email" value="@email" />
+                <label for="upass">Password:</label>
+                <br />
+                <input class="input" placeholder="Password" type="password" name="upass" id="upass" autocomplete="off" autofocus required>
+                <!-- <p><em class="error-text">Username is required</em></p> -->
+                <br />
+                <label for="upass2">Confirm password:</label>
+                <br />
+                <input class="input" placeholder="Confirm password" type="password" name="upass2" id="upass2" autocomplete="off" required>
+                <!-- <p><em class="error-text">Password is required</em></p> -->
+                <div class="input-actions">
+                    <a class="a-button input" href="login.html">Login</a>
+                    <button class="button bg-accent-color border-accent input clr-white" type="submit">Reset Password</button>
+                </div>
+        </form>
+            </div>
+    </div>
+</div>

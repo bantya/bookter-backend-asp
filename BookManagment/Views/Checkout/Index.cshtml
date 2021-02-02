@@ -1,0 +1,186 @@
+﻿@using BOL
+@using BLL
+@{
+    ViewBag.Title = "AddtoCart";
+    double TotalAmount = 0;
+    Customer customer = (Customer)this.Session["user"];
+    string userName = "Your";
+    double total = 0;
+    if (customer != null)
+    {
+        userName = customer.customer_name;
+    }
+}
+
+@{
+    Address add = (Address)this.ViewData["address"];
+
+    Cart myCart = (Cart)Model;
+
+    <div class="content">
+        <div class="content-main p-wide">
+            <div class="checkout-hedader">
+                <div class="input-header p-wide text-center bg-white shadow-light radius">
+                    <h2>Checkout</h2>
+                </div>
+            </div>
+            <div class="checkbox-body w-100p flex flex-row m-t-wide">
+                <div class="checkout-summary w-75p bg-white shadow-light radius m-r-wide h-25p">
+                    <h3 class="p-medium border-b bg-gray-100"><span class="radius-full bg-accent">1</span> Summary</h3>
+                    <div class="sub-section flex flex-column justify-between">
+                        <div class="checkout-summary-main">
+
+                            @foreach (Item theItem in myCart.items)
+                            {
+                                total = total + (theItem.book.paperprice * theItem.quantity);
+                                <div class="book-lists flex flex-column w-100p">
+                                    <div class="book-list flex flex-row p-wide w-100p">
+                                        <div class="book-image w-10r radius">
+                                            <a href="#" class="w-100p">
+                                                <img class="w-100p" src="@theItem.book.image" alt="Dream with your Eyes Open: An Entrepreneurial Journey">
+                                            </a>
+                                        </div>
+                                        <div class="book-details m-l-wide flex flex-column justify-between relative w-100p">
+                                            <div class="book-cart-details flex flex-row justify-between h-100p">
+                                                <div class="book-cart-details-left flex flex-column">
+                                                    <div class="book-cart-details-main">
+                                                        <h3 class="p-y-normal p-t-0"><a class="anchor" href="book.html">@theItem.book.bookname</a></h3>
+                                                        <h4 class="p-y-small"><a class="anchor clr-gray-darkest-2x" href="author.html">@theItem.book.bookauthor | @theItem.book.bookdate</a></h4>
+                                                        <div class="p-y-small flex flex-row items-center">
+                                                            <div class="book-stars">
+                                                                <i class="fas fa-star starred"></i>
+                                                                <i class="fas fa-star starred"></i>
+                                                                <i class="fas fa-star starred"></i>
+                                                                <i class="fas fa-star starred"></i>
+                                                                <i class="fas fa-star"></i>
+                                                            </div>
+                                                            <p class="m-l-normal">(165)</p>
+                                                        </div>
+                                                        <p class="p-y-small bg-gray-dark p-small inline-block">Paperback</p>
+                                                        <p class="p-y-small clr-gray-darkest-2x">Get it by <span class="bold clr-inherit">Tuesday, January 19</span></p>
+                                                    </div>
+                                                    <h2 class="clr-gray-darkest-2x m-t-auto">₹<span>@theItem.book.paperprice</span>x<span>@theItem.quantity</span></h2>
+                                                </div>
+                                                <div class="book-cart-details-right flex flex-column justify-end">
+                                                    <div class="book-cart-price">
+                                                        <h2 class="clr-gray-darkest-2x text-right">₹<span class="book-total-price">@(theItem.book.paperprice * theItem.quantity)</span></h2>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div class="checkout-details w-25p">
+                    <div class="pricing-details bg-white w-100p m-b-wide shadow-light radius ">
+                        <h3 class="p-medium border-b bg-gray-100"><span class="radius-full bg-accent"></span>Pricing details</h3>
+                        <div class="sub-section p-wide">
+                            <div class="summary-price flex w-100p m-b-normal">
+                                <h4 class="cart-subtotal clr-gray-darkest m-r-auto">
+                                    Subtotal (<span class="total-books clr-gray-darkest">@myCart.items.Count</span> books):
+                                </h4>
+
+                                <div class="book-cart-price p-l-wide text-right">
+                                    <h3 style="width: 9ch;">₹<span class="total-price">@total</span></h3>
+                                </div>
+                            </div>
+                            <div class="summary-price flex w-100p m-b-normal">
+                                <h4 class="cart-subtotal clr-gray-darkest m-r-auto">
+                                    Delivery charges:
+                                </h4>
+
+                                <div class="book-cart-price p-l-wide text-right">
+                                    <h3 style="width: 9ch;">₹<span>0</span></h3>
+                                </div>
+                            </div>
+                            <div class="summary-price flex w-100p border-t p-t-normal">
+                                <h4 class="cart-subtotal clr-gray-darkest m-r-auto">
+                                    Amount payable:
+                                </h4>
+
+                                <div class="book-cart-price p-l-wide text-right">
+                                    <h3 style="width: 9ch;">₹<span>@total</span></h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="checkout-addresses bg-white m-b-wide w-100p shadow-light radius ">
+                        <h3 class="p-medium border-b bg-gray-100"><span class="radius-full bg-accent"></span>Select your address</h3>
+                        <div class="sub-section p-wide">
+                            <!-- <div class="m-b-medium text-right">
+                                <a class="anchor" href="/add/address">+ Add Address</a>
+                            </div> -->
+
+                            <div class="checkout-address flex flex-row">
+                                <input type="radio" name="order-address" id="addr-1" class="no-appearance check-parent" checked>
+                                <label for="addr-1" class="order-address check-child w-100p flex border-button hover-border-accent hover-bg-white" data-address="1" data-address-default="1">
+                                    <span class="checkout-address-main">
+                                        <p>@add.flat_no, @add.build_no, @add.street,</p>
+                                        <p>@add.area,</p>
+                                        <p>@add.city <strong>@add.pincode</strong>.</p>
+                                        <p>Dist: @add.district <strong>[MH]</strong></p>
+                                    </span>
+                                </label>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="payment-methods bg-white w-100p bg-white shadow-light radius">
+                        <h3 class="p-medium border-b bg-gray-100"><span class="radius-full bg-accent">4</span>Select payment method</h3>
+                        <div class="sub-section p-wide">
+                            <div class="payment-method flex flex-row">
+                                <input type="radio" name="payment-method" id="payment-cod" class="no-appearance check-parent">
+                                <label for="payment-cod" class="check-child payment-method w-100p flex border-button hover-border-accent hover-bg-accent-color-half" data-address="2">
+                                    <p>Cash on delivery (COD)</p>
+                                </label>
+                            </div>
+                            <div class="payment-method flex flex-row">
+                                <input type="radio" name="payment-method" id="payment-online" class="no-appearance check-parent">
+                                <label for="payment-online" class="check-child payment-method w-100p flex border-button hover-border-accent hover-bg-accent-color-half" data-address="3">
+                                    <p>Online payment</p>
+                                </label>
+                            </div>
+                            <form action="/order/create" method="post">
+                                <button id="place-order-btn" class="input pointer  flex flex-row items-center w-100p bg-accent-color border-accent m-t-wide hidden">
+                                    <div class="book-action-text-container">
+                                            <h4 class="book-buy-now-text clr-white">Place order and pay later!</h4>
+                                    </div>
+                                </button>
+                            </form>
+                            <form action="/pay/now" method="post">
+                                <button id="buy-now-btn" class="input pointer flex flex-row items-center w-100p bg-accent-color border-accent m-t-wide hidden">
+                                    <span class="book-buy-now-icon"><i class="far fa-credit-card clr-white"></i></span>
+                                    <div class="book-action-text-container">
+                                        <h4 class="book-buy-now-text clr-white">Buy now and place order!</h4>
+                                    </div>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let codBtn = document.querySelector('#payment-cod');
+        let onlineBtn = document.querySelector('#payment-online');
+        let placeOrderBtn = document.querySelector('#place-order-btn');
+        let buyNowBtn = document.querySelector('#buy-now-btn');
+
+        codBtn.addEventListener("click", e => {
+            placeOrderBtn.classList.remove('hidden');
+            buyNowBtn.classList.add('hidden');
+        }, false);
+        onlineBtn.addEventListener("click", e => {
+            buyNowBtn.classList.remove('hidden');
+            placeOrderBtn.classList.add('hidden');
+        }, false);
+    </script>
+
+    }

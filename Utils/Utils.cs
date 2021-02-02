@@ -17,7 +17,5 @@ namespace Utils
             }
             return 0;
         }
-
-        
     }
 }

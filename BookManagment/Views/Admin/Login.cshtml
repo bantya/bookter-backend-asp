@@ -4,67 +4,71 @@
 }
 
 
-                <div class="content">
-                    <div class="input-box">
-                        <div class="input-header">
-                            <h2>Admin log-in</h2>
-                        </div>
-                        <div class="input-form">
-                            <form method="post">
-                                <label for="uname">Username/Email:</label>
-                                <br />
-                                <input class="input" type="text" name="uname" id="uname" autocomplete="off" autofocus required>
-                                <br />
-                                <label for="upass">Password:</label>
-                                <br />
-                                <input class="input" type="password" name="upass" id="upass" autocomplete="off" required>
-                                <div class="input-actions">
-                                    <button class="button" type="submit">Log-in</button>
-                                    <a class="a-button" href="forgot.html">Forgot password ??</a>
-                                </div>
-                            </form>
-                        </div>
+@*<div class="content">
+        <div class="input-box">
+            <div class="input-header">
+                <h2>Admin log-in</h2>
+            </div>
+            <div class="input-form">
+                <form method="post">
+                    <label for="uname">Username/Email:</label>
+                    <br />
+                    <input class="input" type="text" name="uname" id="uname" autocomplete="off" autofocus required>
+                    <br />
+                    <label for="upass">Password:</label>
+                    <br />
+                    <input class="input" type="password" name="upass" id="upass" autocomplete="off" required>
+                    <div class="input-actions">
+                        <button class="button" type="submit">Log-in</button>
+                        <a class="a-button" href="forgot.html">Forgot password ??</a>
+                    </div>
+                </form>
+            </div>
 
-                    </div>
-                </div>
-            </div> <!-- MAIN CONTENT -->
-            <!-- FOOTER -->
-            <footer>
-                <div class="upper-footer">
-                    <div class="footer-list-container">
-                        <p class="footer-list-title">ESSENTIALS</p>
-                        <ul class="footer-pages-list">
-                            <li><a href="#">Contact Us</a></li>
-                            <li><a href="#">About Us</a></li>
-                            <li><a href="#">Careers</a></li>
-                        </ul>
-                    </div>
-                    <div class="footer-list-container">
-                        <p class="footer-list-title">PAGES</p>
-                        <ul class="footer-pages-list">
-                            <li><a href="#">Payment Security</a></li>
-                            <li><a href="#">Privacy Policy</a></li>
-                            <li><a href="#">Terms and Conditions</a></li>
-                        </ul>
-                    </div>
-                    <div class="footer-list-container">
-                        <p class="footer-list-title">SOCIAL</p>
-                        <ul class="footer-social-list">
-                            <li><a href="#">YouTube</a></li>
-                            <li><a href="#">Twitter</a></li>
-                            <li><a href="#">Facebook</a></li>
-                            <li><a href="#">Instagram</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="lower-footer">
-                    &copy; 2020-20xx bookter.in
-                </div>
-            </footer> <!-- FOOTER -->
         </div>
-    </div>
-</body>
+    </div>*@
 
-</html>
+
+@model Models.AdminLogin
+
+<div class="content">
+    <div class="input-box">
+        <div class="input-header">
+            <h2>Admin log-in</h2>
+        </div>
+        <div class="input-form">
+
+            @{ using (Html.BeginForm())
+                {
+    @Html.ValidationSummary(true)
+                    @Html.AntiForgeryToken() if (ViewBag.Message != null)
+                                    {
+                    <div style="border:solid 1px green">
+                        ViewBag.Message
+                    </div>}
+@Html.LabelFor(m => m.Username)
+                <br />
+                                @Html.TextBoxFor(m => m.Username, new { @class = "input" })
+                                                <br />
+                                                                @Html.ValidationMessageFor(m => m.Username)
+                                                                                <br />
+
+                                                                                                @Html.LabelFor(m => m.Password)
+                                                                                                                <br />
+                                                                                                                                @Html.PasswordFor(m => m.Password, new { @class = "input" })
+                                                                                                                                                <br />
+                                                                                                                                                                @Html.ValidationMessageFor(m => m.Password)
+                                                                                                                                                                                <br />
+
+                                                                                                                                                                                                <div class="input-actions">
+                                                                                                                                                                                                    <button class="button" type="submit">Log-in</button>
+
+                                                                                                                                                                                                    <a class="a-button" href="/Admin/forgot">Forgot password ??</a>
+                                                                                                                                                                                                </div> } }
+        </div>
+
+    </div>
+</div>
+
 
 

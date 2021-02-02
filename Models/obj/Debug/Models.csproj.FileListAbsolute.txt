@@ -1,0 +1,12 @@
+C:\Users\Shedge\source\repos\BookManagment\Models\bin\Debug\Models.dll
+C:\Users\Shedge\source\repos\BookManagment\Models\bin\Debug\Models.pdb
+C:\Users\Shedge\source\repos\BookManagment\Models\obj\Debug\Models.csprojAssemblyReference.cache
+C:\Users\Shedge\source\repos\BookManagment\Models\obj\Debug\Models.csproj.CoreCompileInputs.cache
+C:\Users\Shedge\source\repos\BookManagment\Models\obj\Debug\Models.dll
+C:\Users\Shedge\source\repos\BookManagment\Models\obj\Debug\Models.pdb
+D:\CDAC\project\bookter-backend-asp\Models\bin\Debug\Models.dll
+D:\CDAC\project\bookter-backend-asp\Models\bin\Debug\Models.pdb
+D:\CDAC\project\bookter-backend-asp\Models\obj\Debug\Models.csproj.CoreCompileInputs.cache
+D:\CDAC\project\bookter-backend-asp\Models\obj\Debug\Models.dll
+D:\CDAC\project\bookter-backend-asp\Models\obj\Debug\Models.pdb
+D:\CDAC\project\bookter-backend-asp\Models\obj\Debug\Models.csprojAssemblyReference.cache

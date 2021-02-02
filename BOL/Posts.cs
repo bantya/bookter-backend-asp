@@ -6,8 +6,6 @@ using System.Threading.Tasks;
 
 namespace BOL
 {
-    // p.post_id, p.user_id, p.user_name, p.content, p.book_id, p.created_at, p.post_image_1, p.post_image_2, p.post_image_3,
-    //p.post_image_4, s.likes, s.dislikes, c.image, b.booksID, b.bookname, b.bookauthor 
     public class Posts
     {
         public int post_id { set; get; }
@@ -27,7 +25,12 @@ namespace BOL
         public string bookname { set; get; }
         public string bookauthor { set; get; }
 
+        public string f_name { set; get; }
+        public string l_name { set; get; }
+        public bool isLiked { set; get; }
+        public bool isDisLiked { set; get; }
 
+        public List<Comment> comments { set; get; }
     }
 }
 

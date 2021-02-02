@@ -4,3 +4,9 @@ C:\Users\Shedge\source\repos\BookManagment\Utils\obj\Debug\Utils.csprojAssemblyR
 C:\Users\Shedge\source\repos\BookManagment\Utils\obj\Debug\Utils.csproj.CoreCompileInputs.cache
 C:\Users\Shedge\source\repos\BookManagment\Utils\obj\Debug\Utils.dll
 C:\Users\Shedge\source\repos\BookManagment\Utils\obj\Debug\Utils.pdb
+D:\CDAC\project\bookter-backend-asp\Utils\obj\Debug\Utils.csproj.CoreCompileInputs.cache
+D:\CDAC\project\bookter-backend-asp\Utils\obj\Debug\Utils.dll
+D:\CDAC\project\bookter-backend-asp\Utils\obj\Debug\Utils.pdb
+D:\CDAC\project\bookter-backend-asp\Utils\bin\Debug\Utils.dll
+D:\CDAC\project\bookter-backend-asp\Utils\bin\Debug\Utils.pdb
+D:\CDAC\project\bookter-backend-asp\Utils\obj\Debug\Utils.csprojAssemblyReference.cache
